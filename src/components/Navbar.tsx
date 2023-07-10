@@ -15,7 +15,7 @@ function Navbar() {
 
     return (
         <div className="shadow-md w-full fixed top-0 left-0">
-            <div className="md:flex items-center justify-between bg-white h-[--navbar-height] md:py-6 py-2 md:px-10 px-7">
+            <div className="md:flex items-center justify-between bg-tech-gold h-[--navbar-height] md:py-6 py-2 md:px-10 px-7">
                 <div className="font-bold text-2xl cursor-pointer flex items-center font-[Poppins] text-gray-800">
                     <img
                         src={Logo}
@@ -32,7 +32,7 @@ function Navbar() {
                     {!open ? <RxHamburgerMenu /> : <GrClose />}
                 </div>
                 <ul
-                    className={`md:flex md:items-center md:pb-0 pb-12 absolute md:static bg-white md:z-auto z-[-1] left-0 w-full md:w-auto ${
+                    className={`md:flex md:items-center md:pb-0 pb-12 absolute md:static bg-tech-gold md:z-auto z-[-1] left-0 w-full md:w-auto ${
                         open ? "top-[64px]" : "top-[-490px]"
                     }`}
                 >
