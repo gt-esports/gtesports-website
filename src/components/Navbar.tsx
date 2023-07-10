@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
+import { GrClose } from "react-icons/gr";
 
 function Navbar() {
     const links = [
@@ -21,7 +22,7 @@ function Navbar() {
                     onClick={() => setOpen(!open)}
                     className="text-3xl absolute right-8 top-4 cursor-pointer md:hidden"
                 >
-                    <RxHamburgerMenu />
+                    {!open ? <RxHamburgerMenu /> : <GrClose />}
                 </div>
                 <ul
                     className={`md:flex md:items-center md:pb-0 pb-12 absolute md:static bg-white md:z-auto z-[-1] left-0 w-full md:w-auto ${
