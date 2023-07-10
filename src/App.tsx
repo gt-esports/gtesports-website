@@ -1,10 +1,14 @@
-function App() {
+import Navbar from "./components/Navbar";
 
+function App() {
   return (
     <>
-      <h1 className={"text-3xl"}>GTEsports Website</h1>
+      <Navbar />
+      <main className="mt-[--navbar-height] h-screen w-full bg-white">
+        <h1 className={"text-3xl text-black"}>GTEsports Website</h1>
+      </main>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
