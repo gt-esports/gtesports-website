@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { GrClose } from "react-icons/gr";
+import Logo from "/logo.png";
 
 function Navbar() {
     const links = [
@@ -14,9 +15,15 @@ function Navbar() {
 
     return (
         <div className="shadow-md w-full fixed top-0 left-0">
-            <div className="md:flex items-center justify-between bg-white h-[--navbar-height] py-6 md:px-10 px-7">
+            <div className="md:flex items-center justify-between bg-white h-[--navbar-height] md:py-6 py-2 md:px-10 px-7">
                 <div className="font-bold text-2xl cursor-pointer flex items-center font-[Poppins] text-gray-800">
-                    GTEsports
+                    <img
+                        src={Logo}
+                        alt="GTEsports Logo"
+                        width={64}
+                        height={64}
+                    />
+                    <span className="ml-2">GTEsports</span>
                 </div>
                 <div
                     onClick={() => setOpen(!open)}
