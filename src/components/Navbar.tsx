@@ -2,13 +2,12 @@ import { useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { TfiClose } from "react-icons/tfi";
 import Logo from "/logo.png";
+import { NavLink } from "react-router-dom";
 
 function Navbar() {
   const links = [
     { name: "HOME", link: "/" },
-    { name: "ABOUT", link: "/" },
-    { name: "OTHER LINK", link: "/" },
-    { name: "COOL LINK", link: "/" },
+    { name: "ABOUT", link: "/about" },
   ];
 
   const [open, setOpen] = useState(false);
@@ -36,12 +35,12 @@ function Navbar() {
               key={link.name}
               className="my-7 text-center text-xl md:my-0 md:ml-8"
             >
-              <a
-                href={link.link}
-                className="text-bright-buzz duration-500 hover:text-gray-400"
+              <NavLink
+                to={link.link}
+                className="text-bright-buzz underline-offset-4 duration-500 hover:text-gray-400 aria-[current=page]:underline"
               >
                 {link.name}
-              </a>
+              </NavLink>
             </li>
           ))}
         </ul>
