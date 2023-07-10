@@ -1,10 +1,14 @@
-function App() {
+import Navbar from "./components/Navbar";
 
-  return (
-    <>
-      <h1 className={"text-3xl"}>GTEsports Website</h1>
-    </>
-  )
+function App() {
+    return (
+        <>
+            <Navbar />
+            <main className="bg-indigo-600 w-full h-screen">
+                <h1 className={"text-3xl text-white"}>GTEsports Website</h1>
+            </main>
+        </>
+    );
 }
 
-export default App
+export default App;
