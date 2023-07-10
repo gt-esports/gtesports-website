@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer base {
-    :root {
-        --navbar-height: 80px;
-    }
+  :root {
+    --navbar-height: 80px;
+  }
 }
