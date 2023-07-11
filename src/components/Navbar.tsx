@@ -8,6 +8,7 @@ function Navbar() {
   const links = [
     { name: "HOME", link: "/" },
     { name: "ABOUT", link: "/about" },
+    { name: "TEAMS", link: "/teams" },
   ];
 
   const [open, setOpen] = useState(false);
@@ -15,7 +16,7 @@ function Navbar() {
   return (
     <div className="fixed left-0 top-0 w-full shadow-md">
       <div className="h-[--navbar-height] items-center justify-between bg-light-purple px-7 py-2 md:flex md:px-10 md:py-6">
-        <div className="flex cursor-pointer items-center font-[Poppins] text-2xl font-bold text-bright-buzz">
+        <div className="flex items-center text-3xl font-bold text-bright-buzz">
           <img src={Logo} alt="GTEsports Logo" width={64} height={64} />
           <span className="ml-2">GTEsports</span>
         </div>

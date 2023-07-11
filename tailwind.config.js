@@ -3,6 +3,9 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        'quicksand': ['Quicksand', 'sans-serif']
+      },
       colors: {
         "tech-gold": "#B3A369",
         "navy-blue": "#003057",
