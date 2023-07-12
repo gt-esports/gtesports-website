@@ -8,7 +8,7 @@ function Navbar() {
   const links = [
     { name: "HOME", link: "/" },
     { name: "ABOUT", link: "/about" },
-    { name: "TEAMS", link: "/teams" },
+    { name: "GAMES", link: "/games" },
   ];
 
   const [open, setOpen] = useState(false);
