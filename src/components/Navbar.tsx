@@ -15,7 +15,7 @@ function Navbar() {
 
   return (
     <div className="fixed left-0 top-0 w-full shadow-md">
-      <div className="h-[--navbar-height] items-center justify-between bg-light-purple px-7 py-2 md:flex md:px-10 md:py-6">
+      <div className="h-[--navbar-height] items-center justify-between bg-light-purple px-7 py-2 md:flex md:px-20 md:py-6">
         <div className="flex items-center text-3xl font-bold text-bright-buzz">
           <img src={Logo} alt="GTEsports Logo" width={64} height={64} />
           <span className="ml-2">GTEsports</span>
@@ -38,7 +38,7 @@ function Navbar() {
             >
               <NavLink
                 to={link.link}
-                className="text-bright-buzz underline-offset-4 duration-500 hover:text-gray-400 aria-[current=page]:underline"
+                className="text-bright-buzz underline-offset-4 duration-500 hover:text-white aria-[current=page]:underline"
               >
                 {link.name}
               </NavLink>
