@@ -16,52 +16,28 @@ function Games() {
       discord: "https://discord.gg/T3vB5jYhdE",
     },
     {
-      name: "League of Legends",
-      desc: "This is the League of Legends description blah blah blah blah blah. This is the League of Legends description blah blah blah blah blah.",
-      icon: "/lol_logo.png",
-      discord: "https://discord.gg/T3vB5jYhdE",
+      name: "Valorant",
+      desc: "This is the Valorant description blah blah blah blah blah.",
+      icon: "/val_logo.png",
+      discord: "https://discord.gg/2aUxJuT",
     },
     {
-      name: "League of Legends",
-      desc: "This is the League of Legends description blah blah blah blah blah.",
-      icon: "/lol_logo.png",
-      discord: "https://discord.gg/T3vB5jYhdE",
+      name: "Rocket League",
+      desc: "This is the Rocket League description blah blah blah blah blah.",
+      icon: "/rl_logo.png",
+      discord: "https://discord.gg/B9tQzuk8jh",
     },
     {
-      name: "League of Legends",
-      desc: "This is the League of Legends description blah blah blah blah blah.",
-      icon: "/lol_logo.png",
-      discord: "https://discord.gg/T3vB5jYhdE",
+      name: "Dota 2",
+      desc: "This is the Dota 2 description blah blah blah blah blah.",
+      icon: "/dota2_logo.png",
+      discord: "https://discord.gg/cEG2MMDQKK",
     },
     {
-      name: "League of Legends",
-      desc: "This is the League of Legends description blah blah blah blah blah. This is the League of Legends description blah blah blah blah blah.",
-      icon: "/lol_logo.png",
-      discord: "https://discord.gg/T3vB5jYhdE",
-    },
-    {
-      name: "League of Legends",
-      desc: "This is the League of Legends description blah blah blah blah blah.",
-      icon: "/lol_logo.png",
-      discord: "https://discord.gg/T3vB5jYhdE",
-    },
-    {
-      name: "League of Legends",
-      desc: "This is the League of Legends description blah blah blah blah blah.",
-      icon: "/lol_logo.png",
-      discord: "https://discord.gg/T3vB5jYhdE",
-    },
-    {
-      name: "League of Legends",
-      desc: "This is the League of Legends description blah blah blah blah blah. This is the League of Legends description blah blah blah blah blah.",
-      icon: "/lol_logo.png",
-      discord: "https://discord.gg/T3vB5jYhdE",
-    },
-    {
-      name: "League of Legends",
-      desc: "This is the League of Legends description blah blah blah blah blah.",
-      icon: "/lol_logo.png",
-      discord: "https://discord.gg/T3vB5jYhdE",
+      name: "Rainbow Six: Siege",
+      desc: "This is the RS6 description blah blah blah blah blah.",
+      icon: "/r6_logo.png",
+      discord: "https://discord.gg/2aUxJuT",
     },
   ];
 
@@ -70,7 +46,7 @@ function Games() {
       <h1 className="py-6 text-center text-5xl font-bold text-light-purple">
         Games
       </h1>
-      <div className="flex flex-col justify-center gap-8 px-20 md:mx-auto md:w-11/12 md:flex-row md:flex-wrap md:justify-evenly">
+      <div className="flex flex-col items-center gap-5">
         {games.map((game, index) => {
           return <GameCard key={index} game={game} />;
         })}
