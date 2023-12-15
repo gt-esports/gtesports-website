@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       fontFamily: {
         quicksand: ["Quicksand", "sans-serif"],
+        bayon: ["Bayon", "sans-serif"],
       },
       colors: {
         "tech-gold": "#B3A369",
