@@ -19,3 +19,5 @@ npm run dev
 ```
 
 Happy coding! Please use the Issue board to see what needs to be done!
+
+Figma: https://www.figma.com/file/gkep0rNknWAN69FG0XPhg5/GA-TECH-ESPORTS?type=design&node-id=0-1&mode=design
