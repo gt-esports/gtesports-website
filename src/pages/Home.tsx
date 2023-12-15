@@ -1,3 +1,14 @@
+import CarouselCard from "../components/CarouselCard";
+import league from "../assets/league.png";
+import valorant from "../assets/val.jpeg";
+import ow2 from "../assets/overwatch.jpeg";
+
+const games = [
+  [league, "discordlink"],
+  [valorant, "discordlink"],
+  [ow2, "discordlink"],
+];
+
 function Home() {
   return (
     <div className="h-screen w-full">
@@ -7,10 +18,17 @@ function Home() {
           <span className="text-white">Esports</span>
         </h1>
       </div>
-      <div className="flex h-[200vh] w-full justify-center bg-streak bg-cover pt-24">
-        <h2 className="font-bayon text-7xl font-normal text-white">
-          CHOOSE YOUR GAME
-        </h2>
+      <div className="flex h-[300vh] w-full flex-col items-center bg-streak bg-cover pt-24">
+        <div>
+          <h2 className="font-bayon text-7xl font-normal text-white">
+            CHOOSE YOUR GAME
+          </h2>
+        </div>
+        <div className="flex flex-row">
+          {games.map((game) => (
+            <CarouselCard image={game[0]} link={game[1]} />
+          ))}
+        </div>
       </div>
     </div>
   );
