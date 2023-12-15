@@ -4,9 +4,9 @@ import valorant from "../assets/val.jpeg";
 import ow2 from "../assets/overwatch.jpeg";
 
 const games = [
-  [league, "discordlink"],
-  [valorant, "discordlink"],
-  [ow2, "discordlink"],
+  [valorant, "Valorant", "discordlink"],
+  [league, "League of Legends", "discordlink"],
+  [ow2, "Overwatch 2", "discordlink"],
 ];
 
 function Home() {
@@ -26,7 +26,7 @@ function Home() {
         </div>
         <div className="flex flex-row">
           {games.map((game) => (
-            <CarouselCard image={game[0]} link={game[1]} />
+            <CarouselCard image={game[0]} name={game[1]} link={game[2]} />
           ))}
         </div>
       </div>
