@@ -31,7 +31,7 @@ function Carousel() {
         <img
           onClick={handlePrev}
           src={leftarrow}
-          className="absolute left-64 top-1/2 z-10 -translate-y-1/2 transform cursor-pointer"
+          className="absolute left-96 top-1/2 z-10 -translate-y-1/2 transform cursor-pointer"
         />
         {reorder.map((game, index) => (
           <CarouselCard
@@ -45,7 +45,7 @@ function Carousel() {
         <img
           onClick={handleNext}
           src={rightarrow}
-          className="absolute right-64 top-1/2 -translate-y-1/2 transform cursor-pointer"
+          className="absolute right-96 top-1/2 -translate-y-1/2 transform cursor-pointer"
         />
       </div>
     </div>
