@@ -14,7 +14,7 @@ function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="fixed left-0 top-0 w-full shadow-md">
+    <div className="fixed left-0 top-0 z-10 w-full shadow-md">
       <div className="h-[--navbar-height] items-center justify-between bg-light-purple px-7 py-2 md:flex md:px-20 md:py-6">
         <div className="flex items-center text-3xl font-bold text-bright-buzz">
           <img src={Logo} alt="GTEsports Logo" width={64} height={64} />
