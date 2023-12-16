@@ -1,13 +1,4 @@
-import CarouselCard from "../components/CarouselCard";
-import league from "../assets/league.png";
-import valorant from "../assets/val.jpeg";
-import ow2 from "../assets/overwatch.jpeg";
-
-const games = [
-  [valorant, "Valorant", "discordlink"],
-  [league, "League of Legends", "discordlink"],
-  [ow2, "Overwatch 2", "discordlink"],
-];
+import Carousel from "../components/Carousel";
 
 function Home() {
   return (
@@ -24,10 +15,8 @@ function Home() {
             CHOOSE YOUR GAME
           </h2>
         </div>
-        <div className="flex flex-row">
-          {games.map((game) => (
-            <CarouselCard image={game[0]} name={game[1]} link={game[2]} />
-          ))}
+        <div className="mx-auto mt-5 flex w-4/5 max-w-screen-xl flex-row">
+          <Carousel />
         </div>
       </div>
     </div>
