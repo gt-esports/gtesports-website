@@ -45,7 +45,7 @@ function Navbar() {
             >
               <NavLink
                 to={link.link}
-                className={`${location.pathname === link.link ? 'text-bright-buzz' : 'text-white'} ${location.pathname === link.link ? 'underline' : ''} underline-offset-4 duration-500 hover:text-white`}
+                className={`${location.pathname === link.link ? 'text-bright-buzz' : 'text-white'} ${location.pathname === link.link ? 'underline' : ''} underline-offset-4 duration-500 hover:text-bright-buzz`}
               >
                 {link.name}
               </NavLink>
