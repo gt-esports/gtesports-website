@@ -2,23 +2,37 @@ import { useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { TfiClose } from "react-icons/tfi";
 import Logo from "/logo.png";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 
 function Navbar() {
+  const location = useLocation();
+
   const links = [
-    { name: "HOME", link: "/" },
+    { name: "HOME", link: "/home" },
+    // { name: "TEAMS", link: "/teams" },
+    { name: "GAMES", link: "/games" },
+    { name: "RECRUITMENT", link: "/recruitment" },
+    { name: "NEWS & EVENTS", link: "/newsandevents" },
     { name: "ABOUT", link: "/about" },
-    { name: "TEAMS", link: "/teams" },
   ];
 
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="fixed left-0 top-0 z-10 w-full shadow-md">
-      <div className="h-[--navbar-height] items-center justify-between bg-light-purple px-7 py-2 md:flex md:px-20 md:py-6">
-        <div className="flex items-center text-3xl font-bold text-bright-buzz">
-          <img src={Logo} alt="GTEsports Logo" width={64} height={64} />
-          <span className="ml-2">GTEsports</span>
+    <div className="fixed left-0 top-0 w-full shadow-md">
+      <div className="h-[--navbar-height] items-center justify-between bg-transparent px-7 py-2 md:flex md:px-20 md:py-6">
+        <div className="text-3xl font-bold">
+          <Link to="/" className="flex items-center">
+            <img
+              src={Logo}
+              alt="GT Esports Logo"
+              width={64}
+              height={64}
+              className="mr-2"
+            />
+            <span className="text-tech-gold">GA Tech</span>{" "}
+            <span className="ml-2 text-white">Esports</span>
+          </Link>
         </div>
         <div
           onClick={() => setOpen(!open)}
@@ -27,7 +41,7 @@ function Navbar() {
           {!open ? <RxHamburgerMenu /> : <TfiClose />}
         </div>
         <ul
-          className={`absolute left-0 z-[-1] w-full bg-light-purple pb-4 md:static md:z-auto md:flex md:w-auto md:items-center md:pb-0 ${
+          className={`absolute left-0 z-[-1] w-full bg-transparent pb-4 md:static md:z-auto md:flex md:w-auto md:items-center md:pb-0 ${
             open ? "top-[64px]" : "top-[-490px]"
           }`}
         >
@@ -38,7 +52,13 @@ function Navbar() {
             >
               <NavLink
                 to={link.link}
-                className="text-bright-buzz underline-offset-4 duration-500 hover:text-white aria-[current=page]:underline"
+                className={`${
+                  location.pathname === link.link
+                    ? "text-bright-buzz"
+                    : "text-white"
+                } ${
+                  location.pathname === link.link ? "underline" : ""
+                } underline-offset-4 duration-500 hover:text-bright-buzz`}
               >
                 {link.name}
               </NavLink>
