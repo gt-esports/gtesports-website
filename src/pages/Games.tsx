@@ -3,7 +3,7 @@ function Games() {
     <div className="h-screen w-full">
       <div className="flex h-[300vh] w-full flex-col items-center bg-streak bg-cover pt-36">
         <div>
-          <h2 className="font-bayon text-7xl font-bold text-white">
+          <h2 className="font-bayon text-7xl tracking-wide text-white">
             GAMES
           </h2>
         </div>
