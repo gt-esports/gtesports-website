@@ -23,15 +23,8 @@ function Navbar() {
       <div className="h-[--navbar-height] items-center justify-between bg-transparent px-7 py-2 md:flex md:px-20 md:py-6">
         <div className="text-3xl font-bold">
           <Link to="/" className="flex items-center">
-            <img
-              src={Logo}
-              alt="GT Esports Logo"
-              width={64}
-              height={64}
-              className="mr-2"
-            />
-            <span className="text-tech-gold">GA Tech</span>{" "}
-            <span className="ml-2 text-white">Esports</span>
+            <img src={Logo} alt="GT Esports Logo" width={64} height={64} className="mr-2" />
+            <span className="text-tech-gold">GA TECH</span> <span className="text-white ml-2">ESPORTS</span>
           </Link>
         </div>
         <div
