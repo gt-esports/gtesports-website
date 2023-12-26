@@ -7,4 +7,17 @@
     --navbar-height: 80px;
     font-family: 'Quicksand', sans-serif;
   }
+
+  .card {
+    width: 221px; /* Set the width of the card */
+    height: 395px; /* Set the height of the card */
+    background-image: url('assets/game-card-background.png'); /* Set the background image */
+    background-size: cover; /* Ensure the background covers the entire card */
+    background-position: center; /* Center the background image */
+    /* Add more styling as needed */
+  }
+
+  .card-image {
+    height: 80%;
+  }
 }
