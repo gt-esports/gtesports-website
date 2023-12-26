@@ -10,7 +10,7 @@ function Games() {
           </h2>
         </div>
         <div className="mx-auto mt-5 flex w-4/5 max-w-screen-xl flex-col text-white">
-          <Carousel></Carousel>
+          <Carousel />
         </div>
       </div>
     </div>
@@ -18,3 +18,4 @@ function Games() {
 }
 
 export default Games;
+
