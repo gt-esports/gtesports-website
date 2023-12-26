@@ -13,9 +13,9 @@ import Teams from "./pages/Teams";
 
 function App() {
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
+      <Navbar />
       <main>
-        <Navbar />
         <Routes>
           <Route path="/" element={<Navigate to="/home" />} />
           <Route path="/home" element={<Home />} />
@@ -27,7 +27,7 @@ function App() {
           <Route path="*" element={<Navigate to="/home" />} />
         </Routes>
       </main>
-    </>
+    </div>
   );
 }
 

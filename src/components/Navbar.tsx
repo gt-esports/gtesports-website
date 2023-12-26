@@ -20,7 +20,7 @@ function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="fixed left-0 top-0 w-full shadow-md">
+    <div className="fixed left-0 top-0 w-full shadow-2xl">
       <div className="h-[--navbar-height] items-center justify-between bg-transparent px-7 py-2 md:flex md:px-20 md:py-6">
         <div className="text-4xl font-bayon tracking-wide">
           <Link to="/" className="flex items-center">
@@ -35,7 +35,7 @@ function Navbar() {
           {!open ? <RxHamburgerMenu /> : <TfiClose />}
         </div>
         <ul
-          className={`absolute left-0 z-[-1] w-full bg-transparent pb-4 md:static md:z-auto md:flex md:w-auto md:items-center md:pb-0 ${
+          className={`absolute left-0 z-[1] w-full bg-transparent pb-4 md:static md:z-auto md:flex md:w-auto md:items-center md:pb-0 ${
             open ? "top-[64px]" : "top-[-490px]"
           }`}
         >
