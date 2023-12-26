@@ -16,14 +16,13 @@ module.exports = {
       },
       backgroundImage: {
         "home-1": "url('./assets/home-1.jpg')",
+        "normal-streak": "url('./assets/streaks.jpg')",
         streak:
           "linear-gradient(0deg, rgba(22, 34, 57, 0.52) 0%, rgba(0, 0, 0, 0.92) 100%), url('./assets/streaks.jpg')",
       },
-    },
-    backgroundImage: {
-      "home-1": "url('./assets/home-1.jpg')",
-      streak:
-        "linear-gradient(0deg, rgba(22, 34, 57, 0.52) 0%, rgba(0, 0, 0, 0.92) 100%), url('./assets/streaks.jpg')",
+      backgroundColor: {
+        'footer-shadow': 'rgba(0, 0, 0, 0.6)', // 60% opacity black
+      },
     },
   },
   plugins: [],

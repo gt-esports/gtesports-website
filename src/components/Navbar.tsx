@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { TfiClose } from "react-icons/tfi";
-import Logo from "/logo.png";
 import { Link, NavLink, useLocation } from "react-router-dom";
+
+import Logo from "../assets/gt-esports-logo1.png";
 
 function Navbar() {
   const location = useLocation();
@@ -19,19 +20,12 @@ function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="fixed left-0 top-0 w-full shadow-md">
+    <div className="fixed left-0 top-0 w-full shadow-2xl">
       <div className="h-[--navbar-height] items-center justify-between bg-transparent px-7 py-2 md:flex md:px-20 md:py-6">
-        <div className="text-3xl font-bold">
+        <div className="text-4xl font-bayon tracking-wide">
           <Link to="/" className="flex items-center">
-            <img
-              src={Logo}
-              alt="GT Esports Logo"
-              width={64}
-              height={64}
-              className="mr-2"
-            />
-            <span className="text-tech-gold">GA Tech</span>{" "}
-            <span className="ml-2 text-white">Esports</span>
+            <img src={Logo} alt="GT Esports Logo" width={72} height={72} className="mr-2" />
+            <span className="text-tech-gold">GA TECH</span> <span className="text-white ml-2">ESPORTS</span>
           </Link>
         </div>
         <div
@@ -41,7 +35,7 @@ function Navbar() {
           {!open ? <RxHamburgerMenu /> : <TfiClose />}
         </div>
         <ul
-          className={`absolute left-0 z-[-1] w-full bg-transparent pb-4 md:static md:z-auto md:flex md:w-auto md:items-center md:pb-0 ${
+          className={`absolute left-0 z-[1] w-full bg-transparent pb-4 md:static md:z-auto md:flex md:w-auto md:items-center md:pb-0 ${
             open ? "top-[64px]" : "top-[-490px]"
           }`}
         >
