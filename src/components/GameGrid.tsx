@@ -4,7 +4,7 @@ import { games } from '../data/gamesData';
 
 function GameGrid() {
     return (
-        <div className="flex">
+        <div className="flex flex-wrap">
             {games.map((game, index) => (
                 <div className="p-3">
                     <GameCard

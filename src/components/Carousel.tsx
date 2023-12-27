@@ -1,7 +1,9 @@
 import { useState } from "react";
-import league from "../assets/league.png";
-import valorant from "../assets/val.jpeg";
-import ow2 from "../assets/overwatch.jpeg";
+
+import league from "../assets/game-covers/league-of-legends-cover.png";
+import valorant from "../assets/game-covers/valorant-cover.jpeg";
+import ow2 from "../assets/game-covers/overwatch-2-cover.jpeg";
+
 import leftarrow from "../assets/left-arrow.svg";
 import rightarrow from "../assets/right-arrow.svg";
 import CarouselCard from "./CarouselCard";
