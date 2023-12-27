@@ -9,15 +9,58 @@
   }
 
   .card {
-    width: 221px; /* Set the width of the card */
-    height: 395px; /* Set the height of the card */
-    background-image: url('assets/game-card-background.png'); /* Set the background image */
-    background-size: cover; /* Ensure the background covers the entire card */
-    background-position: center; /* Center the background image */
-    /* Add more styling as needed */
+    width: 220px;
+    height: 390px;
+    background-image: url('assets/game-card-background.png');
+    background-size: cover;
+    background-position: center;
   }
 
   .card-image {
     height: 80%;
+  }
+
+  .learn-more-btn {
+    width: 140px;
+    height: 45px;
+    background-color: #B3A369;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    font-size: 16px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .learn-more-btn:hover {
+    background-color: #d2b48c;
+    transform: translateY(-2px);
+  }
+
+  .discord-btn {
+    width: 45px;
+    height: 45px;
+    background-image: url('assets/discord-button.svg');
+    background-size: cover;
+    background-position: center;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .discord-btn:hover {
+    transform: translateY(-2px);
+  }
+
+  .discord-btn:hover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: inherit;
+    transition: background-color 0.3s;
   }
 }

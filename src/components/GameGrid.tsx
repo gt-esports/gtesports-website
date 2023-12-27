@@ -1,14 +1,6 @@
 import GameCard from "./GameCard";
+import { games } from '../data/gamesData';
 
-import league from "../assets/league.png";
-import valorant from "../assets/val.jpeg";
-import overwatch from "../assets/overwatch.jpeg";
-
-const games = [
-    { name: "League of Legends", image: league, link: "link", discordLink: "link"},
-    { name: "Valorant", image: valorant, link: "link", discordLink: "link"},
-    { name: "Overwatch", image: overwatch, link: "link", discordLink: "link"}
-];
 
 function GameGrid() {
     return (
@@ -19,7 +11,7 @@ function GameGrid() {
                         key={index}
                         image={game.image}
                         name={game.name}
-                        link={game.link}
+                        link={game.pageLink}
                         discordLink={game.discordLink}
                     />
                 </div>
