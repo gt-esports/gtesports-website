@@ -25,7 +25,7 @@ function NECard(props: NECardProps) {
             onClick={handleClick}
             value={props.link}
           >
-            View More
+            VIEW NOW
           </button>
         ) : (
           <button
@@ -33,7 +33,7 @@ function NECard(props: NECardProps) {
             onClick={handleClick}
             value={props.link}
           >
-            Register
+            REGISTER
           </button>
         )}
       </div>

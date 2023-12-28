@@ -39,9 +39,9 @@ function Home() {
           <button
             onClick={handleButtonClick}
             value="/games"
-            className="mt-8 h-16 w-48 rounded-md bg-tech-gold text-white"
+            className="mt-8 h-16 w-48 rounded-md bg-tech-gold text-white font-barlow"
           >
-            View All
+            VIEW ALL
           </button>
         </div>
         <div className="flex flex-col items-center">
@@ -50,9 +50,9 @@ function Home() {
             <button
               onClick={handleButtonClick}
               value="/newsandevents"
-              className="h-16 w-40 rounded-md bg-tech-gold text-white"
+              className="h-14 w-40 rounded-md bg-tech-gold text-white font-barlow"
             >
-              View More
+              VIEW MORE
             </button>
           </div>
           <div className="flex">
@@ -76,9 +76,9 @@ function Home() {
             <button
               onClick={handleButtonClick}
               value="/newsandevents"
-              className="h-16 w-40 rounded-md bg-tech-gold text-white"
+              className="h-14 w-40 rounded-md bg-tech-gold text-white font-barlow"
             >
-              View More
+              VIEW MORE
             </button>
           </div>
           <div className="flex">
