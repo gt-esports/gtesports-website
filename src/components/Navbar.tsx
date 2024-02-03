@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { TfiClose } from "react-icons/tfi";
 import { Link, NavLink, useLocation } from "react-router-dom";
@@ -7,6 +7,20 @@ import Logo from "../assets/gt-esports-logo1.png";
 
 function Navbar() {
   const location = useLocation();
+  const [open, setOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const threshold = 100;
+      setIsScrolled(window.scrollY > threshold);
+    }
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const links = [
     { name: "HOME", link: "/home" },
@@ -17,11 +31,9 @@ function Navbar() {
     { name: "ABOUT", link: "/about" },
   ];
 
-  const [open, setOpen] = useState(false);
-
   return (
-    <div className="fixed left-0 top-0 w-full shadow-md">
-      <div className="h-[--navbar-height] items-center justify-between bg-transparent px-7 py-2 md:flex md:px-20 md:py-6">
+    <div className={`fixed z-10 left-0 top-0 w-full shadow-2xl transition-all duration-500 ${isScrolled ? "bg-navy-blue" : "bg-transparent"}`}>
+        <div className="h-[--navbar-height] items-center justify-between bg-transparent px-7 py-2 md:flex md:px-20 md:py-6">
         <div className="text-4xl font-bayon tracking-wide">
           <Link to="/" className="flex items-center">
             <img src={Logo} alt="GT Esports Logo" width={72} height={72} className="mr-2" />
@@ -35,7 +47,7 @@ function Navbar() {
           {!open ? <RxHamburgerMenu /> : <TfiClose />}
         </div>
         <ul
-          className={`absolute left-0 z-[-1] w-full bg-transparent pb-4 md:static md:z-auto md:flex md:w-auto md:items-center md:pb-0 ${
+          className={`absolute left-0 z-[1] w-full bg-transparent pb-4 md:static md:z-auto md:flex md:w-auto md:items-center md:pb-0 ${
             open ? "top-[64px]" : "top-[-490px]"
           }`}
         >
