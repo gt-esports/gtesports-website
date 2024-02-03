@@ -5,12 +5,12 @@ import { games } from '../data/gamesData';
 function GameGrid() {
     return (
         <div className="flex flex-wrap">
-            {games.map((game, index) => (
+            {Object.entries(games).map(([name, game], index) => (
                 <div className="p-3">
                     <GameCard
                         key={index}
                         image={game.image}
-                        name={game.name}
+                        name={name}
                         link={game.pageLink}
                         discordLink={game.discordLink}
                     />
