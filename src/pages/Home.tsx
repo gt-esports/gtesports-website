@@ -1,18 +1,19 @@
 import Carousel from "../components/Carousel";
 import Footer from "../components/Footer";
 import NECard from "../components/NECard";
-import league from "../assets/league.png";
+
+import { games } from '../data/gamesData';
 
 const testNews = [
-  ["news name 1", league, "12/31/2023", "newslink", ""],
-  ["news name 2", league, "12/31/2023", "newslink", ""],
-  ["news name 3", league, "12/31/2023", "newslink", ""],
+  ["news name 1", games["League of Legends"].image, "12/31/2023", "newslink", ""],
+  ["news name 2", games["League of Legends"].image, "12/31/2023", "newslink", ""],
+  ["news name 3", games["League of Legends"].image, "12/31/2023", "newslink", ""],
 ];
 
 const testEvents = [
-  ["events name 1", league, "12/31/2023", "newslink", "Klaus"],
-  ["events name 2", league, "12/31/2023", "newslink", "Klaus"],
-  ["events name 3", league, "12/31/2023", "newslink", "Klaus"],
+  ["events name 1", games["League of Legends"].image, "12/31/2023", "newslink", "Klaus"],
+  ["events name 2", games["League of Legends"].image, "12/31/2023", "newslink", "Klaus"],
+  ["events name 3", games["League of Legends"].image, "12/31/2023", "newslink", "Klaus"],
 ];
 
 function Home() {

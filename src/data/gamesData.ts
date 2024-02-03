@@ -1,5 +1,3 @@
-import { Game } from "../types";
-
 import league from "../assets/game-covers/league-of-legends-cover.png";
 import tft from "../assets/game-covers/teamfight-tactics-cover.jpg";
 import valorant from "../assets/game-covers/valorant-cover.jpeg";
@@ -14,19 +12,17 @@ import smite from "../assets/game-covers/smite-cover.jpeg";
 import rl from "../assets/game-covers/rocket-league-cover.jpeg";
 
 
-export const games: Game[] = [
-  { name: "League of Legends", image: league, pageLink: "link", discordLink: "link"},
-  { name: "Teamfight Tacticts", image: tft, pageLink: "link", discordLink: "link"},
-  { name: "Valorant", image: valorant, pageLink: "link", discordLink: "link"},
-  { name: "Overwatch 2", image: overwatch2, pageLink: "link", discordLink: "link"},
-  { name: "Rocket League", image: rl, pageLink: "link", discordLink: "link"},
-  { name: "CSGO 2", image: csgo2, pageLink: "link", discordLink: "link"},
-  { name: "Smash", image: smash, pageLink: "link", discordLink: "link"},
-  { name: "Rainbow Six Siege", image: r6, pageLink: "link", discordLink: "link"},
-  { name: "Team Fortress 2", image: tf2, pageLink: "link", discordLink: "link"},
-  { name: "Osu/Rythm Games", image: rythm, pageLink: "link", discordLink: "link"},
-  { name: "Hearthstone", image: hearthstone, pageLink: "link", discordLink: "link"},
-  { name: "Smite", image: smite, pageLink: "link", discordLink: "link"},
-
-];
-  
+export const games = {
+  "League of Legends": { image: league, pageLink: "link", discordLink: "link" },
+  "Teamfight Tactics": { image: tft, pageLink: "link", discordLink: "link" },
+  "Valorant": { image: valorant, pageLink: "link", discordLink: "link" },
+  "Overwatch 2": { image: overwatch2, pageLink: "link", discordLink: "link" },
+  "Rocket League": { image: rl, pageLink: "link", discordLink: "link" },
+  "CSGO 2": { image: csgo2, pageLink: "link", discordLink: "link" },
+  "Smash": { image: smash, pageLink: "link", discordLink: "link" },
+  "Rainbow Six Siege": { image: r6, pageLink: "link", discordLink: "link" },
+  "Team Fortress 2": { image: tf2, pageLink: "link", discordLink: "link" },
+  "Osu/Rhythm Games": { image: rythm, pageLink: "link", discordLink: "link" },
+  "Hearthstone": { image: hearthstone, pageLink: "link", discordLink: "link" },
+  "Smite": { image: smite, pageLink: "link", discordLink: "link" },
+};
