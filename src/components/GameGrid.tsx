@@ -1,11 +1,11 @@
 import GameCard from "./GameCard";
-import { games } from '../data/gamesData';
+import { games, casual_games } from '../data/gamesData';
 
 
-function GameGrid() {
+function GameGrid(props: { gameType : boolean}) {
     return (
         <div className="flex flex-wrap">
-            {Object.entries(games).map(([name, game], index) => (
+            {Object.entries(props.gameType ? games : casual_games).map(([name, game], index) => (
                 <div className="p-3">
                     <GameCard
                         key={index}

@@ -26,3 +26,15 @@ export const games = {
   "Hearthstone": { image: hearthstone, pageLink: "link", discordLink: "link" },
   "Smite": { image: smite, pageLink: "link", discordLink: "link" },
 };
+
+export const casual_games = {
+  "Minecraft": { image: league, pageLink: "link", discordLink: "link" },
+  "Minecraftd": { image: league, pageLink: "link", discordLink: "link" },
+  "Minecrdaft": { image: league, pageLink: "link", discordLink: "link" },
+  "Minecrfaaft": { image: league, pageLink: "link", discordLink: "link" },
+  "Minecrafft": { image: league, pageLink: "link", discordLink: "link" },
+  "Minecrafwet": { image: league, pageLink: "link", discordLink: "link" },
+  "Minecrafet": { image: league, pageLink: "link", discordLink: "link" },
+  "Minecrafaft": { image: league, pageLink: "link", discordLink: "link" },
+  "Minecraf4t": { image: league, pageLink: "link", discordLink: "link" }
+};
