@@ -10,7 +10,9 @@ function GameCard(props: GameCardProps) {
             <h1 className="text-white font-barlow text-lg pb-2">{props.name}</h1>
             <div className="flex justify-between w-full mb-3">
                 <button className="learn-more-btn text-barlow flex justify-center items-center ml-3">Learn More</button>
-                <button className="discord-btn mr-3"></button>
+                <a href={props.discordLink} target="_blank">
+                    <button className="discord-btn mr-3"></button>
+                </a>
             </div>
         </div>
     )
