@@ -39,7 +39,6 @@ export const games = {
   "Apex Legends": { image: apex, pageLink: "link", discordLink: "https://discord.gg/hf4aHRHUTH" },
   "COD/WZ/CODM": { image: cod, pageLink: "link", discordLink: "https://discord.gg/bSz7Qg4gjH" },
   "Dota 2": { image: dota2, pageLink: "link", discordLink: "https://discord.gg/cEG2MMDQKK" },
-
 };
 
 export const casual_games = {
@@ -51,4 +50,5 @@ export const casual_games = {
   "GT Arcade": { image: amongus, pageLink: "link", discordLink: "https://discord.gg/tpcMu4jQGh" },
   "Destiny": { image: destiny, pageLink: "link", discordLink: "https://discord.gg/F2FqwxxHXK" },
   "Hearts of Iron 4": { image: hearts_of_iron, pageLink: "link", discordLink: "https://discord.gg/Q2bZFrFkvQ" },
+
 };
