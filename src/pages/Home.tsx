@@ -31,7 +31,7 @@ function Home() {
       </div>
       <div className="flex flex-col items-center bg-streak bg-cover pt-24">
         <div>
-          <h2 className="font-bayon text-7xl font-normal text-white">
+          <h2 className="font-bayon text-7xl font-normal text-white pt-24 pb-24 tracking-wide">
             CHOOSE YOUR GAME
           </h2>
         </div>
