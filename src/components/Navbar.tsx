@@ -32,11 +32,11 @@ function Navbar() {
   ];
 
   return (
-    <div className={`fixed z-10 left-0 top-0 w-full shadow-2xl transition-all duration-500 ${isScrolled ? "bg-navy-blue" : "bg-transparent"}`}>
-        <div className="h-[--navbar-height] items-center justify-between bg-transparent px-7 py-2 md:flex md:px-20 md:py-6">
+    <div className={`fixed left-0 top-0 w-full shadow-2xl transition-all duration-500 ${isScrolled ? "bg-navy-blue" : "bg-transparent"}`}>
+        <div className="h-[--navbar-height] items-center justify-between bg-transparent py-2 md:flex md:px-20 md:py-6">
         <div className="text-4xl font-bayon tracking-wide">
           <Link to="/" className="flex items-center">
-            <img src={Logo} alt="GT Esports Logo" width={72} height={72} className="mr-2" />
+            <img src={Logo} alt="GT Esports Logo" width={68} height={68} className="mr-2" />
             <span className="text-tech-gold">GA TECH</span> <span className="text-white ml-2">ESPORTS</span>
           </Link>
         </div>
@@ -54,7 +54,7 @@ function Navbar() {
           {links.map((link) => (
             <li
               key={link.name}
-              className="my-7 text-center text-xl md:my-0 md:ml-8"
+              className="my-7 text-center text-md md:my-0 md:ml-8"
             >
               <NavLink
                 to={link.link}
