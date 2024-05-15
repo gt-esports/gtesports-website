@@ -29,13 +29,17 @@ function Footer() {
   return (
     <div className="flex flex-col w-full bg-footer-shadow pt-6 pb-6">
         <div className="flex flex-row justify-between w-full items-center mb-4">
-            <div className="text-3xl font-bayon tracking-wide ml-10">
+
+            {/* gatech logo */}
+            <div className="text-3xl font-bayon tracking-wide ml-10 py-4">
                 <Link to="/home" className="flex items-center">
                     <img src={Logo} alt="GT Esports Logo" width={72} height={72} className="mr-2" />
                     <span className="text-tech-gold">GA TECH</span> <span className="text-white ml-2">ESPORTS</span>
                 </Link>
             </div>
-            <div className="text-2xl text-white flex items-center mr-10">
+
+            {/* social media */}
+            <div className="text-xl text-white flex items-center mr-10">
                 <h1 className="mr-3">Connect With Us</h1>
                 <ul className="flex ">
                     {socialMedia.map((icon) => (
@@ -50,14 +54,16 @@ function Footer() {
                 </ul>
             </div>
         </div>
-        <div className="flex flex-row justify-between w-full">
+
+        {/* nav link and info */}
+        <div className="flex flex-row justify-between w-full pb-12">
             <div className="self-end">
                 <ul
                 className="flex ml-14">
                 {links.map((link) => (
                     <li
                     key={link.name}
-                    className="my-7 text-center text-xl md:my-0 md:mr-8"
+                    className="my-7 text-center text-lg md:my-0 md:mr-8"
                     >
                         <NavLink
                             to={link.link}
