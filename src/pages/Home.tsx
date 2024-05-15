@@ -2,18 +2,54 @@ import Carousel from "../components/Carousel";
 import Footer from "../components/Footer";
 import NECard from "../components/NECard";
 
-import { games } from '../data/gamesData';
+import { games } from "../data/gamesData";
 
 const testNews = [
-  ["news name 1", games["League of Legends"].image, "12/31/2023", "newslink", ""],
-  ["news name 2", games["League of Legends"].image, "12/31/2023", "newslink", ""],
-  ["news name 3", games["League of Legends"].image, "12/31/2023", "newslink", ""],
+  [
+    "news name 1",
+    games["League of Legends"].image,
+    "12/31/2023",
+    "newslink",
+    "",
+  ],
+  [
+    "news name 2",
+    games["League of Legends"].image,
+    "12/31/2023",
+    "newslink",
+    "",
+  ],
+  [
+    "news name 3",
+    games["League of Legends"].image,
+    "12/31/2023",
+    "newslink",
+    "",
+  ],
 ];
 
 const testEvents = [
-  ["events name 1", games["League of Legends"].image, "12/31/2023", "newslink", "Klaus"],
-  ["events name 2", games["League of Legends"].image, "12/31/2023", "newslink", "Klaus"],
-  ["events name 3", games["League of Legends"].image, "12/31/2023", "newslink", "Klaus"],
+  [
+    "events name 1",
+    games["League of Legends"].image,
+    "12/31/2023",
+    "newslink",
+    "Klaus",
+  ],
+  [
+    "events name 2",
+    games["League of Legends"].image,
+    "12/31/2023",
+    "newslink",
+    "Klaus",
+  ],
+  [
+    "events name 3",
+    games["League of Legends"].image,
+    "12/31/2023",
+    "newslink",
+    "Klaus",
+  ],
 ];
 
 function Home() {
@@ -31,7 +67,7 @@ function Home() {
       </div>
       <div className="flex flex-col items-center bg-streak bg-cover pt-24">
         <div>
-          <h2 className="font-bayon text-7xl font-normal text-white pt-24 pb-24 tracking-wide">
+          <h2 className="pb-24 pt-24 font-bayon text-7xl font-normal tracking-wide text-white">
             CHOOSE YOUR GAME
           </h2>
         </div>
@@ -40,7 +76,7 @@ function Home() {
           <button
             onClick={handleButtonClick}
             value="/games"
-            className="mt-8 h-16 w-48 rounded-md bg-tech-gold text-white font-barlow"
+            className="mt-8 h-16 w-48 rounded-md bg-tech-gold font-barlow text-white"
           >
             VIEW ALL
           </button>
@@ -51,7 +87,7 @@ function Home() {
             <button
               onClick={handleButtonClick}
               value="/newsandevents"
-              className="h-14 w-40 rounded-md bg-tech-gold text-white font-barlow"
+              className="h-14 w-40 rounded-md bg-tech-gold font-barlow text-white"
             >
               VIEW MORE
             </button>
@@ -77,7 +113,7 @@ function Home() {
             <button
               onClick={handleButtonClick}
               value="/newsandevents"
-              className="h-14 w-40 rounded-md bg-tech-gold text-white font-barlow"
+              className="h-14 w-40 rounded-md bg-tech-gold font-barlow text-white"
             >
               VIEW MORE
             </button>

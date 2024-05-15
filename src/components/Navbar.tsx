@@ -14,7 +14,7 @@ function Navbar() {
     const handleScroll = () => {
       const threshold = 100;
       setIsScrolled(window.scrollY > threshold);
-    }
+    };
 
     window.addEventListener("scroll", handleScroll);
     return () => {
@@ -32,12 +32,23 @@ function Navbar() {
   ];
 
   return (
-    <div className={`z-10 fixed left-0 top-0 w-full shadow-2xl transition-all duration-500 ${isScrolled ? "bg-navy-blue" : "bg-transparent"}`}>
-        <div className="h-[--navbar-height] items-center justify-between bg-transparent py-2 md:flex md:px-20 md:py-6">
-        <div className="text-4xl font-bayon tracking-wide">
+    <div
+      className={`fixed left-0 top-0 z-10 w-full shadow-2xl transition-all duration-500 ${
+        isScrolled ? "bg-navy-blue" : "bg-transparent"
+      }`}
+    >
+      <div className="h-[--navbar-height] items-center justify-between bg-transparent py-2 md:flex md:px-20 md:py-6">
+        <div className="font-bayon text-4xl tracking-wide">
           <Link to="/" className="flex items-center">
-            <img src={Logo} alt="GT Esports Logo" width={68} height={68} className="mr-2" />
-            <span className="text-tech-gold">GA TECH</span> <span className="text-white ml-2">ESPORTS</span>
+            <img
+              src={Logo}
+              alt="GT Esports Logo"
+              width={68}
+              height={68}
+              className="mr-2"
+            />
+            <span className="text-tech-gold">GA TECH</span>{" "}
+            <span className="ml-2 text-white">ESPORTS</span>
           </Link>
         </div>
         <div
@@ -54,7 +65,7 @@ function Navbar() {
           {links.map((link) => (
             <li
               key={link.name}
-              className="my-7 text-center text-md md:my-0 md:ml-8"
+              className="text-md my-7 text-center md:my-0 md:ml-8"
             >
               <NavLink
                 to={link.link}

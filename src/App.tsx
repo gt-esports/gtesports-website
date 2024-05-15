@@ -13,7 +13,7 @@ import Teams from "./pages/Teams";
 
 function App() {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex min-h-screen flex-col">
       <Navbar />
       <main>
         <Routes>

@@ -15,7 +15,9 @@ function CarouselCard(props: CarouselCardProps) {
       <a href={props.link}>
         <img src={props.image} className="h-full w-full object-cover" />
       </a>
-      <p className="py-4 text-white font-barlow font-semibold tracking-widr">{props.name}</p>
+      <p className="tracking-widr py-4 font-barlow font-semibold text-white">
+        {props.name}
+      </p>
     </div>
   );
 }

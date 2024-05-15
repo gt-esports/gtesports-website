@@ -5,13 +5,13 @@
 @layer base {
   :root {
     --navbar-height: 80px;
-    font-family: 'Quicksand', sans-serif;
+    font-family: "Quicksand", sans-serif;
   }
 
   .card {
     width: 220px;
     height: 390px;
-    background-image: url('assets/game-card-background.png');
+    background-image: url("assets/game-card-background.png");
     background-size: cover;
     background-position: center;
   }
@@ -23,7 +23,7 @@
   .learn-more-btn {
     width: 140px;
     height: 45px;
-    background-color: #B3A369;
+    background-color: #b3a369;
     color: white;
     font-weight: bold;
     border-radius: 5px;
@@ -31,7 +31,7 @@
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s, transform 0.3s;
   }
-  
+
   .learn-more-btn:hover {
     background-color: #d2b48c;
     transform: translateY(-2px);
@@ -40,20 +40,20 @@
   .discord-btn {
     width: 45px;
     height: 45px;
-    background-image: url('assets/discord-button.svg');
+    background-image: url("assets/discord-button.svg");
     background-size: cover;
     background-position: center;
     border-radius: 5px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s, transform 0.3s;
   }
-  
+
   .discord-btn:hover {
     transform: translateY(-2px);
   }
 
   .discord-btn:hover::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
