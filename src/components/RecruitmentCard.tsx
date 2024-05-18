@@ -2,13 +2,20 @@ import { RecruitmentCardProps } from "../types";
 
 export default function RecruitmentCard(props: RecruitmentCardProps) {
   return (
-    <div className="items flex w-9/12 flex-row rounded-xl bg-gradient-to-br from-[#3d3d3d]/95 to-[#a7a7a7]/95">
-      <img
-        src={props.image}
-        alt={`${props.name}`}
-        className="card-image m-2 h-[280px] w-[195px] rounded-2xl pb-2 pl-3 pr-3 pt-3"
-      />
-
+    <div className=" items box-content flex w-10/12 flex-row rounded-xl bg-gradient-to-br from-[#3d3d3d]/95 to-[#a7a7a7]/95">
+      {/* game image + discord icon */}
+      <div className="relative box-content h-[280px] w-[210px] border-0 p-4">
+        <img
+          src={props.image}
+          alt={`${props.name}`}
+          className="card-image h-full w-full rounded-2xl "
+        />
+        <div className="absolute right-4 top-4 box-content flex h-16 w-16 items-center justify-center rounded-md bg-footer-shadow">
+          <a href={props.discordLink} target="_blank">
+            <button className="discord-btn opacity-7 m-4 h-[37px] w-[37px]"></button>
+          </a>
+        </div>
+      </div>
       {/* text info */}
       <div className="tracking-wid flex w-full flex-col pl-1 pt-4">
         <h1 className=" flex flex-row-reverse pr-8 font-barlow text-[0.95rem] font-semibold tracking-wide text-white">

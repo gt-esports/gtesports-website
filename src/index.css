@@ -49,7 +49,7 @@
   }
 
   .discord-btn:hover {
-    transform: translateY(-2px);
+    transform: translateY(-1px);
   }
 
   .discord-btn:hover::before {
