@@ -2,7 +2,7 @@ import { RecruitmentCardProps } from "../types";
 
 export default function RecruitmentCard(props: RecruitmentCardProps) {
   return (
-    <div className=" items box-content flex w-9/12 flex-row rounded-xl bg-gradient-to-br from-[#3d3d3d]/95 to-[#a7a7a7]/95">
+    <div className=" flex w-9/12 flex-row rounded-xl bg-gradient-to-br from-[#3d3d3d]/95 to-[#a7a7a7]/95">
       {/* game image + discord icon */}
       <div className="relative box-content h-[280px] w-[225px] border-0 p-4">
         <img
@@ -40,14 +40,11 @@ export default function RecruitmentCard(props: RecruitmentCardProps) {
           • discord: {props.contactDiscord}
         </p>
         {/* button here */}
-        <div className="mb-3 flex flex-row-reverse pr-4 pt-8">
-          <button className="learn-more-btn text-barlow ml-3 flex items-center justify-center tracking-wide">
+        <div className="mb-3 flex flex-row-reverse pr-6 pt-8">
+          <button className="learn-more-btn ml-3 mr-4 mt-6 flex scale-90 scale-x-[1.2] items-center justify-center tracking-tighter">
             Learn More
           </button>
         </div>
-        {/* <a href={props.discordLink} target="_blank">
-            <button className="discord-btn mr-3"></button>
-          </a> */}
       </div>
     </div>
   );
