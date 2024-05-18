@@ -2,9 +2,9 @@ import { RecruitmentCardProps } from "../types";
 
 export default function RecruitmentCard(props: RecruitmentCardProps) {
   return (
-    <div className=" items box-content flex w-10/12 flex-row rounded-xl bg-gradient-to-br from-[#3d3d3d]/95 to-[#a7a7a7]/95">
+    <div className=" items box-content flex w-9/12 flex-row rounded-xl bg-gradient-to-br from-[#3d3d3d]/95 to-[#a7a7a7]/95">
       {/* game image + discord icon */}
-      <div className="relative box-content h-[280px] w-[210px] border-0 p-4">
+      <div className="relative box-content h-[280px] w-[225px] border-0 p-4">
         <img
           src={props.image}
           alt={`${props.name}`}
