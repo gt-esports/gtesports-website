@@ -31,7 +31,7 @@ function GameGrid() {
       </div>
       {Object.entries(comp ? games : casual_games).map(
         ([name, game], index) => (
-          <div className="p-4">
+          <div className="p-3">
             <GameCard
               key={index}
               image={game.image}

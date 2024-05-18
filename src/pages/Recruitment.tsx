@@ -5,21 +5,20 @@ import { recruitmentData } from "../data/recruitmentData";
 
 function Recruitment() {
   return (
-    <div className="h-full w-full bg-streak bg-cover pt-24">
+    <div className="h-full w-full bg-streak bg-cover pt-16">
       <div className="flex flex-col pt-20 text-white">
         <div className="flex flex-row items-center justify-center">
           <h1 className="flex justify-center font-bayon text-6xl text-white">
             RECRUITMENT
           </h1>
         </div>
-        <div className="flex flex-col items-center justify-center whitespace-nowrap pt-10">
+        <div className="flex flex-col items-center justify-center pt-8">
           {Object.entries(recruitmentData).map(([name, game], index) => (
             <div className="m-6 grid w-full place-items-center ">
               <RecruitmentCard
                 key={index}
                 image={game.image}
                 name={name}
-                link={game.pageLink}
                 recruitmentInfo={game.recruitmentInfo}
                 discordLink={game.discordLink}
                 contactEmail={game.contactEmail}
@@ -29,7 +28,7 @@ function Recruitment() {
           ))}
         </div>
       </div>
-      <div className="mt-40">
+      <div className="mt-36">
         <Footer />
       </div>
     </div>

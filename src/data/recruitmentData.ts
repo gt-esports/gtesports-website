@@ -24,13 +24,28 @@ import hearts_of_iron from "../assets/game-covers/hearts-of-iron-4-cover.jpg";
 import amongus from "../assets/game-covers/amongus.png";
 
 export const recruitmentData = {
-  "League of Legends": {
+  "League of Legends Tryout": {
     image: league,
-    pageLink: "link",
     discordLink: "https://discord.gg/T3vB5jYhdE",
     recruitmentInfo:
       "• Process: Play a couple games with the team and see how you do.",
-    contactEmail: "contact@gatechEsports.com",
+    contactEmail: "leagueoflegends@gtesports.org",
+    contactDiscord: "name#0000",
+  },
+  "Overwatch Tryout": {
+    image: overwatch2,
+    discordLink: "https://discord.gg/T3vB5jYhdE",
+    recruitmentInfo:
+      "• Process: Play a couple games with the team and see how you do.",
+    contactEmail: "ow2@gtesports.org",
+    contactDiscord: "name#0000",
+  },
+  "Valorant Gold Team Tryout": {
+    image: valorant,
+    discordLink: "discordLink",
+    recruitmentInfo:
+      "• Process: Play few rounds of scrimmage against other tryout attendees and top scorers will be invited to a final trial scrimmage against current team.",
+    contactEmail: "valorant@gtesports.org",
     contactDiscord: "name#0000",
   },
 };

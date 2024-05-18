@@ -8,7 +8,6 @@ export interface GameCardProps {
 export interface RecruitmentCardProps {
   image: string;
   name: string;
-  link: string;
   discordLink: string;
   recruitmentInfo: string;
   contactEmail: string;
