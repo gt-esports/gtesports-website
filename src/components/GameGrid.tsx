@@ -7,7 +7,7 @@ function GameGrid() {
 
   return (
     <div className="flex flex-wrap justify-center px-[100px]">
-      <div className="w-full px-4 pb-8 font-barlow text-xl">
+      <div className="w-full px-4 pb-4 font-barlow text-xl">
         <button
           className={
             comp

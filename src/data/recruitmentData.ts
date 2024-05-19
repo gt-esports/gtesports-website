@@ -31,6 +31,7 @@ export const recruitmentData = {
       "• Process: Play a couple games with the team and see how you do.",
     contactEmail: "leagueoflegends@gtesports.org",
     contactDiscord: "name#0000",
+    tryoutDate: "09/02/2024",
   },
   "Overwatch Tryout": {
     image: overwatch2,
@@ -39,6 +40,7 @@ export const recruitmentData = {
       "• Process: Play a couple games with the team and see how you do.",
     contactEmail: "ow2@gtesports.org",
     contactDiscord: "name#0000",
+    tryoutDate: "08/29/2024",
   },
   "Valorant Gold Team Tryout": {
     image: valorant,
@@ -47,5 +49,6 @@ export const recruitmentData = {
       "• Process: Play few rounds of scrimmage against other tryout attendees and top scorers will be invited to a final trial scrimmage against current team.",
     contactEmail: "valorant@gtesports.org",
     contactDiscord: "name#0000",
+    tryoutDate: "09/10/2024",
   },
 };

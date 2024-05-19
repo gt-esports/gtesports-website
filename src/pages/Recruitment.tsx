@@ -23,6 +23,7 @@ function Recruitment() {
                 discordLink={game.discordLink}
                 contactEmail={game.contactEmail}
                 contactDiscord={game.contactDiscord}
+                tryoutDate={game.tryoutDate}
               />
             </div>
           ))}
