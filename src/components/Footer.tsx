@@ -39,7 +39,7 @@ function Footer() {
   ];
 
   return (
-    <div className="flex w-full flex-col bg-footer-shadow pb-6 pt-6">
+    <div className="mt-80 flex w-full flex-col bg-footer-shadow pb-6 pt-6">
       <div className="mb-4 flex w-full flex-row items-center justify-between">
         {/* gatech logo */}
         <div className="ml-10 py-4 font-bayon text-3xl tracking-wide">

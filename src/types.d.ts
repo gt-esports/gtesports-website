@@ -12,4 +12,5 @@ export interface RecruitmentCardProps {
   recruitmentInfo: string;
   contactEmail: string;
   contactDiscord: string;
+  tryoutDate: string;
 }
