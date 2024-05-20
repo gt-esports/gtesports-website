@@ -1,7 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+html {
+  background-color: #010116;
+}
 @layer base {
   :root {
     --navbar-height: 80px;
