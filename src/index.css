@@ -6,7 +6,7 @@ html {
 }
 @layer base {
   :root {
-    --navbar-height: 80px;
+    --navbar-height: 40px;
     font-family: "Quicksand", sans-serif;
   }
 

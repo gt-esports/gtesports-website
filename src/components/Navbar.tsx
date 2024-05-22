@@ -33,8 +33,8 @@ function Navbar() {
 
   return (
     <div
-      className={`fixed left-0 top-0 z-10 w-full shadow-2xl transition-all duration-500 ${
-        isScrolled ? "bg-navy-blue" : "bg-transparent"
+      className={`fixed left-0 top-0 z-10 w-full border-0 pb-1 pt-3 transition-all duration-500 ${
+        isScrolled ? "bg-opacity-70 backdrop-blur-md" : "bg-transparent"
       }`}
     >
       <div className="h-[--navbar-height] items-center justify-between bg-transparent py-2 md:flex md:px-20 md:py-6">

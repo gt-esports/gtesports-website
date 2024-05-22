@@ -7,7 +7,7 @@ function GameGrid() {
 
   return (
     <div className="flex flex-wrap justify-center px-[100px]">
-      <div className="w-full px-4 pb-4 font-barlow text-xl">
+      <div className="xl:right:24 absolute left-60 w-full pb-4 font-barlow text-xl 2xl:left-56">
         <button
           className={
             comp
@@ -29,19 +29,22 @@ function GameGrid() {
           Casual
         </button>
       </div>
-      {Object.entries(comp ? games : casual_games).map(
-        ([name, game], index) => (
-          <div className="p-3">
-            <GameCard
-              key={index}
-              image={game.image}
-              name={name}
-              link={game.pageLink}
-              discordLink={game.discordLink}
-            />
-          </div>
-        )
-      )}
+
+      <div className="flex flex-wrap items-center justify-center py-12">
+        {Object.entries(comp ? games : casual_games).map(
+          ([name, game], index) => (
+            <div className="p-3">
+              <GameCard
+                key={index}
+                image={game.image}
+                name={name}
+                link={game.pageLink}
+                discordLink={game.discordLink}
+              />
+            </div>
+          )
+        )}
+      </div>
     </div>
   );
 }

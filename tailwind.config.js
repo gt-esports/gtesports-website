@@ -3,10 +3,15 @@ module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      screens: {
+        xs: "350px",
+        md: "900px",
+        lg: "1200px",
+      },
       fontFamily: {
         quicksand: ["Quicksand", "sans-serif"],
         bayon: ["Bayon", "sans-serif"],
-        barlow: ["Barlow", "sans-serif"]
+        barlow: ["Barlow", "sans-serif"],
       },
       colors: {
         "tech-gold": "#B3A369",
