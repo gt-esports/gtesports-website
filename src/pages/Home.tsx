@@ -1,4 +1,4 @@
-import Carousel from "../components/newCarousel/Carousel";
+import Carousel from "../components/Carousel";
 import Footer from "../components/Footer";
 import NECard from "../components/NECard";
 

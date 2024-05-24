@@ -1,57 +1,46 @@
-import { useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
 
-import league from "../assets/game-covers/league-of-legends-cover.png";
-import valorant from "../assets/game-covers/valorant-cover.jpeg";
-import ow2 from "../assets/game-covers/overwatch-2-cover.jpeg";
+import { Navigation, Pagination, EffectCoverflow, A11y } from "swiper/modules";
+import { games } from "../data/gamesData";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
 
-import leftarrow from "../assets/left-arrow.svg";
-import rightarrow from "../assets/right-arrow.svg";
-import CarouselCard from "./CarouselCard";
-
-const games = [
-  [ow2, "Overwatch 2", "discordlink"],
-  [valorant, "Valorant", "discordlink"],
-  [league, "League of Legends", "discordlink"],
-];
-
-function Carousel() {
-  const [center, setCenter] = useState<number>(Math.floor(games.length / 2));
-
-  const handlePrev = () => {
-    setCenter((prev) => (prev - 1 + games.length) % games.length);
-  };
-
-  const handleNext = () => {
-    setCenter((prev) => (prev + 1) % games.length);
-  };
-
-  const reorder = [...games.slice(center), ...games.slice(0, center)];
-
+export default () => {
   return (
-    <div className="relative w-full">
-      <div className="relative flex items-center overflow-hidden">
-        <img
-          onClick={handlePrev}
-          src={leftarrow}
-          className="top-3/5 absolute left-1/3 -translate-y-1/2 transform cursor-pointer"
-        />
-        {reorder.map((game, index) => (
-          <CarouselCard
-            key={index}
-            image={game[0]}
-            name={game[1]}
-            link={game[2]}
-            center={index === Math.floor(reorder.length / 2)}
+    <Swiper
+      effect={"coverflow"}
+      direction={"horizontal"}
+      navigation
+      observer={true}
+      observeParents={true}
+      modules={[Pagination, Navigation, EffectCoverflow, A11y]}
+      coverflowEffect={{
+        // depth: 90,
+        rotate: -40,
+        scale: 3 / 4,
+        slideShadows: false,
+        // stretch: 0,
+      }}
+      pagination={{
+        clickable: true,
+        type: "bullets",
+      }}
+      spaceBetween={-60}
+      slidesPerView={3}
+      loop={true}
+      className="flex w-10/12 flex-col items-center justify-center rounded-lg"
+    >
+      {Object.entries(games).map(([name, game], index) => (
+        <SwiperSlide key={index}>
+          <img
+            src={game.image}
+            alt={name}
+            className="h-[490px] w-[370px] scale-90 rounded-lg"
           />
-        ))}
-        <img
-          onClick={handleNext}
-          src={rightarrow}
-          className="top-3/5 absolute right-1/3 -translate-y-1/2 transform cursor-pointer"
-        />
-      </div>
-    </div>
+        </SwiperSlide>
+      ))}
+    </Swiper>
   );
-}
-
-export default Carousel;
+};
