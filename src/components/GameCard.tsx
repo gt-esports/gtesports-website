@@ -6,9 +6,9 @@ function GameCard(props: GameCardProps) {
       <img
         src={props.image}
         alt={`${props.name}`}
-        className="card-image h-[295px] w-[225px] rounded-2xl pb-2 pl-3 pr-3 pt-3"
+        className="card-image h-[285px] w-[220px] rounded-2xl pb-2 pl-3 pr-3 pt-3"
       />
-      <h1 className="pb-2 font-barlow text-lg text-white">{props.name}</h1>
+      <h1 className="pb-2 font-barlow text-xl text-white">{props.name}</h1>
       <div className="mb-3 flex w-full justify-between">
         <button className="learn-more-btn text-barlow ml-3 flex items-center justify-center">
           Learn More

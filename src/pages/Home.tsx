@@ -105,7 +105,7 @@ function Home() {
             ))}
           </div>
         </div>
-        <div className="mt-32 flex flex-col items-center pb-40">
+        <div className="mt-32 flex flex-col items-center pb-18">
           <div className="mb-8 flex w-full flex-row items-center justify-between">
             <h2 className="font-bayon text-5xl font-normal text-white">
               EVENTS
