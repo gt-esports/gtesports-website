@@ -14,3 +14,9 @@ export interface RecruitmentCardProps {
   contactDiscord: string;
   tryoutDate: string;
 }
+
+export interface ProfileCardProps {
+  image: string;
+  name: string;
+  position: string;
+}
