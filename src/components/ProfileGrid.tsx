@@ -1,20 +1,18 @@
 // ProfileGrid.tsx
-import React, { useState } from 'react';
+import React from "react";
 import ProfileCard from './ProfileCard'; 
 import { ProfileCardProps } from '../types'; 
 
 const ProfileGrid: React.FC = () => {
   // Example data for staff members
-  const [staffMembers, setStaffMembers] = useState<ProfileCardProps[]>([
-    { image: '', name: 'Staff Name', position: 'Staff Position' },
-    { image: '', name: 'Staff Name', position: 'Staff Position' },
-    { image: '', name: 'Staff Name', position: 'Staff Position' },
-    { image: '', name: 'Staff Name', position: 'Staff Position' },
-    { image: '', name: 'Staff Name', position: 'Staff Position' },
-    { image: '', name: 'Staff Name', position: 'Staff Position' },
-    { image: '', name: 'Staff Name', position: 'Staff Position' },
-    { image: '', name: 'Staff Name', position: 'Staff Position' },
-  ]);
+  const staffMembers: ProfileCardProps[] = [
+    { image: '', name: 'Matt "Sultan"', position: 'President & Competitive Gaming Director' },
+    { image: '', name: 'DJ Fratt', position: 'Vice President' },
+    { image: '', name: 'Francesco V.', position: 'Executive Finance Officer' },
+    { image: '', name: 'Jim C.', position: 'Director of Engineering' },
+    { image: '', name: 'Beeta E.', position: 'Director of Marketing & Creative' },
+    { image: '', name: 'Tyler L.', position: 'Director of Events & Activations' },
+  ];
 
   return (
     <div className="min-h-full bg-opacity-0 flex flex-col items-center">

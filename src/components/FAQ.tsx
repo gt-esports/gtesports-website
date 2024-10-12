@@ -1,5 +1,5 @@
 // FAQ.tsx
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FaChevronDown } from 'react-icons/fa'; // Use a Chevron icon for toggling (install react-icons if needed)
 
 const FAQ = () => {
@@ -8,20 +8,17 @@ const FAQ = () => {
   // Replace FAQ text with the provided content
   const faqs = [
     {
-      question: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat?',
-      answer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      question: "Is this organization only for competitive gamers?",
+      answer: "Not at all! We host gaming communities for competitive and casual gamers alike. Check out our games page" +
+          " to see a list of our communities!",
     },
     {
-      question: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua?',
-      answer: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      question: "What are the time commitments for this organization?",
+      answer: "There is no specific time commitment necessary to join our communities. Depends on your expectations and interests for the gaming community!",
     },
     {
-      question: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua?',
-      answer: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    },
-    {
-      question: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua?',
-      answer: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      question: "How do I join?",
+      answer: "Discord links in the Games Page, link to our main Discord: https://discord.gg/gtesports, link to our Engage: https://gatech.campuslabs.com/engage/organization/esports.",
     },
   ];
 
@@ -30,8 +27,7 @@ const FAQ = () => {
   };
 
   return (
-    <div className=" mx-auto p-4 px-20">
-      
+    <div className="mx-auto p-4 px-20">
       <div className="space-y-4">
         {faqs.map((faq, index) => (
           <div
@@ -44,7 +40,7 @@ const FAQ = () => {
               onClick={() => handleToggle(index)}
               className="w-full flex justify-between items-center text-left font-semibold text-white hover:text-blue-400 focus:outline-none"
             >
-              <span>{faq.question}</span>
+              <span className="text-lg tracking-wider">{faq.question}</span>
               <FaChevronDown
                 className={`transition-transform duration-200 ${
                   openIndex === index ? 'transform rotate-180' : ''
@@ -52,7 +48,7 @@ const FAQ = () => {
               />
             </button>
             {openIndex === index && (
-              <p className="mt-2 text-gray-200">{faq.answer}</p>
+              <p className="mt-3 text-gray-200 text-start">{faq.answer}</p>
             )}
           </div>
         ))}

@@ -1,6 +1,5 @@
 import GameGrid from "../components/GameGrid";
 import Footer from "../components/Footer";
-import { RxComponentInstance } from "react-icons/rx";
 
 function Games() {
   return (
