@@ -36,13 +36,13 @@ function AboutInformation() {
         <h3 className="text-3xl font-bayon tracking-wide text-tech-gold mb-4">
           WHAT WE STAND FOR
         </h3>
-        <p className="text-white max-w-full pt-3 text-white normal-case mr-20">
+        <p className="max-w-full pt-3 text-white normal-case mr-20">
             We stand for the expansion and democratization of esports across the world.
             Georgia Tech is not only a leader and an innovator in collegiate esports competition - we
             are a hive of innovators Creating the Next transformative models for the esports space.
             With a rich history extending to the beginning of commercial gaming,
             Georgia Tech Esports has long been a driving force in the background of
-            competitive gaming for good, and that isn’t changing anytime soon.
+            competitive gaming for good, and we strive to carry on that mission.
         </p>
         </div>
       </div>

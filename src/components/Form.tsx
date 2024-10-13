@@ -26,8 +26,8 @@ const Form: React.FC = () => {
       <div className="max-w-4xl w-full bg-gradient-to-b from-navy-blue to-tech-gold p-10 rounded-lg shadow-md flex">
         {/* Form Section */}
         <div className="flex-1 pr-10 font-quicksand">
-          <h2 className="text-2xl font-bold text-tech-gold mb-4">GET IN TOUCH</h2>
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <h2 className="text-2xl font-bold text-tech-gold mb-8">GET IN TOUCH</h2>
+          <form onSubmit={handleSubmit} className="space-y-4 text-black">
             <input
               type="text"
               name="name"
