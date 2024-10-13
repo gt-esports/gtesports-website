@@ -6,7 +6,7 @@ import { ProfileCardProps } from '../types';
 const ProfileGrid: React.FC = () => {
   // Example data for staff members
   const staffMembers: ProfileCardProps[] = [
-    { image: '', name: 'Matt "Sultan"', position: 'President & Competitive Gaming Director' },
+    { image: '', name: 'Matt G. "Sultan"', position: 'President & Competitive Gaming Director' },
     { image: '', name: 'DJ Fratt', position: 'Vice President' },
     { image: '', name: 'Francesco V.', position: 'Executive Finance Officer' },
     { image: '', name: 'Jim C.', position: 'Director of Engineering' },

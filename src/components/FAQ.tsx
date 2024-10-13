@@ -48,7 +48,7 @@ const FAQ = () => {
               />
             </button>
             {openIndex === index && (
-              <p className="mt-3 text-gray-200 text-start">{faq.answer}</p>
+              <p className="mt-3 text-gray-200 text-start select-text">{faq.answer}</p>
             )}
           </div>
         ))}
