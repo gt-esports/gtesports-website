@@ -30,6 +30,16 @@ body {
   .card-image {
     height: 80%;
   }
+  .newseventscard {
+    min-width: 350px; /* Ensures a minimum width */
+    max-width: 100%; /* Allows it to expand */
+    display: flex;
+    flex-wrap: nowrap; /* Prevents wrapping */
+  }
+  .newseventscard-image {
+    width: 100%;
+    height: auto;
+  }
 
   .learn-more-btn {
     width: 140px;

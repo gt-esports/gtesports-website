@@ -20,3 +20,11 @@ export interface ProfileCardProps {
   name: string;
   position: string;
 }
+
+export interface NewsEventsProps {
+  image: string;
+  name: string;
+  date: string;
+  link: string;
+  author: string;
+}
