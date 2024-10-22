@@ -49,7 +49,7 @@ export const games = {
     pageLink: "link",
     discordLink: "https://discord.gg/B9tQzuk8jh",
   },
-  "CSGO 2": {
+  "CS 2": {
     image: csgo2,
     pageLink: "link",
     discordLink: "https://discord.gg/3FUjyXA",
