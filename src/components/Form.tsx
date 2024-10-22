@@ -1,6 +1,7 @@
 // Form.tsx
 import React, { useState } from 'react';
 import bee from "../assets/bee.png";
+import SocialBar from './SocialBar';
 const Form: React.FC = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -23,7 +24,7 @@ const Form: React.FC = () => {
 
   return (
     <div className="bg-transparent flex items-center justify-center">
-      <div className="max-w-4xl w-full bg-gradient-to-b from-navy-blue to-tech-gold p-10 rounded-lg shadow-md flex">
+      <div className="max-w-4xl w-full bg-gradient-to-b from-navy-blue to-tech-gold p-10 rounded-lg shadow-md flex relative">
         {/* Form Section */}
         <div className="flex-1 pr-10 font-quicksand">
           <h2 className="text-2xl font-bold text-tech-gold mb-8">GET IN TOUCH</h2>
@@ -79,6 +80,9 @@ const Form: React.FC = () => {
             </p>
           </div>
         </div>
+
+        {/* Social Media Section */}
+        <SocialBar />
       </div>
     </div>
   );
