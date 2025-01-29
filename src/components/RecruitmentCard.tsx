@@ -2,18 +2,18 @@ import { RecruitmentCardProps } from "../types";
 
 export default function RecruitmentCard(props: RecruitmentCardProps) {
   return (
-    <div className="flex w-auto h-full flex-row p-4 rounded-xl bg-gradient-to-br from-[#3d3d3d]/95 to-[#a7a7a7]/95">
+    <div className="flex w-full h-full flex-row p-4 rounded-xl bg-gradient-to-br from-[#3d3d3d]/95 to-[#a7a7a7]/95">
       {/* game image */}
       <div className="border-0 p-4">
         <img
           src={props.image}
           alt={`${props.name}`}
-          className="hidden md:block card-image h-[280px] w-[225px] rounded-2xl"
+          className="hidden md:block card-image md:w-64 h-full rounded-2xl object-contain"
         />
       </div>
-      <div className="flex-col">
+      <div className="flex-col w-full h-full">
         {/* text info */}
-        <div className="flex flex-col h-auto w-full pl-1 tracking-wider">
+        <div className="flex flex-col pl-1 tracking-wider">
           <h1 className="flex flex-row-reverse pr-2 font-sans text-[0.97rem] font-semibold tracking-wide text-white">
             Tryout date: {props.tryoutDate}
           </h1>
@@ -37,8 +37,8 @@ export default function RecruitmentCard(props: RecruitmentCardProps) {
           </p>  
         </div>
         {/* learn more button */}
-        <div className="flex justify-center md:flex md:items-center md:justify-end md:pt-0 pt-4">
-          <button className="learn-more-btn flex scale-x-[1.1] items-center justify-center tracking-tighter">
+        <div className="flex justify-center pt-12">
+          <button className="learn-more-btn flex scale-x-[1.1] md:w-full ml-24 mr-24 items-center justify-center tracking-tighter">
             Learn More
           </button>  
         </div>
