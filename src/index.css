@@ -16,7 +16,7 @@ body {
 }
 @layer base {
   :root {
-    --navbar-height: 40px;
+    --navbar-height: 9vh;
     font-family: "Quicksand", sans-serif;
   }
 

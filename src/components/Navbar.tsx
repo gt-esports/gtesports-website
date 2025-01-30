@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { TfiClose } from "react-icons/tfi";
 import { Link, NavLink, useLocation } from "react-router-dom";
@@ -9,6 +9,33 @@ function Navbar() {
   const location = useLocation();
   const [open, setOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
+  const menuRef = useRef<HTMLUListElement | null>(null);;
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768); // Mobile view is < 768px (md breakpoint in Tailwind)
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setOpen(false); // Close menu if clicked outside
+      }
+    };
+
+    if (open) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [open]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,11 +60,10 @@ function Navbar() {
 
   return (
     <div
-      className={`fixed left-0 top-0 z-10 w-full border-0 pb-1 pt-3 transition-all duration-500 ${
+      className={`fixed flex z-10 w-full h-[--navbar-height] border-0 items-center justify-between bg-transparent md:flex md:px-20 md:py-6 transition-all duration-500 ${
         isScrolled ? "bg-opacity-70 backdrop-blur-md" : "bg-transparent"
       }`}
     >
-      <div className="h-[--navbar-height] items-center justify-between bg-transparent py-2 md:flex md:px-20 md:py-6">
         <div className="font-bayon text-4xl tracking-wide">
           <Link to="/" className="flex items-center">
             <img
@@ -47,42 +73,76 @@ function Navbar() {
               height={68}
               className="mr-2"
             />
-            <span className="text-tech-gold">GA TECH</span>{" "}
-            <span className="ml-2 text-white">ESPORTS</span>
+            <span className="text-2xl md:text-4xl text-tech-gold">GA TECH</span>{" "}
+            <span className="text-2xl ml-1 md:text-4xl md:ml-2 text-white">ESPORTS</span>
           </Link>
         </div>
         <div
           onClick={() => setOpen(!open)}
-          className="absolute right-8 top-6 cursor-pointer text-3xl text-bright-buzz md:hidden"
+          className="cursor-pointer text-3xl mr-2 z-[2] text-bright-buzz md:hidden"
         >
           {!open ? <RxHamburgerMenu /> : <TfiClose />}
         </div>
-        <ul
-          className={`absolute left-0 z-[1] w-full bg-transparent pb-4 md:static md:z-auto md:flex md:w-auto md:items-center md:pb-0 ${
-            open ? "top-[64px]" : "top-[-490px]"
-          }`}
-        >
-          {links.map((link) => (
-            <li
-              key={link.name}
-              className="text-md my-7 text-center md:my-0 md:ml-8"
-            >
-              <NavLink
-                to={link.link}
-                className={`${
-                  location.pathname === link.link
-                    ? "text-bright-buzz"
-                    : "text-white"
-                } ${
-                  location.pathname === link.link ? "underline" : ""
-                } underline-offset-4 duration-500 hover:text-bright-buzz`}
+        { isMobile ? (
+          // mobile view
+          <ul
+            ref={menuRef}
+            className={`absolute right-0 top-0 z-[1] w-2/5 h-screen bg-black/90 pt-14
+              transition-all duration-300 ease-in ${open ? 
+              "px-4 translate-x-0" : "opacity-0 translate-x-full"}`}
+          >
+            {links.map((link, index) => (
+              <li
+                key={link.name}
+                style={{ transitionDelay: `${index * 100}ms` }}
+                className={`text-md py-4 text-right w-full transition-all duration-700 ease-in-out
+                  ${open ? "opacity-100 translate-x-0" : "opacity-0 translate-x-full"}`} 
               >
-                {link.name}
-              </NavLink>
-            </li>
-          ))}
-        </ul>
-      </div>
+                <NavLink
+                  to={link.link}
+                  className={`${
+                    location.pathname === link.link
+                      ? "text-bright-buzz"
+                      : "text-white"
+                  } ${
+                    location.pathname === link.link ? "underline" : ""
+                  } underline-offset-4 duration-500 hover:text-bright-buzz`}
+                  onClick={() => setOpen(false)}
+                >
+                  {link.name}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          // desktop view
+          <ul
+            className={`absolute right-0 top-0 z-[1] h-screen md:pt-0 md:static md:z-auto md:flex w-auto items-center bg-trasparent`}
+          >
+            {links.map((link, index) => (
+              <li
+                key={link.name}
+                style={{ transitionDelay: `${index * 100}ms` }}
+                className={`text-md py-4 text-right md:py-0 md:px-4 w-full`} 
+              >
+                <NavLink
+                  to={link.link}
+                  className={`${
+                    location.pathname === link.link
+                      ? "text-bright-buzz"
+                      : "text-white"
+                  } ${
+                    location.pathname === link.link ? "underline" : ""
+                  } underline-offset-4 duration-500 hover:text-bright-buzz`}
+                  onClick={() => setOpen(false)}
+                >
+                  {link.name}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
+        )}
+          
     </div>
   );
 }
