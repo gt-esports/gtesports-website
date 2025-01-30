@@ -81,7 +81,7 @@ function Home() {
             VIEW ALL
           </button>
         </div>
-        {/* <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center">
           <div className="mb-8 flex w-full flex-row items-center justify-between">
             <h2 className="font-bayon text-5xl font-normal text-white">NEWS</h2>
             <button
@@ -130,9 +130,9 @@ function Home() {
               />
             ))}
           </div>
-        </div> */}
+        </div>
       </div>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }
