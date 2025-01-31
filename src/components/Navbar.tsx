@@ -9,12 +9,13 @@ function Navbar() {
   const location = useLocation();
   const [open, setOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
   const menuRef = useRef<HTMLUListElement | null>(null);;
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 768); // Mobile view is < 768px (md breakpoint in Tailwind)
+      if (window.innerWidth >= 768) {
+        setOpen(false);
+      }
     };
 
     window.addEventListener("resize", handleResize);
@@ -24,7 +25,7 @@ function Navbar() {
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-        setOpen(false); // Close menu if clicked outside
+        setOpen(false);
       }
     };
 
@@ -64,85 +65,78 @@ function Navbar() {
         isScrolled ? "bg-opacity-70 backdrop-blur-md" : "bg-transparent"
       }`}
     >
-        <div className="font-bayon text-4xl tracking-wide">
-          <Link to="/" className="flex items-center">
-            <img
-              src={Logo}
-              alt="GT Esports Logo"
-              width={68}
-              height={68}
-              className="mr-2"
-            />
-            <span className="text-2xl md:text-4xl text-tech-gold">GA TECH</span>{" "}
-            <span className="text-2xl ml-1 md:text-4xl md:ml-2 text-white">ESPORTS</span>
-          </Link>
-        </div>
-        <div
-          onClick={() => setOpen(!open)}
-          className="cursor-pointer text-3xl mr-2 z-[2] text-bright-buzz md:hidden"
-        >
-          {!open ? <RxHamburgerMenu /> : <TfiClose />}
-        </div>
-        { isMobile ? (
-          // mobile view
-          <ul
-            ref={menuRef}
-            className={`absolute right-0 top-0 z-[1] w-2/5 h-screen bg-black/90 pt-14
-              transition-all duration-300 ease-in ${open ? 
-              "px-4 translate-x-0" : "opacity-0 translate-x-full"}`}
+      <div className="font-bayon text-4xl tracking-wide">
+        <Link to="/" className="flex items-center">
+          <img
+            src={Logo}
+            alt="GT Esports Logo"
+            width={68}
+            height={68}
+            className="mr-2"
+          />
+          <span className="text-2xl md:text-4xl text-tech-gold">GA TECH</span>{" "}
+          <span className="text-2xl ml-1 md:text-4xl md:ml-2 text-white">ESPORTS</span>
+        </Link>
+      </div>
+      <div
+        onClick={() => setOpen(!open)}
+        className="cursor-pointer text-3xl mr-2 z-[2] text-bright-buzz md:hidden"
+      >
+        {!open ? <RxHamburgerMenu /> : <TfiClose />}
+      </div>
+      
+      {/* Mobile Menu */}
+      <ul
+        ref={menuRef}
+        className={`fixed md:hidden right-0 top-0 z-[1] w-2/5 h-screen bg-black/90 pt-14 transition-all duration-300 ease-in ${
+          open ? "px-4 translate-x-0" : "opacity-0 translate-x-full"
+        }`}
+      >
+        {links.map((link, index) => (
+          <li
+            key={link.name}
+            style={{ transitionDelay: `${index * 100}ms` }}
+            className={`text-md py-4 text-right w-full transition-all duration-700 ease-in-out ${
+              open ? "opacity-100 translate-x-0" : "opacity-0 translate-x-full"
+            }`}
           >
-            {links.map((link, index) => (
-              <li
-                key={link.name}
-                style={{ transitionDelay: `${index * 100}ms` }}
-                className={`text-md py-4 text-right w-full transition-all duration-700 ease-in-out
-                  ${open ? "opacity-100 translate-x-0" : "opacity-0 translate-x-full"}`} 
-              >
-                <NavLink
-                  to={link.link}
-                  className={`${
-                    location.pathname === link.link
-                      ? "text-bright-buzz"
-                      : "text-white"
-                  } ${
-                    location.pathname === link.link ? "underline" : ""
-                  } underline-offset-4 duration-500 hover:text-bright-buzz`}
-                  onClick={() => setOpen(false)}
-                >
-                  {link.name}
-                </NavLink>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          // desktop view
-          <ul
-            className={`absolute right-0 top-0 z-[1] h-screen md:pt-0 md:static md:z-auto md:flex w-auto items-center bg-trasparent`}
+            <NavLink
+              to={link.link}
+              className={`${
+                location.pathname === link.link
+                  ? "text-bright-buzz underline"
+                  : "text-white"
+              } underline-offset-4 duration-500 hover:text-bright-buzz`}
+              onClick={() => setOpen(false)}
+            >
+              {link.name}
+            </NavLink>
+          </li>
+        ))}
+      </ul>
+
+      {/* Desktop Menu */}
+      <ul className="hidden md:flex md:static md:z-auto md:items-center md:space-x-4">
+        {links.map((link, index) => (
+          <li
+            key={link.name}
+            style={{ transitionDelay: `${index * 100}ms` }}
+            className="text-md py-4 md:py-0"
           >
-            {links.map((link, index) => (
-              <li
-                key={link.name}
-                style={{ transitionDelay: `${index * 100}ms` }}
-                className={`text-md py-4 text-right md:py-0 md:px-4 w-full`} 
-              >
-                <NavLink
-                  to={link.link}
-                  className={`${
-                    location.pathname === link.link
-                      ? "text-bright-buzz"
-                      : "text-white"
-                  } ${
-                    location.pathname === link.link ? "underline" : ""
-                  } underline-offset-4 duration-500 hover:text-bright-buzz`}
-                  onClick={() => setOpen(false)}
-                >
-                  {link.name}
-                </NavLink>
-              </li>
-            ))}
-          </ul>
-        )}
-          
+            <NavLink
+              to={link.link}
+              className={`${
+                location.pathname === link.link
+                  ? "text-bright-buzz underline"
+                  : "text-white"
+              } underline-offset-4 duration-500 hover:text-bright-buzz`}
+              onClick={() => setOpen(false)}
+            >
+              {link.name}
+            </NavLink>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
