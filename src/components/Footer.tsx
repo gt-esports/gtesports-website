@@ -40,7 +40,7 @@ function Footer() {
 
   return (
     <div className="mt-80 flex w-full flex-col bg-footer-shadow pb-6 pt-6">
-      <div className="mb-4 flex w-full flex-row items-center justify-between">
+      <div className="mb-4 flex w-full flex-wrap items-center justify-between md:flex-nowrap">
         {/* gatech logo */}
         <div className="ml-10 py-4 font-bayon text-3xl tracking-wide">
           <Link to="/home" className="flex items-center">
@@ -57,9 +57,11 @@ function Footer() {
         </div>
 
         {/* social media */}
-        <div className="mr-10 flex items-center text-xl text-white">
-          <h1 className="mr-3">Connect With Us</h1>
-          <ul className="flex ">
+        <div className="flex flex-wrap items-center justify-center gap-3 text-xl text-white ml-auto mr-auto md:mr-0 lg:mr-0">
+          <h1 className="w-full text-center">
+            Connect With Us
+          </h1>
+          <ul className="flex flex-wrap justify-center">
             {socialMedia.map((icon) => (
               <li key={icon.name}>
                 <Link to={icon.link}>
@@ -78,22 +80,18 @@ function Footer() {
       </div>
 
       {/* nav link and info */}
-      <div className="flex w-full flex-row justify-between pb-12">
-        <div className="self-end">
-          <ul className="ml-14 flex">
+      <div className="flex w-full flex-wrap justify-between pb-6 px-6 text-center md:flex-nowrap">
+        <div className="w-full md:w-auto">
+          <ul className="flex flex-wrap ml-6 justify-center gap-6">
             {links.map((link) => (
-              <li
-                key={link.name}
-                className="my-7 text-center text-lg md:my-0 md:mr-8"
-              >
+              <li key={link.name} className="text-center text-lg md:my-0 md:mr-6">
                 <NavLink
                   to={link.link}
                   className={`${
                     location.pathname === link.link
                       ? "text-bright-buzz"
                       : "text-white"
-                  }
-                            underline-offset-4 duration-500 hover:text-bright-buzz`}
+                  } underline-offset-4 duration-500 hover:text-bright-buzz`}
                 >
                   {link.name}
                 </NavLink>
@@ -101,8 +99,8 @@ function Footer() {
             ))}
           </ul>
         </div>
-        <div className="text-l mr-12 flex flex-col tracking-wide text-white">
-          <h1 className="ml-auto">georgiatechesports@gmail.com</h1>
+        <div className="ml-auto mt-9 mr-auto md:mr-6 lg:mr-12 text-white md:mt-0 md:text-right">
+          <h1>georgiatechesports@gmail.com</h1>
           <h1>801 Atlantic Dr NW, Atlanta, GA 30332</h1>
         </div>
       </div>
