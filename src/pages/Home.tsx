@@ -67,7 +67,7 @@ function Home() {
       </div>
       <div className="flex flex-col items-center justify-center pt-24">
         <div>
-          <h2 className="flex justify-center pb-16 pt-24 font-bayon text-7xl font-normal tracking-wide text-white">
+          <h2 className="flex pb-16 pt-24 text-center font-bayon text-7xl font-normal tracking-wide text-white">
             CHOOSE YOUR GAME
           </h2>
         </div>
@@ -105,7 +105,7 @@ function Home() {
             ))}
           </div>
         </div>
-        <div className="mt-32 flex flex-col items-center pb-18">
+        <div className="pb-18 mt-32 flex flex-col items-center">
           <div className="mb-8 flex w-full flex-row items-center justify-between">
             <h2 className="font-bayon text-5xl font-normal text-white">
               EVENTS

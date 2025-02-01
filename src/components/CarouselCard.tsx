@@ -9,7 +9,7 @@ function CarouselCard(props: CarouselCardProps) {
   return (
     <div
       className={`h-full w-full pl-10 pr-10 text-center transition-transform duration-300 ${
-        props.center ? "scale-100" : "scale-75"
+        props.center ? "scale-80" : "scale-50"
       }`}
     >
       <a href={props.link}>
