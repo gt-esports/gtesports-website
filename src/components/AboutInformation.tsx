@@ -5,10 +5,10 @@ import Form from "./Form"
 
 function AboutInformation() {
   return (
-    <div className="flex flex-col items-center pt-10 w-[90%]">
-      <div className="w-full flex flex-row">
+    <div className="flex flex-col items-center pt-10 w-[90%] gap-12">
+      <div className="w-full flex lg:flex-row gap-8 flex-col items-center">
         {/* Text Section */}
-        <div className="flex-1 mx-20">
+        <div className="flex-1 ml-20 items-start flex flex-col">
           <h3 className="text-3xl font-bayon tracking-wide text-tech-gold mb-4">
             WHO WE ARE
           </h3>
@@ -25,7 +25,7 @@ function AboutInformation() {
           <img
             src={logoImage}
             alt="Holding Image"
-            className="object-contain max-w-md mr-20 rounded-lg backdrop-blur-2xl"
+            className="object-contain max-w-md rounded-lg backdrop-blur-2xl"
           />
         </div>
       </div>
