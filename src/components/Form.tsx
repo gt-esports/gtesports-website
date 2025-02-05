@@ -24,7 +24,7 @@ const Form: React.FC = () => {
 
   return (
     <div className="bg-transparent flex items-center justify-center">
-      <div className="max-w-4xl w-full bg-gradient-to-b from-navy-blue to-tech-gold p-10 rounded-lg shadow-md flex relative">
+      <div className="max-w-4xl w-full bg-gradient-to-b from-navy-blue to-tech-gold p-10 rounded-lg shadow-md flex flex-col sm:flex-row relative gap-8">
         {/* Form Section */}
         <div className="flex-1 pr-10 font-quicksand">
           <h2 className="text-2xl font-bold text-tech-gold mb-8">GET IN TOUCH</h2>
@@ -63,8 +63,8 @@ const Form: React.FC = () => {
         </div>
 
         {/* Contact Info Section */}
-        <div className="flex-1 flex flex-col items-start justify-center ml-10">
-          <img src={bee} alt="Bee" className="w-48 h-48 mb-14" />
+        <div className="flex-1 flex sm:flex-col items-center justify-center gap-8 sm:gap-0">
+          <img src={bee} alt="Bee" className="w-48 h-48 mb-4 sm:mb-10" />
           <div className="text-white space-y-3">
             <p className="flex items-center space-x-2">
               <span className="material-icons">Address:</span>
