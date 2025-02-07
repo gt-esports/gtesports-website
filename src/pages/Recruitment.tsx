@@ -10,9 +10,9 @@ function Recruitment() {
         <h1 className="flex justify-center font-bayon text-6xl text-white">
             RECRUITMENT
         </h1>
-        <div className="flex flex-col pt-8">
+        <div className="flex flex-col pt-8 ">
           {Object.entries(recruitmentData).map(([name, game], index) => (
-            <div className="m-6 place-items-center ">
+            <div className="m-6 items-center justify-center flex" key={index}>
               <RecruitmentCard
                 key={index}
                 image={game.image}
