@@ -21,7 +21,6 @@ body {
   }
 
   .card {
-    width: 220px;
     height: 390px;
     background-image: url("assets/game-card-background.png");
     background-size: cover;
