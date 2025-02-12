@@ -20,3 +20,11 @@ export interface ProfileCardProps {
   name: string;
   position: string;
 }
+
+export interface EventCardProps {
+  name: string;
+  date: string;
+  time: string;
+  description: string;
+  link: string;
+}
