@@ -2,7 +2,7 @@ import { RecruitmentCardProps } from "../types";
 
 export default function RecruitmentCard(props: RecruitmentCardProps) {
   return (
-    <div className="flex w-[800px] items-center flex-row p-4 rounded-xl bg-gradient-to-br from-[#3d3d3d]/95 to-[#a7a7a7]/95">
+    <div className="flex w-[1000px] items-center flex-row p-4 rounded-xl bg-gradient-to-br from-[#3d3d3d]/95 to-[#a7a7a7]/95">
       {/* game image */}
       <div className="border-0 md:p-4">
         <img
