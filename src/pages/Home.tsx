@@ -1,56 +1,56 @@
 import Carousel from "../components/Carousel";
 import Footer from "../components/Footer";
-import NECard from "../components/NECard";
+// import NECard from "../components/NECard";
 
-import { games } from "../data/gamesData";
+// import { games } from "../data/gamesData";
 
-const testNews = [
-  [
-    "news name 1",
-    games["League of Legends"].image,
-    "12/31/2023",
-    "newslink",
-    "",
-  ],
-  [
-    "news name 2",
-    games["League of Legends"].image,
-    "12/31/2023",
-    "newslink",
-    "",
-  ],
-  [
-    "news name 3",
-    games["League of Legends"].image,
-    "12/31/2023",
-    "newslink",
-    "",
-  ],
-];
+// const testNews = [
+//   [
+//     "news name 1",
+//     games["League of Legends"].image,
+//     "12/31/2023",
+//     "newslink",
+//     "",
+//   ],
+//   [
+//     "news name 2",
+//     games["League of Legends"].image,
+//     "12/31/2023",
+//     "newslink",
+//     "",
+//   ],
+//   [
+//     "news name 3",
+//     games["League of Legends"].image,
+//     "12/31/2023",
+//     "newslink",
+//     "",
+//   ],
+// ];
 
-const testEvents = [
-  [
-    "events name 1",
-    games["League of Legends"].image,
-    "12/31/2023",
-    "newslink",
-    "Klaus",
-  ],
-  [
-    "events name 2",
-    games["League of Legends"].image,
-    "12/31/2023",
-    "newslink",
-    "Klaus",
-  ],
-  [
-    "events name 3",
-    games["League of Legends"].image,
-    "12/31/2023",
-    "newslink",
-    "Klaus",
-  ],
-];
+// const testEvents = [
+//   [
+//     "events name 1",
+//     games["League of Legends"].image,
+//     "12/31/2023",
+//     "newslink",
+//     "Klaus",
+//   ],
+//   [
+//     "events name 2",
+//     games["League of Legends"].image,
+//     "12/31/2023",
+//     "newslink",
+//     "Klaus",
+//   ],
+//   [
+//     "events name 3",
+//     games["League of Legends"].image,
+//     "12/31/2023",
+//     "newslink",
+//     "Klaus",
+//   ],
+// ];
 
 function Home() {
   function handleButtonClick(e: React.MouseEvent<HTMLButtonElement>) {
