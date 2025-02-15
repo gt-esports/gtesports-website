@@ -55,7 +55,7 @@ function Navbar() {
     // { name: "TEAMS", link: "/teams" },
     { name: "GAMES", link: "/games" },
     { name: "RECRUITMENT", link: "/recruitment" },
-    // { name: "NEWS & EVENTS", link: "/newsandevents" },
+    { name: "NEWS & EVENTS", link: "/newsandevents" },
     { name: "ABOUT", link: "/about" },
   ];
 
