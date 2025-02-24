@@ -10,6 +10,7 @@ import NewsAndEvents from "./pages/NewsAndEvents";
 import About from "./pages/About";
 import Teams from "./pages/Teams";
 
+
 function App() {
   return (
     <div className="flex min-h-screen flex-col">
