@@ -2,18 +2,19 @@ interface CarouselCardProps {
   image: string;
   name: string;
   link: string;
-  center: boolean;
 }
 
 function CarouselCard(props: CarouselCardProps) {
   return (
     <div
-      className={`h-full w-full pl-10 pr-10 text-center transition-transform duration-300 ${
-        props.center ? "scale-80" : "scale-50"
-      }`}
+      className={`align-center h-[490px] w-[420px] flex-col justify-center rounded-lg px-10 text-center
+      duration-300`}
     >
-      <a href={props.link}>
-        <img src={props.image} className="h-full w-full object-cover" />
+      <a href={props.link} target="blank">
+        <img
+          src={props.image}
+          className="h-full w-full rounded-lg object-cover"
+        />
       </a>
       <p className="py-4 font-barlow font-semibold tracking-wide text-white">
         {props.name}

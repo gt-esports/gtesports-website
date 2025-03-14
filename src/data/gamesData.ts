@@ -13,6 +13,12 @@ import rl from "../assets/game-covers/rocket-league-cover.jpeg";
 import cod from "../assets/game-covers/cod-cover.jpg";
 import apex from "../assets/game-covers/apex-cover.jpeg";
 import dota2 from "../assets/game-covers/dota-2-cover.jpeg";
+import marioKart from "../assets/game-covers/mario-kart-cover.jpg";
+import supercell from "../assets/game-covers/supercell-cover.jpg";
+import sportsVG from "../assets/game-covers/sportsVG-cover.jpg";
+import deadlock from "../assets/game-covers/deadlock-cover.jpg";
+import fgcGames from "../assets/game-covers/fgc-cover.png";
+import marvelRivals from "../assets/game-covers/marvel-rivals-cover.jpg";
 
 import minecraft from "../assets/game-covers/minecraft-cover.jpeg";
 import genshin from "../assets/game-covers/genshin-impact-cover.jpg";
@@ -49,7 +55,7 @@ export const games = {
     pageLink: "link",
     discordLink: "https://discord.gg/B9tQzuk8jh",
   },
-  "CS 2": {
+  "Counter-Strike": {
     image: csgo2,
     pageLink: "link",
     discordLink: "https://discord.gg/3FUjyXA",
@@ -57,7 +63,7 @@ export const games = {
   Smash: {
     image: smash,
     pageLink: "link",
-    discordLink: "https://discord.gg/xpFgFyU",
+    discordLink: "https://discord.gg/bSz7Qg4gjH",
   },
   "Rainbow Six Siege": {
     image: r6,
@@ -97,7 +103,37 @@ export const games = {
   "Dota 2": {
     image: dota2,
     pageLink: "link",
-    discordLink: "https://discord.gg/cEG2MMDQKK",
+    discordLink: "https://discord.com/invite/bxMpB43put",
+  },
+  "Mario Kart": {
+    image: marioKart,
+    pageLink: "link",
+    discordLink: "https://discord.gg/Ke74RqzTG9",
+  },
+  Supercell: {
+    image: supercell,
+    pageLink: "link",
+    discordLink: "https://discord.gg/6c6f2KbhYS",
+  },
+  "Sports Video Games": {
+    image: sportsVG,
+    pageLink: "link",
+    discordLink: "https://discord.gg/9KVvtMurPD",
+  },
+  Deadlock: {
+    image: deadlock,
+    pageLink: "link",
+    discordLink: "https://discord.gg/Pvv2HBNqsN",
+  },
+  "Fighting Games": {
+    image: fgcGames,
+    pageLink: "link",
+    discordLink: "https://discord.gg/u5UNwBM4Zg",
+  },
+  "Marvel Rivals": {
+    image: marvelRivals,
+    pageLink: "link",
+    discordLink: "https://discord.gg/JFVmDyWuMc",
   },
 };
 

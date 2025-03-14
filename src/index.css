@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 * {
   user-select: none;
 }
@@ -16,7 +15,7 @@ body {
 }
 @layer base {
   :root {
-    --navbar-height: 9vh;
+    --navbar-height: 10vh;
     font-family: "Quicksand", sans-serif;
   }
 
@@ -98,4 +97,8 @@ body {
   padding: 8px 16px;
   color: white;
   opacity: 30%;
+}
+
+.swiper-pagination-bullets {
+  display: none;
 }

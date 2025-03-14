@@ -6,6 +6,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+import CarouselCard from "./CarouselCard";
 
 export default () => {
   return (
@@ -68,14 +69,14 @@ export default () => {
         },
       }}
       loop={true}
-      className="h-86 flex w-11/12 flex-col items-center justify-center rounded-lg"
+      className="h-100 flex w-11/12 scale-90 flex-col items-center justify-center rounded-lg pb-12"
     >
       {Object.entries(games).map(([name, game], index) => (
         <SwiperSlide key={index}>
-          <img
-            src={game.image}
-            alt={name}
-            className="h-[490px] w-[370px] scale-90 rounded-lg"
+          <CarouselCard
+            image={game.image}
+            name={name}
+            link={game.discordLink}
           />
         </SwiperSlide>
       ))}

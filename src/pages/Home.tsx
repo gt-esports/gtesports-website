@@ -67,11 +67,11 @@ function Home() {
       </div>
       <div className="flex flex-col items-center justify-center pt-24">
         <div>
-          <h2 className="flex pb-16 pt-24 text-center font-bayon text-7xl font-normal tracking-wide text-white">
+          <h2 className="flex justify-center pb-16 pt-24 text-center font-bayon text-7xl font-normal tracking-wide text-white">
             CHOOSE YOUR GAME
           </h2>
         </div>
-        <div className="mx-auto mt-5 flex w-4/5 max-w-screen-xl flex-col items-center pb-24">
+        <div className="mt-5 flex w-full max-w-screen-xl flex-col items-center justify-center pb-24">
           <Carousel />
           <button
             onClick={handleButtonClick}

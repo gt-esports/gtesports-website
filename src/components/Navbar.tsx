@@ -9,7 +9,7 @@ function Navbar() {
   const location = useLocation();
   const [open, setOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const menuRef = useRef<HTMLUListElement | null>(null);;
+  const menuRef = useRef<HTMLUListElement | null>(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -61,7 +61,7 @@ function Navbar() {
 
   return (
     <div
-      className={`fixed flex z-10 w-full h-[--navbar-height] border-0 items-center justify-between bg-transparent md:flex md:px-20 md:py-6 transition-all duration-500 ${
+      className={`fixed z-10 flex h-[--navbar-height] w-full items-center justify-between border-0 bg-transparent transition-all duration-500 md:flex md:px-20 md:py-6 ${
         isScrolled ? "bg-opacity-70 backdrop-blur-md" : "bg-transparent"
       }`}
     >
@@ -74,30 +74,32 @@ function Navbar() {
             height={68}
             className="mr-2"
           />
-          <span className="text-2xl md:text-4xl text-tech-gold">GA TECH</span>{" "}
-          <span className="text-2xl ml-1 md:text-4xl md:ml-2 text-white">ESPORTS</span>
+          <span className="text-2xl text-tech-gold md:text-4xl">GA TECH</span>{" "}
+          <span className="ml-1 text-2xl text-white md:ml-2 md:text-4xl">
+            ESPORTS
+          </span>
         </Link>
       </div>
       <div
         onClick={() => setOpen(!open)}
-        className="cursor-pointer text-3xl mr-2 z-[2] text-bright-buzz md:hidden"
+        className="z-[2] mr-2 cursor-pointer text-3xl text-bright-buzz md:hidden"
       >
         {!open ? <RxHamburgerMenu /> : <TfiClose />}
       </div>
-      
+
       {/* Mobile Menu */}
       <ul
         ref={menuRef}
-        className={`fixed md:hidden right-0 top-0 z-[1] w-2/5 h-screen bg-black/90 pt-14 transition-all duration-300 ease-in ${
-          open ? "px-4 translate-x-0" : "opacity-0 translate-x-full"
+        className={`fixed right-0 top-0 z-[1] h-screen w-2/5 bg-black/90 pt-14 transition-all duration-300 ease-in md:hidden ${
+          open ? "translate-x-0 px-4" : "translate-x-full opacity-0"
         }`}
       >
         {links.map((link, index) => (
           <li
             key={link.name}
             style={{ transitionDelay: `${index * 100}ms` }}
-            className={`text-md py-4 text-right w-full transition-all duration-700 ease-in-out ${
-              open ? "opacity-100 translate-x-0" : "opacity-0 translate-x-full"
+            className={`text-md w-full py-4 text-right transition-all duration-700 ease-in-out ${
+              open ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
             }`}
           >
             <NavLink
@@ -116,7 +118,7 @@ function Navbar() {
       </ul>
 
       {/* Desktop Menu */}
-      <ul className="hidden md:flex md:static md:z-auto md:items-center md:space-x-4">
+      <ul className="hidden md:static md:z-auto md:flex md:items-center md:space-x-4">
         {links.map((link, index) => (
           <li
             key={link.name}
