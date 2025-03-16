@@ -5,7 +5,7 @@ import overwatch2 from "../assets/game-covers/overwatch-2-cover.jpeg";
 import csgo2 from "../assets/game-covers/counter-strike-2-cover.jpeg";
 import smash from "../assets/game-covers/smash-cover.jpeg";
 import r6 from "../assets/game-covers/rainbow-six-siege-cover.jpeg";
-import rythm from "../assets/game-covers/rythm-games-cover.jpeg";
+import rythm from "../assets/game-covers/new_covers/osu-cover.png";
 import tf2 from "../assets/game-covers/team-fortress-2-cover.jpeg";
 import hearthstone from "../assets/game-covers/hearthstone-cover.jpeg";
 import smite from "../assets/game-covers/smite-cover.jpeg";
@@ -14,20 +14,22 @@ import cod from "../assets/game-covers/cod-cover.jpg";
 import apex from "../assets/game-covers/apex-cover.jpeg";
 import dota2 from "../assets/game-covers/dota-2-cover.jpeg";
 import marioKart from "../assets/game-covers/mario-kart-cover.jpg";
-import supercell from "../assets/game-covers/supercell-cover.jpg";
-import sportsVG from "../assets/game-covers/sportsVG-cover.jpg";
+import supercell from "../assets/game-covers/supercell-cover.png";
+import sportsVG from "../assets/game-covers/sports-cover.png";
 import deadlock from "../assets/game-covers/deadlock-cover.jpg";
-import fgcGames from "../assets/game-covers/fgc-cover.png";
+import fgcGames from "../assets/game-covers/new_covers/fgc-cover.png";
 import marvelRivals from "../assets/game-covers/marvel-rivals-cover.jpg";
 
 import minecraft from "../assets/game-covers/minecraft-cover.jpeg";
 import genshin from "../assets/game-covers/genshin-impact-cover.jpg";
-import pokemonGo from "../assets/game-covers/pokemon-go-cover.jpg";
-import fortnite from "../assets/game-covers/fortnite-cover.jpg";
-import animalCrossing from "../assets/game-covers/animal-crossing-cover.jpg";
+import pokemonGo from "../assets/game-covers/new_covers/pokemon-go-cover.png";
+import fortnite from "../assets/game-covers/new_covers/fortnite-cover.png";
+import animalCrossing from "../assets/game-covers/new_covers/animal-crossing-cover.png";
 import destiny from "../assets/game-covers/destiny-cover.jpg";
 import hearts_of_iron from "../assets/game-covers/hearts-of-iron-4-cover.jpg";
 import amongus from "../assets/game-covers/amongus.png";
+import geoguesser from "../assets/game-covers/new_covers/geoguesser-cover.png";
+import tetris from "../assets/game-covers/new_covers/tetris-cover.png";
 
 export const games = {
   "League of Legends": {
@@ -135,6 +137,11 @@ export const games = {
     pageLink: "link",
     discordLink: "https://discord.gg/JFVmDyWuMc",
   },
+  Tetris: {
+    image: tetris,
+    pageLink: "link",
+    discordLink: "https://discord.gg/HxdrD6yVuM",
+  },
 };
 
 export const casual_games = {
@@ -177,5 +184,10 @@ export const casual_games = {
     image: hearts_of_iron,
     pageLink: "link",
     discordLink: "https://discord.gg/Q2bZFrFkvQ",
+  },
+  Geoguessor: {
+    image: geoguesser,
+    pageLink: "link",
+    discordLink: "https://discord.gg/2cUvGDDDsT",
   },
 };

@@ -2,18 +2,18 @@ import { RecruitmentCardProps } from "../types";
 
 export default function RecruitmentCard(props: RecruitmentCardProps) {
   return (
-    <div className="flex w-[1000px] items-center flex-row p-4 rounded-xl bg-gradient-to-br from-[#3d3d3d]/95 to-[#a7a7a7]/95">
+    <div className="flex w-3/5 flex-row items-center rounded-xl bg-gradient-to-br from-[#3d3d3d]/95 to-[#a7a7a7]/95 p-4">
       {/* game image */}
       <div className="border-0 md:p-4">
         <img
           src={props.image}
           alt={`${props.name}`}
-          className="hidden md:block card-image md:w-64 h-full rounded-2xl object-contain"
+          className="card-image hidden h-full rounded-2xl object-contain md:block md:w-64"
         />
       </div>
       {/* text info */}
-      <div className="flex flex-col items-center md:items-start md:pl-2 tracking-wider w-full">
-        <h1 className="flex md:place-self-end md:pr-2 font-sans text-[0.97rem] font-semibold tracking-wide text-white">
+      <div className="relative flex w-full flex-col items-center tracking-wider md:items-start md:pl-2">
+        <h1 className="flex font-sans text-[0.97rem] font-semibold tracking-wide text-white md:place-self-end md:pr-2">
           Tryout date: {props.tryoutDate}
         </h1>
         <h1 className="pb-2 font-bayon text-[1.4rem] text-bright-buzz">
@@ -28,18 +28,16 @@ export default function RecruitmentCard(props: RecruitmentCardProps) {
         <p className="pt-2 font-barlow text-[.95rem] text-bright-buzz">
           Contact:
         </p>
-        <p className="tracking md:pl-3 font-barlow text-[0.9rem] font-light text-white">
+        <p className="tracking font-barlow text-[0.9rem] font-light text-white md:pl-3">
           • email: {props.contactEmail}
         </p>
-        <p className="tracking md:pl-3 font-barlow text-[0.95rem] font-light text-white">
+        <p className="tracking font-barlow text-[0.95rem] font-light text-white md:pl-3">
           • discord: {props.contactDiscord}
-        </p>  
+        </p>
         {/* learn more button */}
-        <div className="flex justify-center pt-6 md:pt-12 place-self-center">
-          <button className="learn-more-btn flex scale-x-[1.1] w-64 items-center justify-center tracking-tighter">
-            Learn More
-          </button>  
-        </div>
+        <button className="learn-more-btn mx-12 my-2 flex w-64 scale-x-[1.1] items-center justify-center self-end tracking-tighter md:mt-8">
+          Learn More
+        </button>
       </div>
     </div>
   );
