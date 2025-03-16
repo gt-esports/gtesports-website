@@ -1,7 +1,7 @@
-import league from "../assets/game-covers/league-of-legends-cover.png";
+import league from "../assets/game-covers/league-of-legends-cover.webp";
 // import tft from "../assets/game-covers/teamfight-tactics-cover.jpg";
-import valorant from "../assets/game-covers/valorant-cover.jpeg";
-import overwatch2 from "../assets/game-covers/overwatch-2-cover.jpeg";
+import valorant from "../assets/game-covers/valorant-cover.webp";
+import overwatch2 from "../assets/game-covers/overwatch-2-cover.webp";
 // import csgo2 from "../assets/game-covers/counter-strike-2-cover.jpeg";
 // import smash from "../assets/game-covers/smash-cover.jpeg";
 // import r6 from "../assets/game-covers/rainbow-six-siege-cover.jpeg";

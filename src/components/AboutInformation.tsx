@@ -1,4 +1,4 @@
-import logoImage from "../assets/gtesportsimage.png";
+import logoImage from "../assets/gtesportsimage.webp";
 import ProfileGrid from "./ProfileGrid";
 import FAQ from "./FAQ";
 import Form from "./Form";
