@@ -2,39 +2,39 @@ import Carousel from "../components/Carousel";
 import Footer from "../components/Footer";
 
 function Home() {
-  const scrollToSection = (sectionId: string, offset: number = 0) => {
-    const targetElement = document.getElementById(sectionId);
-    if (!targetElement) return;
+  // const scrollToSection = (sectionId: string, offset: number = 0) => {
+  //   const targetElement = document.getElementById(sectionId);
+  //   if (!targetElement) return;
 
-    const startPosition = window.scrollY;
-    const targetPosition =
-      targetElement.getBoundingClientRect().top + window.scrollY + offset;
-    const distance = targetPosition - startPosition;
-    const duration = 1500;
-    let start: number | null = null;
+  //   const startPosition = window.scrollY;
+  //   const targetPosition =
+  //     targetElement.getBoundingClientRect().top + window.scrollY + offset;
+  //   const distance = targetPosition - startPosition;
+  //   const duration = 1500;
+  //   let start: number | null = null;
 
-    function animation(currentTime: number) {
-      if (start === null) start = currentTime;
-      const timeElapsed = currentTime - start;
-      const progress = Math.min(timeElapsed / duration, 1);
+  //   function animation(currentTime: number) {
+  //     if (start === null) start = currentTime;
+  //     const timeElapsed = currentTime - start;
+  //     const progress = Math.min(timeElapsed / duration, 1);
 
-      const easeInOutCubic = (progress: number) => {
-        return progress < 0.5
-          ? 4 * progress * progress * progress
-          : 1 - Math.pow(-2 * progress + 2, 3) / 2;
-      };
+  //     const easeInOutCubic = (progress: number) => {
+  //       return progress < 0.5
+  //         ? 4 * progress * progress * progress
+  //         : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+  //     };
 
-      window.scrollTo({
-        top: startPosition + distance * easeInOutCubic(progress),
-      });
+  //     window.scrollTo({
+  //       top: startPosition + distance * easeInOutCubic(progress),
+  //     });
 
-      if (timeElapsed < duration) {
-        requestAnimationFrame(animation);
-      }
-    }
+  //     if (timeElapsed < duration) {
+  //       requestAnimationFrame(animation);
+  //     }
+  //   }
 
-    requestAnimationFrame(animation);
-  };
+  //   requestAnimationFrame(animation);
+  // };
 
   function handleButtonClick(e: React.MouseEvent<HTMLButtonElement>) {
     window.location.href = (e.target as HTMLButtonElement).value;
