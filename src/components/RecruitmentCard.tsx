@@ -1,6 +1,8 @@
 import { RecruitmentCardProps } from "../types";
 
 export default function RecruitmentCard(props: RecruitmentCardProps) {
+  console.log("description");
+  console.log(props.description);
   return (
     <div className="flex w-3/5 flex-row items-center rounded-xl bg-gradient-to-br from-[#3d3d3d]/95 to-[#a7a7a7]/95 p-4">
       {/* game image */}
@@ -19,13 +21,19 @@ export default function RecruitmentCard(props: RecruitmentCardProps) {
         <h1 className="pb-2 font-bayon text-[1.4rem] text-bright-buzz">
           {props.name}
         </h1>
-        <p className="font-barlow text-[0.95rem] text-bright-buzz">
-          Recruitment Info:
+        <p className="font-barlow text-[0.95rem] font-bold text-bright-buzz">
+          Open Positions:
         </p>
-        <p className="tracking pl-3 font-barlow text-[0.9rem] font-light text-white">
+        <p className="tracking pb-2 pl-3 font-barlow text-[0.9rem] font-light text-white">
           {props.recruitmentInfo}
         </p>
-        <p className="pt-2 font-barlow text-[.95rem] text-bright-buzz">
+        <p className="font-barlow text-[0.95rem] font-bold text-bright-buzz">
+          Description:
+        </p>
+        <p className="tracking pl-3 font-barlow text-[0.9rem] font-light text-white">
+          {props.description}
+        </p>
+        <p className="pt-2 font-barlow text-[.95rem] font-bold text-bright-buzz">
           Contact:
         </p>
         <p className="tracking font-barlow text-[0.9rem] font-light text-white md:pl-3">

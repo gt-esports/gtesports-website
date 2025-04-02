@@ -10,6 +10,7 @@ export interface RecruitmentCardProps {
   name: string;
   discordLink: string;
   recruitmentInfo: string;
+  description: string;
   contactEmail: string;
   contactDiscord: string;
   tryoutDate: string;
