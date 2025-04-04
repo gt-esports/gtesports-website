@@ -65,7 +65,7 @@ export const games = {
   Smash: {
     image: smash,
     pageLink: "link",
-    discordLink: "https://discord.gg/bSz7Qg4gjH",
+    discordLink: "https://discord.gg/8Sbt9BFQzJ",
   },
   "Rainbow Six Siege": {
     image: r6,
