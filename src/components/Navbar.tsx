@@ -4,6 +4,12 @@ import { TfiClose } from "react-icons/tfi";
 import { Link, NavLink, useLocation } from "react-router-dom";
 
 import Logo from "../assets/gt-esports-logo1.png";
+import {
+  SignedOut,
+  SignInButton,
+  SignedIn,
+  UserButton,
+} from "@clerk/clerk-react";
 
 function Navbar() {
   const location = useLocation();
@@ -74,9 +80,9 @@ function Navbar() {
             height={68}
             className="mr-2"
           />
-          <span className="text-2xl text-tech-gold md:text-4xl">GA TECH</span>{" "}
+          <span className="text-2xl text-tech-gold md:text-4xl">GAME</span>{" "}
           <span className="ml-1 text-2xl text-white md:ml-2 md:text-4xl">
-            ESPORTS
+            FEST
           </span>
         </Link>
       </div>
@@ -94,10 +100,26 @@ function Navbar() {
           open ? "translate-x-0 px-4" : "translate-x-full opacity-0"
         }`}
       >
+        {/* LOGIN button */}
+        <li
+          className={`text-md w-full py-4 text-right text-white transition-all duration-700 ease-in-out hover:text-bright-buzz ${
+            open ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
+          }`}
+        >
+          <SignedOut>
+            <SignInButton mode="modal">
+              <button>LOGIN</button>
+            </SignInButton>
+          </SignedOut>
+
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
+        </li>
         {links.map((link, index) => (
           <li
             key={link.name}
-            style={{ transitionDelay: `${index * 100}ms` }}
+            style={{ transitionDelay: `${index * 50}ms` }}
             className={`text-md w-full py-4 text-right transition-all duration-700 ease-in-out ${
               open ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
             }`}
@@ -138,6 +160,23 @@ function Navbar() {
             </NavLink>
           </li>
         ))}
+        {/* LOGIN button */}
+        <li className="text-white duration-500 hover:text-bright-buzz">
+          <SignedOut>
+            <SignInButton mode="modal">
+              <button>LOGIN</button>
+            </SignInButton>
+          </SignedOut>
+
+          <SignedIn>
+            <div className="mt-2">
+              <UserButton
+                userProfileMode="navigation"
+                userProfileUrl="/profile"
+              />
+            </div>
+          </SignedIn>
+        </li>
       </ul>
     </div>
   );
