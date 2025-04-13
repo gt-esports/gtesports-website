@@ -3,6 +3,7 @@ import { RecruitmentCardProps } from "../types";
 export default function RecruitmentCard(props: RecruitmentCardProps) {
   console.log("description");
   console.log(props.description);
+  
   return (
     <div className="flex w-3/5 flex-row items-center rounded-xl bg-gradient-to-br from-[#3d3d3d]/95 to-[#a7a7a7]/95 p-4">
       {/* game image */}
