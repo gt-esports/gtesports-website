@@ -80,9 +80,9 @@ function Navbar() {
             height={68}
             className="mr-2"
           />
-          <span className="text-2xl text-tech-gold md:text-4xl">GAME</span>{" "}
+          <span className="text-2xl text-tech-gold md:text-4xl">GA TECH</span>{" "}
           <span className="ml-1 text-2xl text-white md:ml-2 md:text-4xl">
-            FEST
+            ESPORTS
           </span>
         </Link>
       </div>
