@@ -4,7 +4,7 @@ This is the repository for the Georgia Tech Esports Website.
 
 This app is developed using React, Tailwind, and Vite.
 
-Added functionality with backend server-side logic with Node.js, Express hosted on Render
+Added functionality with backend server-side logic with Node.js, Express hosted on Render.
 ## Quick Setup for Developers
 
 Clone the repository and run the following command:
