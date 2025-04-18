@@ -9,6 +9,7 @@ import Recruitment from "./pages/Recruitment";
 import NewsAndEvents from "./pages/NewsAndEvents";
 import About from "./pages/About";
 import Teams from "./pages/Teams";
+import OurTeam from "./pages/OurTeam";
 
 function App() {
   return (
@@ -23,7 +24,7 @@ function App() {
           <Route path="/newsandevents" element={<NewsAndEvents />} />
           <Route path="/about" element={<About />} />
           <Route path="/teams" element={<Teams />} />
-          <Route path="*" element={<Navigate to="/home" />} />
+          <Route path="/ourteam" element={<OurTeam />} />
         </Routes>
       </main>
     </div>

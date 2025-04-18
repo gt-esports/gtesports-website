@@ -1,5 +1,6 @@
 import logoImage from "../assets/gtesportsimage.webp";
-import ProfileGrid from "./ProfileGrid";
+// import ProfileGrid from "./ProfileGrid";
+import { Link } from "react-router-dom";
 import FAQ from "./FAQ";
 import Form from "./Form";
 
@@ -52,12 +53,19 @@ function AboutInformation() {
         </div>
       </div>
 
-      <div className="text-normal mt-20 w-full text-center font-bayon font-normal tracking-wide text-white">
+      {/* <div className="text-normal mt-20 w-full text-center font-bayon font-normal tracking-wide text-white">
         <h1 className="font-banyon mb-8 text-3xl text-white">
           Executive Staff Profiles
         </h1>
         <ProfileGrid />
-      </div>
+      </div> */}
+      {/* CTA Button to Teams Page */}
+      <Link
+          to="/ourteam"
+          className="inline-block bg-tech-gold text-white font-bold uppercase tracking-wide px-8 py-4 rounded-full shadow-lg hover:shadow-xl hover:bg-yellow-500 transition-all duration-300"
+        >
+          Meet Our Team
+      </Link>
 
       <div className="text-normal mt-20 w-full text-center font-bayon font-normal tracking-wide text-white">
         <h1 className="mb-8 font-bayon text-3xl tracking-wide text-white">

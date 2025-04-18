@@ -15,7 +15,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ image, name, position }) => {
           className="w-20 h-20 rounded-full object-cover"
         />
       <div className="flex flex-col">
-        <h2 className="text-white text-2xl text-start ">{name}</h2>
+        <h2 className="text-white text-2xl font-medium text-start ">{name}</h2>
         <p className="text-white normal-case font-barlow text-start">{position}</p>
       </div>
     </div>
