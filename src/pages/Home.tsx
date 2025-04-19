@@ -56,10 +56,7 @@ function Home() {
           </button>
           <button
             onClick={() =>
-              window.open(
-                "https://www.start.gg/tournament/gamefest-2025-1/details",
-                "_blank"
-              )
+              window.open("https://gamefest.gatechesports.com", "_blank")
             }
             className="mx-3 mt-8 rounded-md bg-tech-gold px-4 py-2 font-bayon text-2xl text-white hover:bg-tech-gold/90 sm:mt-12 sm:px-6 sm:py-3 sm:text-4xl"
           >
