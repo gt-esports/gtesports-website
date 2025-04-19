@@ -58,7 +58,7 @@ function Navbar() {
 
   const links = [
     { name: "HOME", link: "/home" },
-    // { name: "TEAMS", link: "/teams" },
+    { name: "OUR TEAM", link: "/ourteam" },
     { name: "GAMES", link: "/games" },
     { name: "RECRUITMENT", link: "/recruitment" },
     // { name: "NEWS & EVENTS", link: "/newsandevents" },
