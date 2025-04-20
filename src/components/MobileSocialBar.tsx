@@ -1,10 +1,6 @@
-"use client";
-
-import type React from "react";
-
-const SocialBar: React.FC = () => {
+const MobileSocialBar: React.FC = () => {
   return (
-    <div className="mx-auto mb-4 flex max-w-md items-center justify-center space-x-6 rounded-full border-2 bg-tech-gold px-6 py-3">
+    <div className="flex items-center justify-center space-x-6 rounded-full bg-tech-gold px-6 py-3">
       <a
         href="https://www.instagram.com/gatechesports_/"
         target="_blank"
@@ -76,4 +72,4 @@ const SocialBar: React.FC = () => {
   );
 };
 
-export default SocialBar;
+export default MobileSocialBar;

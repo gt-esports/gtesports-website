@@ -20,4 +20,5 @@ export interface ProfileCardProps {
   image: string;
   name: string;
   position: string;
+  linkedinUrl?: string;
 }
