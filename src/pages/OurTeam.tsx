@@ -1,6 +1,7 @@
-import React from "react";
+import type React from "react";
 import ProfileCard from "../components/ProfileCard";
-import { ProfileCardProps } from "../types";
+import type { ProfileCardProps } from "../types";
+import Footer from "../components/Footer";
 
 // Section data
 const executives: ProfileCardProps[] = [
@@ -35,26 +36,16 @@ const creative: ProfileCardProps[] = [
   { image: "", name: "Oluteniola O.", position: "Creative Team" },
 ];
 
-const sectionClass = "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6";
-
 const OurTeam: React.FC = () => {
   const renderSection = (title: string, members: ProfileCardProps[]) => {
-    const isOdd = members.length % 2 !== 0;
     return (
       <section className="py-12">
-        <h2 className="mb-8 text-center font-bayon text-3xl text-white">
+        <h2 className="mb-10 text-center font-bayon text-4xl tracking-wider text-white">
           {title}
         </h2>
-        <div className={sectionClass}>
-          {members.map((member, idx) => (
-            <div
-              key={member.name}
-              className={
-                isOdd && idx === members.length - 1
-                  ? "flex justify-center sm:col-span-2 lg:col-span-1"
-                  : ""
-              }
-            >
+        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 px-4 sm:grid-cols-2 lg:grid-cols-3">
+          {members.map((member) => (
+            <div key={member.name} className="flex justify-center">
               <ProfileCard {...member} />
             </div>
           ))}
@@ -64,13 +55,17 @@ const OurTeam: React.FC = () => {
   };
 
   return (
-    <div className="mt-12 min-h-screen bg-gradient-to-b from-black to-navy-blue py-16">
-      <div className="container mx-auto px-6">
-        <h1 className="text-center font-bayon text-6xl text-white">Our Team</h1>
-        {renderSection("Executives", executives)}
-        {renderSection("Development", development)}
-        {renderSection("Creative", creative)}
+    <div className="min-h-screen bg-black bg-streak bg-cover pt-36">
+      <div className="container mx-auto px-4">
+        <h1 className="mb-16 text-center font-bayon text-6xl tracking-wider text-white">
+          OUR TEAM
+        </h1>
+
+        {renderSection("EXECUTIVES", executives)}
+        {renderSection("DEVELOPMENT", development)}
+        {renderSection("CREATIVE", creative)}
       </div>
+      <Footer />
     </div>
   );
 };
