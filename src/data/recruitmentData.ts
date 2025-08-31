@@ -6,12 +6,12 @@ export const recruitmentData = {
   "Development Department": {
     image: dev_dep,
     discordLink: "https://discord.gg/T3vB5jYhdE",
-    recruitmentInfo: "Developers | Project Managers",
+    recruitmentInfo: "Developers | UI/UX Designers",
     description:
-      "You will be working on real projects like our Game Fest tournament management application to support GT Esports events & functions. Each project manager will have their own project and developers to work on each semester. For more info, please click the link below.",
-    contactEmail: "gatechesports@gmail.com",
-    contactDiscord: "jcx.130",
-    tryoutDate: "Open",
+      "You'll be contributing directly to real projects, including our upcoming Hackathon web application that will power GT Esports' next event. This is a hands-on opportunity to apply your skills, collaborate with the team, and see your work make an immediate impact. For more details, check out the link below.",
+    contactEmail: "shu334@gatech.edu",
+    contactDiscord: "@sijunkevinhu",
+    applicationStatus: "Open",
   },
   "Creative Department": {
     image: creative_dep,
@@ -21,7 +21,7 @@ export const recruitmentData = {
       "Work on several different content pieces (club events, roster announcements, videos, etc) within the semester to grow the account socials and be the front face of the club.",
     contactEmail: "gatechesports@gmail.com",
     contactDiscord: "beet.roote",
-    tryoutDate: "Open",
+    applicationStatus: "Open",
   },
   "Events Department": {
     image: events_dep,
@@ -32,6 +32,6 @@ export const recruitmentData = {
       "Handle events and coordination between your specific game community and GT Esports leadership.",
     contactEmail: "gatechesports@gmail.com",
     contactDiscord: "infinityring",
-    tryoutDate: "Open",
+    applicationStatus: "Open",
   },
 };

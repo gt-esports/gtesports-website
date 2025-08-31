@@ -16,7 +16,7 @@ export default function RecruitmentCard(props: RecruitmentCardProps) {
       {/* text info */}
       <div className="relative flex w-full flex-col items-center tracking-wider md:items-start md:pl-2">
         <h1 className="flex font-sans text-[0.97rem] font-semibold tracking-wide text-white md:place-self-end md:pr-2">
-          Tryout date: {props.tryoutDate}
+          Applications: {props.applicationStatus}
         </h1>
         <h1 className="pb-2 font-bayon text-[1.4rem] text-bright-buzz">
           {props.name}
@@ -37,10 +37,10 @@ export default function RecruitmentCard(props: RecruitmentCardProps) {
           Contact:
         </p>
         <p className="tracking font-barlow text-[0.9rem] font-light text-white md:pl-3">
-          • email: {props.contactEmail}
+          • Email: {props.contactEmail}
         </p>
         <p className="tracking font-barlow text-[0.95rem] font-light text-white md:pl-3">
-          • discord: {props.contactDiscord}
+          • Discord: {props.contactDiscord}
         </p>
         {/* learn more button */}
         <button className="learn-more-btn mx-12 my-2 flex w-64 scale-x-[1.1] items-center justify-center self-end tracking-tighter md:mt-8">

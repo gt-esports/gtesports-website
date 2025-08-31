@@ -6,6 +6,7 @@ export interface GameCardProps {
 }
 
 export interface RecruitmentCardProps {
+  applicationStatus: string;
   image: string;
   name: string;
   discordLink: string;
@@ -13,7 +14,6 @@ export interface RecruitmentCardProps {
   description: string;
   contactEmail: string;
   contactDiscord: string;
-  tryoutDate: string;
 }
 
 export interface ProfileCardProps {
