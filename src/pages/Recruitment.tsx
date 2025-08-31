@@ -23,6 +23,7 @@ function Recruitment() {
                 contactEmail={game.contactEmail}
                 contactDiscord={game.contactDiscord}
                 applicationStatus={game.applicationStatus}
+                learnMoreLink={game.learnMoreLink}
               />
             </div>
           ))}

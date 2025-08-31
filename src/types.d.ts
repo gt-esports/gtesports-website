@@ -14,6 +14,7 @@ export interface RecruitmentCardProps {
   description: string;
   contactEmail: string;
   contactDiscord: string;
+  learnMoreLink: string;
 }
 
 export interface ProfileCardProps {

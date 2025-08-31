@@ -43,7 +43,7 @@ export default function RecruitmentCard(props: RecruitmentCardProps) {
           • Discord: {props.contactDiscord}
         </p>
         {/* learn more button */}
-        <a href="https://forms.cloud.microsoft/r/NeuY44E6ub">
+        <a href={props.learnMoreLink}>
           <button className="learn-more-btn mx-12 my-2 flex w-64 scale-x-[1.1] items-center justify-center self-end tracking-tighter md:mt-8">
             Learn More
           </button>
