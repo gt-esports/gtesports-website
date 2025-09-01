@@ -10,6 +10,7 @@ export default function RecruitmentCard(props: RecruitmentCardProps) {
         <img
           src={props.image}
           alt={`${props.name}`}
+          loading="lazy"
           className="card-image hidden h-full rounded-2xl object-contain md:block md:w-64"
         />
       </div>

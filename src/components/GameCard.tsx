@@ -6,6 +6,7 @@ function GameCard(props: GameCardProps) {
       <img
         src={props.image}
         alt={`${props.name}`}
+        loading="lazy"
         className="card-image h-[285px] w-[220px] rounded-2xl pb-2 pl-3 pr-3 pt-3"
       />
       <h1 className="pb-2 font-barlow text-xl text-white">{props.name}</h1>
