@@ -13,6 +13,7 @@ function CarouselCard(props: CarouselCardProps) {
       <a href={props.link} target="blank">
         <img
           src={props.image}
+          loading="lazy"
           className="h-full w-full rounded-lg object-cover"
         />
       </a>

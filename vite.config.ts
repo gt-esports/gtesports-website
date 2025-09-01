@@ -7,7 +7,7 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
-    sourcemap: true,
+    sourcemap: false, // TODO: Remove this in production / Change to true in development
     rollupOptions: {
       output: {
         manualChunks: undefined,

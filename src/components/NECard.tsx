@@ -14,7 +14,7 @@ function NECard(props: NECardProps) {
 
   return (
     <div className="mx-4 flex h-56 w-96 flex-row overflow-hidden rounded-2xl bg-necard text-white">
-      <img src={props.image} className="w-50 h-full object-fill" />
+      <img src={props.image} loading="lazy" className="w-50 h-full object-fill" />
       <div className="flex w-full flex-col items-center justify-center">
         <h2>{props.name}</h2>
         <p>{props.time}</p>

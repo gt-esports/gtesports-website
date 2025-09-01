@@ -20,6 +20,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
           <img
             src={image || placeholderImage}
             alt={name}
+            loading="lazy"
             className="h-full w-full object-cover"
           />
         </div>
