@@ -8,7 +8,7 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import CarouselCard from "./CarouselCard";
 
-export default () => {
+function Carousel() {
   return (
     <Swiper
       effect={"coverflow"}
@@ -82,4 +82,6 @@ export default () => {
       ))}
     </Swiper>
   );
-};
+}
+
+export default Carousel;

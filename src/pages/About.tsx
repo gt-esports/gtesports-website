@@ -9,14 +9,14 @@ function About() {
   const fetchAPI = async () => {
     try {
       const response = await axios.get("http://localhost:8080/api");
-      console.log(response.data.about);
+      console.log((response.data as { about?: string })?.about);
     } catch (error) {
       console.error("Error fetching API data:", error);
     }
   };
 
   useEffect(() => {
-    fetchAPI();
+    void fetchAPI();
   }, []);
 
   return (

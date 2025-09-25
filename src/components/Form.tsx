@@ -24,8 +24,8 @@ const Form: React.FC = () => {
           console.log("SUCCESS!");
           formRef.current?.reset(); // clears the form
         },
-        (error) => {
-          console.log("FAILED...", error.text);
+        (error: unknown) => {
+          console.log("FAILED...", (error as { text?: string })?.text || error);
         }
       );
   };
