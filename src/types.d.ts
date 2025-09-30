@@ -18,7 +18,7 @@ export interface RecruitmentCardProps {
 }
 
 export interface ProfileCardProps {
-  image: string;
+  image?: string;
   name: string;
   position: string;
   linkedinUrl?: string;
