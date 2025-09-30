@@ -66,6 +66,12 @@ export const development: ProfileCardProps[] = [
   },
   {
     image: "",
+    name: "Sneh P.",
+    position: "Software Developer",
+    linkedinUrl: "https://www.linkedin.com/in/sneh-patel-b73162244/"
+  },
+  {
+    image: "",
     name: "Sid P.",
     position: "Software Developer",
     linkedinUrl: "https://www.linkedin.com/in/siddhu-palanivel/",
