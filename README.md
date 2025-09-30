@@ -19,6 +19,10 @@ To run the application, use:
 npm run dev
 ```
 
+## Notes for PRs
+
+Include a screenshot of the build, linting, and the feature/bug fixed
+
 Happy coding! 
 
 Please use the [Project Board](https://github.com/orgs/gt-esports/projects/1/views/1) to see what needs to be done and in general follow the Figma below. Anyone can assign/create any issues just make sure @longxiangchen reviews any pull request before merging.
