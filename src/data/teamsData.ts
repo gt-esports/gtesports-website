@@ -128,8 +128,8 @@ export const creative: ProfileCardProps[] = [
   },
   {
     image: "",
-    name: "Ara _.",
+    name: "Ara L.",
     position: "Creative Team",
-    linkedinUrl: "https://www.linkedin.com/in/ara-oshin/",
+    linkedinUrl: "https://www.linkedin.com/in/ara-lee-459707210/",
   }
 ]
