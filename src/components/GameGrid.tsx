@@ -1,13 +1,38 @@
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, EffectCoverflow, A11y } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/effect-coverflow";
 import GameCard from "./GameCard";
 import { games, casual_games } from "../data/gamesData";
-import { useState } from "react";
+import CarouselCard from "./CarouselCard";
 
 function GameGrid() {
   const [comp, setComp] = useState(true);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const gamesToDisplay = comp ? games : casual_games;
+
+  const animationVariants = {
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: -20 },
+  };
 
   return (
-    <div className="flex flex-wrap justify-center px-[100px]">
-      <div className="xl:right:24 flex justify-center w-full pb-4 font-barlow text-xl 2xl:left-56">
+    <div className="flex flex-wrap justify-center px-8 md:px-[100px] py-4 min-w-[400px]">
+      <div className="flex w-full justify-center pb-4 font-barlow text-xl 2xl:left-56">
         <button
           className={
             comp
@@ -30,20 +55,67 @@ function GameGrid() {
         </button>
       </div>
 
-      <div className="flex flex-wrap items-center justify-center">
-        {Object.entries(comp ? games : casual_games).map(
-          ([name, game], index) => (
-            <div className="p-3">
-              <GameCard
-                key={index}
-                image={game.image}
-                name={name}
-                link={game.pageLink}
-                discordLink={game.discordLink}
-              />
-            </div>
-          )
-        )}
+      <div className="w-full">
+        <AnimatePresence mode="wait">
+          {isMobile ? (
+            <motion.div
+              key="mobile"
+              variants={animationVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              transition={{ duration: 0.5 }}
+            >
+              <Swiper
+                effect={"coverflow"}
+                navigation={true}
+                centeredSlides={true}
+                modules={[Pagination, Navigation, EffectCoverflow, A11y]}
+                pagination={{ clickable: true }}
+                loop={false}
+                observer={true}
+                observeParents={true}
+                slidesPerView={1}
+                spaceBetween={0}
+                coverflowEffect={{ rotate: 50, stretch: 0, depth: 100, modifier: 1, slideShadows: true }}
+                className="w-full pb-12"
+              >
+                {Object.entries(gamesToDisplay).map(([name, game]) => (
+                  <SwiperSlide key={name} className="flex justify-center items-center">
+                    <CarouselCard image={game.image} name={name} link={game.discordLink} />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </motion.div>
+          ) : (
+            <motion.div
+              key="desktop"
+              variants={animationVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              transition={{ duration: 0.5 }}
+            >
+              <div className="flex flex-wrap items-center justify-center">
+                {Object.entries(gamesToDisplay).map(([name, game]) => (
+                  <motion.div
+                    layout
+                    transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                    className="p-3"
+                    key={name}
+                  >
+                    <GameCard
+                      image={game.image}
+                      name={name}
+                      link={game.pageLink}
+                      discordLink={game.discordLink}
+                    />
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );
