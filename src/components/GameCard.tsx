@@ -11,8 +11,11 @@ function GameCard(props: GameCardProps) {
       />
       <h1 className="pb-2 font-barlow text-xl text-white">{props.name}</h1>
       <div className="mb-3 flex w-full justify-between">
-        <button className="learn-more-btn text-barlow ml-3 flex items-center justify-center">
-          Learn More
+        <button 
+          className="learn-more-btn text-barlow ml-3 flex items-center justify-center"
+          onClick={props.onLearnMore}
+          >
+            Learn More
         </button>
         <a href={props.discordLink} target="_blank">
           <button className="discord-btn mr-3"></button>

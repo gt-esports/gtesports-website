@@ -3,6 +3,7 @@ export interface GameCardProps {
   name: string;
   discordLink: string;
   link: string;
+  onLearnMore: () => void;
 }
 
 export interface RecruitmentCardProps {

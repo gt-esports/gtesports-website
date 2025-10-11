@@ -1,9 +1,22 @@
 import GameCard from "./GameCard";
+import GameModal from "./GameModal";
 import { games, casual_games } from "../data/gamesData";
 import { useState } from "react";
 
 function GameGrid() {
   const [comp, setComp] = useState(true);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedGame, setSelectedGame] = useState<{name: string; description: string} | null>(null);
+
+  const handleLearnMore = (name: string, description: string) => {
+    console.log("Learn more clicked:", name);
+    setSelectedGame({ name, description });
+    setModalOpen(true);
+  };
+  const handleCloseModal = () => {
+    setModalOpen(false);
+    setSelectedGame(null);
+  };
 
   return (
     <div className="flex flex-wrap justify-center px-[100px]">
@@ -40,11 +53,18 @@ function GameGrid() {
                 name={name}
                 link={game.pageLink}
                 discordLink={game.discordLink}
+                onLearnMore={() => handleLearnMore(name, game.description)}
               />
             </div>
           )
         )}
       </div>
+      <GameModal
+        isOpen={modalOpen}
+        onClose={handleCloseModal}
+        gameName={selectedGame?.name || ""}
+        gameDescription={selectedGame?.description || ""}
+      />
     </div>
   );
 }
