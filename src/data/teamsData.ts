@@ -115,14 +115,32 @@ export const creative: ProfileCardProps[] = [
   },
   {
     image: "",
-    name: "Emmaly N.",
-    position: "Creative Team",
-    linkedinUrl: "https://www.linkedin.com/in/emmaly-nguyen",
-  },
-  {
-    image: "",
     name: "Oluteniola O.",
     position: "Creative Team",
     linkedinUrl: "https://www.linkedin.com/in/oluteniola-oshin/",
   },
-];
+  {
+    image: "",
+    name: "Jalana S.",
+    position: "Creative Team",
+    linkedinUrl: "https://www.linkedin.com/in/jalanasmith/",
+  },
+  {
+    image: "",
+    name: "Stefani M.",
+    position: "Creative Team",
+    linkedinUrl: "https://www.linkedin.com/in/stefani-mejia-08bb64297/",
+  },
+  {
+    image: "",
+    name: "Pranay A.",
+    position: "Creative Team",
+    linkedinUrl: "https://www.linkedin.com/in/pranay-ajjarapu/",
+  },
+  {
+    image: "",
+    name: "Ara L.",
+    position: "Creative Team",
+    linkedinUrl: "https://www.linkedin.com/in/ara-lee-459707210/",
+  }
+]
