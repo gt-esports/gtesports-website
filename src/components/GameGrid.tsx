@@ -1,23 +1,22 @@
 import GameCard from "./GameCard";
 import { games, casual_games } from "../data/gamesData";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import SearchBar from "./SearchBar";
 
 function GameGrid() {
   const [comp, setComp] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
-
-  const filteredGames = Object.entries(comp ? games : casual_games).map(([name, game], index) => name.toLowerCase().includes(searchTerm.toLowerCase()) ? (
-    <div className="p-3">
+  const lowerSearchTerm = searchTerm.toLowerCase();
+  const filteredGames = useMemo(() => Object.entries(comp ? games : casual_games).map(([name, game], index) => name.toLowerCase().includes(lowerSearchTerm) ? (
+    <div className="p-3" key={name}>
       <GameCard
-        key={index}
         image={game.image}
         name={name}
         link={game.pageLink}
         discordLink={game.discordLink}
       />
     </div>
-  ) : null);
+  ) : null), [comp, lowerSearchTerm]);
 
   function handleFilter(input: string) {
     setSearchTerm(input);
