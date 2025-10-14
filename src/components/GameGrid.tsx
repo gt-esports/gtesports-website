@@ -8,7 +8,7 @@ function GameGrid() {
   const [searchTerm, setSearchTerm] = useState("");
   const lowerSearchTerm = searchTerm.toLowerCase();
   const filteredGames = useMemo(() => Object.entries(comp ? games : casual_games).map(([name, game], index) => name.toLowerCase().includes(lowerSearchTerm) ? (
-    <div className="p-3" key={name}>
+    <div className="p-3" key={index}>
       <GameCard
         image={game.image}
         name={name}
