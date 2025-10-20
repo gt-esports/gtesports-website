@@ -88,7 +88,7 @@ const SubscribeInner = ({formRef, subscribe} : {formRef: React.RefObject<HTMLFor
               required
             />
             <p className="text-gray-400 text-sm">
-              By filling out this form,  you agree to the terms & conditions in our <Link to="/privacy">Privacy Form</Link>
+              By filling out this form, you agree to the terms & conditions in our <Link to="/privacy">Privacy Form</Link>
             </p>
             <button
               type="submit"
