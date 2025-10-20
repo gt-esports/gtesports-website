@@ -92,7 +92,7 @@ const SubscribeInner = ({formRef, subscribe} : {formRef: React.RefObject<HTMLFor
             </p>
             <button
               type="submit"
-              className="w-full rounded-md bg-bright-buzz py-3 font-bold text-white shadow-md transition-colors hover:bg-yellow-700 focus:outline-none"
+              className="w-full rounded-md bg-tech-gold py-3 font-bold text-white shadow-md transition-colors hover:bg-tech-gold/[0.7] focus:outline-none"
             >
               Subscribe
             </button>
