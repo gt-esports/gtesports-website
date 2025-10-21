@@ -25,7 +25,7 @@ function GameGrid() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const gamesToDisplay = useMemo(() => Object.entries(comp ? games : casual_games).filter(([name, game]) => name.toLowerCase().includes(lowerSearchTerm)), [comp, lowerSearchTerm]);
+  const gamesToDisplay = useMemo(() => Object.entries(comp ? games : casual_games).filter(([name]) => name.toLowerCase().includes(lowerSearchTerm)), [comp, lowerSearchTerm]);
           
   function handleFilter(input: string) {
     setSearchTerm(input);
