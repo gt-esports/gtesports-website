@@ -3,21 +3,21 @@ import type { ProfileCardProps } from "../types";
 export const executives: ProfileCardProps[] = [
   {
     image: "",
-    name: 'Matt G. "Sultann"',
-    position: "President",
-    linkedinUrl: "https://www.linkedin.com/in/mattgerami/",
-  },
-  {
-    image: "",
     name: "DJ Fratt",
-    position: "Vice President",
+    position: "President",
     linkedinUrl: "https://www.linkedin.com/in/dj-fratt/",
   },
   {
     image: "",
-    name: "Francesco V.",
-    position: "Executive Finance Officer",
-    linkedinUrl: "https://www.linkedin.com/in/fvezzola/",
+    name: "William S.",
+    position: "Vice President",
+    linkedinUrl: "",
+  },
+  {
+    image: "",
+    name: "Jimmy N.",
+    position: "Finance Director",
+    linkedinUrl: "",
   },
   {
     image: "",
@@ -27,21 +27,33 @@ export const executives: ProfileCardProps[] = [
   },
   {
     image: "",
+    name: "Justin W.",
+    position: "Marketing Director",
+    linkedinUrl: "https://www.linkedin.com/in/justin-b-williams/",
+  },
+  {
+    image: "",
+    name: "Anna N.",
+    position: "Director of Events",
+    linkedinUrl: "",
+  },
+  {
+    image: "",
     name: "Ben E.",
-    position: "Director of Competitive Gaming",
+    position: "Competitive Director",
     linkedinUrl: "https://www.linkedin.com/in/benjamin-edmonds-2912ba20a/",
   },
   {
     image: "",
-    name: "Beeta E",
-    position: "Director of Marketing & Creative Media",
-    linkedinUrl: "https://www.linkedin.com/in/beetaenfaradi/",
+    name: "Matas G.",
+    position: "Assistant Director of Events and Productions",
+    linkedinUrl: "",
   },
   {
     image: "",
-    name: "Tyler L.",
-    position: "Director of Events & Activations",
-    linkedinUrl: "https://www.linkedin.com/in/tylermlam/",
+    name: "Elijah R.",
+    position: "Production Director",
+    linkedinUrl: "https://www.linkedin.com/in/elijahrabinovich720/",
   },
 ];
 
