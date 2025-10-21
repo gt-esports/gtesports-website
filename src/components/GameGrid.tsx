@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, EffectCoverflow, A11y } from "swiper/modules";
@@ -9,7 +9,6 @@ import "swiper/css/effect-coverflow";
 import GameCard from "./GameCard";
 import { games, casual_games } from "../data/gamesData";
 import CarouselCard from "./CarouselCard";
-import { useState, useMemo } from "react";
 import SearchBar from "./SearchBar";
 
 function GameGrid() {
@@ -26,16 +25,7 @@ function GameGrid() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const gamesToDisplay = useMemo(() => Object.entries(comp ? games : casual_games).map(([name, game], index) => name.toLowerCase().includes(lowerSearchTerm) ? (
-    <div className="p-3" key={index}>
-      <GameCard
-        image={game.image}
-        name={name}
-        link={game.pageLink}
-        discordLink={game.discordLink}
-      />
-    </div>
-  ) : null), [comp, lowerSearchTerm]);
+  const gamesToDisplay = useMemo(() => Object.entries(comp ? games : casual_games).filter(([name, game]) => name.toLowerCase().includes(lowerSearchTerm)), [comp, lowerSearchTerm]);
           
   function handleFilter(input: string) {
     setSearchTerm(input);
@@ -72,7 +62,7 @@ function GameGrid() {
             Casual
           </button>
         </div>
-        <div className="pb-4">
+        <div className="pb-4 flex justify-center">
           <SearchBar searchTerm={searchTerm} placeholder={"Search games..."} handleInput={handleFilter} />
         </div>
       </div>
@@ -102,7 +92,7 @@ function GameGrid() {
                 coverflowEffect={{ rotate: 50, stretch: 0, depth: 100, modifier: 1, slideShadows: true }}
                 className="w-full pb-12"
               >
-                {Object.entries(gamesToDisplay).map(([name, game]) => (
+                {gamesToDisplay.map(([name, game]) => (
                   <SwiperSlide key={name} className="flex justify-center items-center">
                     <CarouselCard image={game.image} name={name} link={game.discordLink} />
                   </SwiperSlide>
@@ -119,7 +109,7 @@ function GameGrid() {
               transition={{ duration: 0.5 }}
             >
               <div className="flex flex-wrap items-center justify-center">
-                {Object.entries(gamesToDisplay).map(([name, game]) => (
+                {gamesToDisplay.map(([name, game]) => (
                   <motion.div
                     layout
                     transition={{ type: "spring", stiffness: 300, damping: 25 }}
