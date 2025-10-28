@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, EffectCoverflow, A11y } from "swiper/modules";
@@ -9,10 +9,13 @@ import "swiper/css/effect-coverflow";
 import GameCard from "./GameCard";
 import { games, casual_games } from "../data/gamesData";
 import CarouselCard from "./CarouselCard";
+import SearchBar from "./SearchBar";
 
 function GameGrid() {
   const [comp, setComp] = useState(true);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
+  const [searchTerm, setSearchTerm] = useState("");
+  const lowerSearchTerm = searchTerm.toLowerCase();
 
   useEffect(() => {
     const handleResize = () => {
@@ -22,7 +25,11 @@ function GameGrid() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const gamesToDisplay = comp ? games : casual_games;
+  const gamesToDisplay = useMemo(() => Object.entries(comp ? games : casual_games).filter(([name]) => name.toLowerCase().includes(lowerSearchTerm)), [comp, lowerSearchTerm]);
+          
+  function handleFilter(input: string) {
+    setSearchTerm(input);
+  }
 
   const animationVariants = {
     initial: { opacity: 0, y: 20 },
@@ -32,27 +39,32 @@ function GameGrid() {
 
   return (
     <div className="flex flex-wrap justify-center px-8 md:px-[100px] py-4 min-w-[400px]">
-      <div className="flex w-full justify-center pb-4 font-barlow text-xl 2xl:left-56">
-        <button
-          className={
-            comp
-              ? "px-2 text-bright-buzz underline underline-offset-8"
-              : "px-2 text-white underline-offset-4 duration-500 hover:text-bright-buzz"
-          }
-          onClick={() => setComp(true)}
-        >
-          Competitive
-        </button>
-        <button
-          className={
-            !comp
-              ? "px-2 text-bright-buzz underline underline-offset-8"
-              : "px-2 text-white underline-offset-4 duration-500 hover:text-bright-buzz"
-          }
-          onClick={() => setComp(false)}
-        >
-          Casual
-        </button>
+      <div className="flex flex-col w-full justify-center pb-4 font-barlow text-xl 2xl:left-56">
+        <div className="flex justify-center w-full pb-4 font-barlow text-xl">
+          <button
+            className={
+              comp
+                ? "px-2 text-bright-buzz underline underline-offset-8"
+                : "px-2 text-white underline-offset-4 duration-500 hover:text-bright-buzz"
+            }
+            onClick={() => setComp(true)}
+          >
+            Competitive
+          </button>
+          <button
+            className={
+              !comp
+                ? "px-2 text-bright-buzz underline underline-offset-8"
+                : "px-2 text-white underline-offset-4 duration-500 hover:text-bright-buzz"
+            }
+            onClick={() => setComp(false)}
+          >
+            Casual
+          </button>
+        </div>
+        <div className="pb-4 flex justify-center">
+          <SearchBar searchTerm={searchTerm} placeholder={"Search games..."} handleInput={handleFilter} />
+        </div>
       </div>
 
       <div className="w-full">
@@ -80,7 +92,7 @@ function GameGrid() {
                 coverflowEffect={{ rotate: 50, stretch: 0, depth: 100, modifier: 1, slideShadows: true }}
                 className="w-full pb-12"
               >
-                {Object.entries(gamesToDisplay).map(([name, game]) => (
+                {gamesToDisplay.map(([name, game]) => (
                   <SwiperSlide key={name} className="flex justify-center items-center">
                     <CarouselCard image={game.image} name={name} link={game.discordLink} />
                   </SwiperSlide>
@@ -97,7 +109,7 @@ function GameGrid() {
               transition={{ duration: 0.5 }}
             >
               <div className="flex flex-wrap items-center justify-center">
-                {Object.entries(gamesToDisplay).map(([name, game]) => (
+                {gamesToDisplay.map(([name, game]) => (
                   <motion.div
                     layout
                     transition={{ type: "spring", stiffness: 300, damping: 25 }}
