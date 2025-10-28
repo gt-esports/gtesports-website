@@ -24,3 +24,13 @@ export interface ProfileCardProps {
   position: string;
   linkedinUrl?: string;
 }
+
+export interface HighlightProps {
+    src: string,
+    poster: string,
+    captions: string[],
+    controls?: boolean,
+    isOpen: boolean,
+    autoPlay?: boolean,
+    className?: string,
+}
