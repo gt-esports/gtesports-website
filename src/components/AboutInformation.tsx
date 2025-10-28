@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import FAQ from "./FAQ";
-import Form, { SubscribeForm } from "./Form";
+import { SubscribeForm } from "./Form";
 
 function AboutInformation() {
   return (
