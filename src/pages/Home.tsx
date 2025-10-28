@@ -1,6 +1,6 @@
 import Carousel from "../components/Carousel";
 import Footer from "../components/Footer";
-import { SubscribeForm } from "../components/Form";
+import SubscribeForm from "../components/Form";
 
 function Home() {
   // const scrollToSection = (sectionId: string, offset: number = 0) => {
