@@ -66,20 +66,22 @@ const SubscribeInner = ({formRef, subscribe} : {formRef: React.RefObject<HTMLFor
             onSubmit={subscribe}
             className="space-y-4 text-white"
           >
-            <input
+            <div className="flex w-full gap-4">
+              <input
               type="text"
               name="first-name"
               placeholder="Enter your first name"
               className="w-full rounded-md border-navy-blue bg-navy-blue p-3 focus:outline-none focus:ring-2 focus:ring-yellow-400"
               required
               />
-            <input
-              type="text"
-              name="last-name"
-              placeholder="Enter your last name"
-              className="w-full rounded-md border-navy-blue bg-navy-blue p-3 focus:outline-none focus:ring-2 focus:ring-yellow-400"
-              required
-            />
+              <input
+                type="text"
+                name="last-name"
+                placeholder="Enter your last name"
+                className="w-full rounded-md border-navy-blue bg-navy-blue p-3 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                required
+              />
+            </div>
             <input
               type="email"
               name="email"
