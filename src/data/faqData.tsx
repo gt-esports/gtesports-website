@@ -21,7 +21,7 @@ export const faqs = [
     question: "How do I join?",
     answer: (
       <>
-        <p>Discord links in the to <Link to="/games" className="underline">Games</Link> page, link to our main <Link to="https://discord.gg/gtesports" className="underline">Discord</Link>, link to our <Link to="https://gatech.campuslabs.com/engage/organization/esports" className="underline">Engage</Link>.</p>
+        <p>Discord links in the <Link to="/games" className="underline">Games</Link> page, link to our main <Link to="https://discord.gg/gtesports" className="underline">Discord</Link>, link to our <Link to="https://gatech.campuslabs.com/engage/organization/esports" className="underline">Engage</Link>.</p>
       </>
     )
   },
