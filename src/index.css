@@ -75,9 +75,11 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 24px 24px 0 24px;
+    padding: 12px 24px 0 24px;
     border-bottom: 1px solid #333;
-    margin-bottom: 20px;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    position: relative; 
   }
 
   .modal-title {
@@ -102,6 +104,9 @@ body {
     justify-content: center;
     border-radius: 4px;
     transition: all 0.2s ease;
+    position: absolute;
+    top: 12px;
+    right: 12px;
   }
 
   .modal-close-btn:hover {
