@@ -33,7 +33,7 @@ function AboutInformation() {
             We stand for the expansion and democratization of esports across the
             world. Georgia Tech is not only a leader and an innovator in
             collegiate esports competition - we are a hive of innovators
-            Creating the Next transformative models for the esports space. With
+            creating the next transformative models for the esports space. With
             a rich history extending to the beginning of commercial gaming,
             Georgia Tech Esports has long been a driving force in the background
             of competitive gaming for good, and we strive to carry on that
