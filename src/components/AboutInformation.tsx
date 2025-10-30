@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import FAQ from "./FAQ";
-import Form from "./Form";
+import SubscribeForm from "./Form";
 
 function AboutInformation() {
   return (
@@ -65,13 +65,15 @@ function AboutInformation() {
       {/* Contact Section */}
       <div className="w-full px-6 pb-10 lg:px-8">
         <h3 className="mb-10 text-center font-bayon text-3xl tracking-wide text-tech-gold">
-          CONTACT US
+          Stay Updated
         </h3>
         <div className="mx-auto max-w-4xl">
-          <Form />
+          <SubscribeForm />
         </div>
       </div>
     </div>
+
+    
   );
 }
 
