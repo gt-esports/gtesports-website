@@ -58,11 +58,11 @@ function Navbar() {
 
   const links = [
     { name: "HOME", link: "/home" },
+    { name: "ABOUT", link: "/about" },
     { name: "OUR TEAM", link: "/ourteam" },
     { name: "GAMES", link: "/games" },
     { name: "RECRUITMENT", link: "/recruitment" },
     // { name: "NEWS & EVENTS", link: "/newsandevents" },
-    { name: "ABOUT", link: "/about" },
   ];
 
   return (
