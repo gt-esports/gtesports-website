@@ -1,6 +1,6 @@
 import GameGrid from "../components/GameGrid";
 import Footer from "../components/Footer";
-
+import { useState } from "react";
 
 function Games() {
   return (
