@@ -3,21 +3,21 @@ import type { ProfileCardProps } from "../types";
 export const executives: ProfileCardProps[] = [
   {
     image: "",
-    name: "DJ Fratt",
+    name: 'Matt G. "Sultann"',
     position: "President",
+    linkedinUrl: "https://www.linkedin.com/in/mattgerami/",
+  },
+  {
+    image: "",
+    name: "DJ Fratt",
+    position: "Vice President",
     linkedinUrl: "https://www.linkedin.com/in/dj-fratt/",
   },
   {
     image: "",
-    name: "William S.",
-    position: "Vice President",
-    linkedinUrl: "",
-  },
-  {
-    image: "",
-    name: "Jimmy N.",
-    position: "Finance Director",
-    linkedinUrl: "",
+    name: "Francesco V.",
+    position: "Executive Finance Officer",
+    linkedinUrl: "https://www.linkedin.com/in/fvezzola/",
   },
   {
     image: "",
@@ -27,33 +27,21 @@ export const executives: ProfileCardProps[] = [
   },
   {
     image: "",
-    name: "Justin W.",
-    position: "Marketing Director",
-    linkedinUrl: "https://www.linkedin.com/in/justin-b-williams/",
-  },
-  {
-    image: "",
-    name: "Anna N.",
-    position: "Director of Events",
-    linkedinUrl: "",
-  },
-  {
-    image: "",
     name: "Ben E.",
-    position: "Competitive Director",
+    position: "Director of Competitive Gaming",
     linkedinUrl: "https://www.linkedin.com/in/benjamin-edmonds-2912ba20a/",
   },
   {
     image: "",
-    name: "Matas G.",
-    position: "Assistant Director of Events and Productions",
-    linkedinUrl: "",
+    name: "Beeta E",
+    position: "Director of Marketing & Creative Media",
+    linkedinUrl: "https://www.linkedin.com/in/beetaenfaradi/",
   },
   {
     image: "",
-    name: "Elijah R.",
-    position: "Production Director",
-    linkedinUrl: "https://www.linkedin.com/in/elijahrabinovich720/",
+    name: "Tyler L.",
+    position: "Director of Events & Activations",
+    linkedinUrl: "https://www.linkedin.com/in/tylermlam/",
   },
 ];
 
@@ -90,11 +78,6 @@ export const development: ProfileCardProps[] = [
   },
   {
     image: "",
-    name: "Evan T.",
-    position: "Software Developer",
-    linkedinUrl: "https://www.linkedin.com/in/evan-thomas-68b93a247/",
-  },
-  {
     name: "Nishant D.",
     position: "Software Developer",
     linkedinUrl: "https://www.linkedin.com/in/nishantdas05",
@@ -103,13 +86,7 @@ export const development: ProfileCardProps[] = [
     name: "Kj K.",
     position: "Software Developer",
     linkedinUrl: "https://www.linkedin.com/in/kjkast/",
-  },
-  {
-    image: "",
-    name: "Yuang Z.",
-    position: "Software Developer",
-    linkedinUrl: "https://www.linkedin.com/in/yuang-zhang-7a5322359/",
-  },
+  }
 ];
 
 export const creative: ProfileCardProps[] = [
@@ -127,32 +104,14 @@ export const creative: ProfileCardProps[] = [
   },
   {
     image: "",
+    name: "Emmaly N.",
+    position: "Creative Team",
+    linkedinUrl: "https://www.linkedin.com/in/emmaly-nguyen",
+  },
+  {
+    image: "",
     name: "Oluteniola O.",
     position: "Creative Team",
     linkedinUrl: "https://www.linkedin.com/in/oluteniola-oshin/",
   },
-  {
-    image: "",
-    name: "Jalana S.",
-    position: "Creative Team",
-    linkedinUrl: "https://www.linkedin.com/in/jalanasmith/",
-  },
-  {
-    image: "",
-    name: "Stefani M.",
-    position: "Creative Team",
-    linkedinUrl: "https://www.linkedin.com/in/stefani-mejia-08bb64297/",
-  },
-  {
-    image: "",
-    name: "Pranay A.",
-    position: "Creative Team",
-    linkedinUrl: "https://www.linkedin.com/in/pranay-ajjarapu/",
-  },
-  {
-    image: "",
-    name: "Ara L.",
-    position: "Creative Team",
-    linkedinUrl: "https://www.linkedin.com/in/ara-lee-459707210/",
-  }
-]
+];
