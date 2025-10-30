@@ -15,30 +15,42 @@ import SearchBar from "./SearchBar";
 function GameGrid() {
   const [comp, setComp] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
-  const [selectedGame, setSelectedGame] = useState<{name: string; description: string} | null>(null);
+  const [selectedGame, setSelectedGame] = useState<{ name: string; description: string } | null>(null);
 
   const handleLearnMore = (name: string, description: string) => {
     console.log("Learn more clicked:", name);
     setSelectedGame({ name, description });
     setModalOpen(true);
   };
+
   const handleCloseModal = () => {
     setModalOpen(false);
     setSelectedGame(null);
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
+  }; // <-- add this closer
+
+  // SSR-safe initial value
+  const [isMobile, setIsMobile] = useState<boolean>(() =>
+    typeof window !== "undefined" ? window.innerWidth < 1024 : false
+  );
+
   const [searchTerm, setSearchTerm] = useState("");
   const lowerSearchTerm = searchTerm.toLowerCase();
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 1024);
-    };
+    if (typeof window === "undefined") return;
+    const handleResize = () => setIsMobile(window.innerWidth < 1024);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const gamesToDisplay = useMemo(() => Object.entries(comp ? games : casual_games).filter(([name]) => name.toLowerCase().includes(lowerSearchTerm)), [comp, lowerSearchTerm]);
-          
+  const gamesToDisplay = useMemo(
+    () =>
+      Object.entries(comp ? games : casual_games).filter(([name]) =>
+        name.toLowerCase().includes(lowerSearchTerm)
+      ),
+    [comp, lowerSearchTerm] // add games/casual_games if they aren't module-level constants
+  );
+
   function handleFilter(input: string) {
     setSearchTerm(input);
   }
@@ -75,25 +87,28 @@ function GameGrid() {
           </button>
         </div>
         <div className="pb-4 flex justify-center">
-          <SearchBar searchTerm={searchTerm} placeholder={"Search games..."} handleInput={handleFilter} />
+          <SearchBar
+            searchTerm={searchTerm}
+            placeholder="Search games..."
+            handleInput={handleFilter}
+          />
         </div>
       </div>
 
       <div className="flex flex-wrap items-center justify-center">
-        {Object.entries(comp ? games : casual_games).map(
-          ([name, game], index) => (
-            <div className="p-3">
-              <GameCard
-                key={index}
-                image={game.image}
-                name={name}
-                link={game.pageLink}
-                discordLink={game.discordLink}
-                onLearnMore={() => handleLearnMore(name, game.description)}
-              />
-            </div>
-          )
-        )}
+        {Object.entries(comp ? games : casual_games).map(([name, game]) => (
+          <div className="p-3" key={name}>
+            <GameCard
+              image={game.image}
+              name={name}
+              link={game.pageLink}
+              discordLink={game.discordLink}
+              onLearnMore={() => handleLearnMore(name, game.description)}
+            />
+          </div>
+        ))}
+      </div> {/* <-- close this container */}
+
       <div className="w-full">
         <AnimatePresence mode="wait">
           {isMobile ? (
@@ -106,17 +121,23 @@ function GameGrid() {
               transition={{ duration: 0.5 }}
             >
               <Swiper
-                effect={"coverflow"}
-                navigation={true}
-                centeredSlides={true}
+                effect="coverflow"
+                navigation
+                centeredSlides
                 modules={[Pagination, Navigation, EffectCoverflow, A11y]}
                 pagination={{ clickable: true }}
                 loop={false}
-                observer={true}
-                observeParents={true}
+                observer
+                observeParents
                 slidesPerView={1}
                 spaceBetween={0}
-                coverflowEffect={{ rotate: 50, stretch: 0, depth: 100, modifier: 1, slideShadows: true }}
+                coverflowEffect={{
+                  rotate: 50,
+                  stretch: 0,
+                  depth: 100,
+                  modifier: 1,
+                  slideShadows: true,
+                }}
                 className="w-full pb-12"
               >
                 {gamesToDisplay.map(([name, game]) => (
@@ -148,6 +169,7 @@ function GameGrid() {
                       name={name}
                       link={game.pageLink}
                       discordLink={game.discordLink}
+                      onLearnMore={() => handleLearnMore(name, game.description)} 
                     />
                   </motion.div>
                 ))}
@@ -156,6 +178,7 @@ function GameGrid() {
           )}
         </AnimatePresence>
       </div>
+
       <GameModal
         isOpen={modalOpen}
         onClose={handleCloseModal}
