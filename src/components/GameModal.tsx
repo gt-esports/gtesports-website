@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { TfiClose } from "react-icons/tfi"; 
 
 interface GameModalProps {
   isOpen: boolean;
@@ -34,7 +35,7 @@ function GameModal({ isOpen, onClose, gameName, gameDescription }: GameModalProp
         <div className="modal-header">
           <h2 className="modal-title">{gameName}</h2>
           <button className="modal-close-btn" onClick={onClose}>
-            x
+            <TfiClose size={20} />
           </button>
         </div>
         <div className="modal-body">
