@@ -1,6 +1,7 @@
 import GameGrid from "../components/GameGrid";
 import Footer from "../components/Footer";
 
+
 function Games() {
   return (
     <div className="flex flex-col justify-center bg-streak bg-cover pt-36">
