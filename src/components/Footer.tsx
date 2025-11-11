@@ -42,17 +42,19 @@ function Footer() {
     <div className="mt-40 flex w-full flex-col bg-footer-shadow pb-6 pt-6">
       <div className="mb-4 flex w-full flex-wrap items-center justify-between md:flex-nowrap">
         {/* gatech logo */}
-        <div className="ml-10 py-4 font-bayon text-3xl tracking-wide">
-          <Link to="/home" className="flex items-center">
+        <div className="ml-10 py-4 font-bayon tracking-wide">
+          <Link to="/home" className="flex items-center flex-wrap">
             <img
               src={Logo}
               alt="GT Esports Logo"
               width={72}
               height={72}
-              className="mr-2"
+              className="mr-2 h-12 w-12 xs:h-14 xs:w-14 sm:h-16 sm:w-16 md:h-18 md:w-18"
             />
-            <span className="text-tech-gold">GA TECH</span>{" "}
-            <span className="ml-2 text-white">ESPORTS</span>
+            <span className="whitespace-nowrap text-xl xs:text-2xl sm:text-3xl">
+              <span className="text-tech-gold">GEORGIA TECH</span>{" "}
+              <span className="ml-1 text-white">ESPORTS</span>
+            </span>
           </Link>
         </div>
 

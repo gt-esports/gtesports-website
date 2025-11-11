@@ -72,7 +72,7 @@ function Carousel() {
       className="h-100 flex w-11/12 scale-90 flex-col items-center justify-center rounded-lg pb-12"
     >
       {Object.entries(games).map(([name, game], index) => (
-        <SwiperSlide key={index}>
+        <SwiperSlide key={index} className="overflow-visible flex items-center justify-center">
           <CarouselCard
             image={game.image}
             name={name}

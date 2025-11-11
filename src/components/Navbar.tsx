@@ -19,7 +19,7 @@ function Navbar() {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth >= 768) {
+      if (window.innerWidth >= 900) {
         setOpen(false);
       }
     };
@@ -67,21 +67,21 @@ function Navbar() {
 
   return (
     <div
-      className={`fixed z-10 flex h-[--navbar-height] w-full items-center justify-between border-0 bg-transparent transition-all duration-500 md:flex md:px-20 md:py-6 ${
+      className={`fixed z-10 flex h-[--navbar-height] w-full items-center justify-between border-0 bg-transparent px-4 py-3 transition-all duration-500 xs:px-5 xs:py-3.5 sm:px-6 sm:py-4 md:flex md:px-12 md:py-5 lg:px-16 xl:px-20 ${
         isScrolled ? "bg-opacity-70 backdrop-blur-md" : "bg-transparent"
       }`}
     >
-      <div className="font-bayon text-4xl tracking-wide">
+      <div className="font-bayon tracking-wide">
         <Link to="/" className="flex items-center">
           <img
             src={Logo}
             alt="GT Esports Logo"
             width={68}
             height={68}
-            className="mr-2"
+            className="h-9 w-9 xs:h-10 xs:w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 lg:h-16 lg:w-16"
           />
-          <span className="text-2xl text-tech-gold md:text-4xl">GA TECH</span>{" "}
-          <span className="ml-1 text-2xl text-white md:ml-2 md:text-4xl">
+          <span className="ml-1 text-base text-tech-gold xs:ml-1.5 xs:text-lg sm:ml-2 sm:text-xl md:ml-2.5 md:text-2xl lg:ml-3 lg:text-3xl xl:text-4xl">GEORGIA TECH</span>{" "}
+          <span className="ml-0.5 text-base text-white xs:ml-1 xs:text-lg sm:ml-1.5 sm:text-xl md:ml-2 md:text-2xl lg:ml-2.5 lg:text-3xl xl:text-4xl">
             ESPORTS
           </span>
         </Link>
@@ -140,7 +140,7 @@ function Navbar() {
       </ul>
 
       {/* Desktop Menu */}
-      <ul className="hidden md:static md:z-auto md:flex md:items-center md:space-x-4">
+      <ul className="hidden md:static md:z-auto md:flex md:items-center md:space-x-3 lg:space-x-4">
         {links.map((link, index) => (
           <li
             key={link.name}
