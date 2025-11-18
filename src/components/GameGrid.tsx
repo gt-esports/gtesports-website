@@ -10,12 +10,19 @@ import GameCard from "./GameCard";
 import { games, casual_games } from "../data/gamesData";
 import CarouselCard from "./CarouselCard";
 import SearchBar from "./SearchBar";
+import GameModal from "./GameModal";
 
 function GameGrid() {
   const [comp, setComp] = useState(true);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
   const [searchTerm, setSearchTerm] = useState("");
   const lowerSearchTerm = searchTerm.toLowerCase();
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedGame, setSelectedGame] = useState<{
+    name: string;
+    description?: string;
+    highlightLink?: string;
+  } | null>(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -25,16 +32,32 @@ function GameGrid() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const gamesToDisplay = useMemo(() => Object.entries(comp ? games : casual_games).filter(([name]) => name.toLowerCase().includes(lowerSearchTerm)), [comp, lowerSearchTerm]);
-          
-  function handleFilter(input: string) {
+  const gamesToDisplay = useMemo(
+    () =>
+      Object.entries(comp ? games : casual_games).filter(([name]) =>
+        name.toLowerCase().includes(lowerSearchTerm),
+      ),
+    [comp, lowerSearchTerm],
+  );
+
+  const handleFilter = (input: string) => {
     setSearchTerm(input);
-  }
+  };
 
   const animationVariants = {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
     exit: { opacity: 0, y: -20 },
+  };
+
+  const handleLearnMore = ( name: string, description: string, highlightLink?: string ) => {
+    setSelectedGame({ name, description, highlightLink });
+    setModalOpen(true);
+  };
+  
+  const handleCloseModal = () => {
+    setModalOpen(false);
+    setSelectedGame(null);
   };
 
   return (
@@ -121,6 +144,14 @@ function GameGrid() {
                       name={name}
                       link={game.pageLink}
                       discordLink={game.discordLink}
+                      highlightLink={game.highlightLink || ""}
+                      onLearnMore={() =>
+                        handleLearnMore(
+                          name,
+                          game.description,
+                          game.highlightLink,
+                        )
+                      }
                     />
                   </motion.div>
                 ))}
@@ -129,6 +160,14 @@ function GameGrid() {
           )}
         </AnimatePresence>
       </div>
+
+      <GameModal
+        isOpen={modalOpen}
+        onClose={handleCloseModal}
+        gameName={selectedGame?.name ?? ""}
+        gameDescription={selectedGame?.description ?? ""}
+        highlightLink={selectedGame?.highlightLink ?? ""}
+      />
     </div>
   );
 }
