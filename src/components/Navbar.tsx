@@ -4,12 +4,6 @@ import { TfiClose } from "react-icons/tfi";
 import { Link, NavLink, useLocation } from "react-router-dom";
 
 import Logo from "../assets/gt-esports-logo1.png";
-import {
-  SignedOut,
-  SignInButton,
-  SignedIn,
-  UserButton,
-} from "@clerk/clerk-react";
 
 function Navbar() {
   const location = useLocation();
@@ -100,22 +94,6 @@ function Navbar() {
           open ? "translate-x-0 px-4" : "translate-x-full opacity-0"
         }`}
       >
-        {/* LOGIN button */}
-        <li
-          className={`text-md w-full py-4 text-right text-white transition-all duration-700 ease-in-out hover:text-bright-buzz ${
-            open ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
-          }`}
-        >
-          <SignedOut>
-            <SignInButton mode="modal">
-              <button>LOGIN</button>
-            </SignInButton>
-          </SignedOut>
-
-          <SignedIn>
-            <UserButton />
-          </SignedIn>
-        </li>
         {links.map((link, index) => (
           <li
             key={link.name}
@@ -160,23 +138,6 @@ function Navbar() {
             </NavLink>
           </li>
         ))}
-        {/* LOGIN button */}
-        <li className="text-white duration-500 hover:text-bright-buzz">
-          <SignedOut>
-            <SignInButton mode="modal">
-              <button>LOGIN</button>
-            </SignInButton>
-          </SignedOut>
-
-          <SignedIn>
-            <div className="mt-2">
-              <UserButton
-                userProfileMode="navigation"
-                userProfileUrl="/profile"
-              />
-            </div>
-          </SignedIn>
-        </li>
       </ul>
     </div>
   );
