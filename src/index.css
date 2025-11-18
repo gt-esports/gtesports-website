@@ -182,6 +182,24 @@ body {
   display: none;
 }
 
+.swiper-slide {
+  overflow: visible !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.swiper {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.swiper-wrapper {
+  display: flex !important;
+  align-items: center !important;
+}
+
 .team-section-heading {
   position: relative;
   display: inline-block;

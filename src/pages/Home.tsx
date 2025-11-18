@@ -1,5 +1,6 @@
 import Carousel from "../components/Carousel";
 import Footer from "../components/Footer";
+import SubscribeForm from "../components/Form";
 
 function Home() {
   // const scrollToSection = (sectionId: string, offset: number = 0) => {
@@ -42,46 +43,46 @@ function Home() {
 
   return (
     <div className="flex w-full flex-col bg-streak bg-cover">
-      <div className="flex min-h-screen flex-col items-center justify-center rounded-sm bg-home-1 bg-cover">
-        <h1 className="px-3 py-3 font-bayon text-9xl font-normal text-tech-gold xs:rounded-lg xs:text-5xl xs:backdrop-blur-lg sm:text-7xl md:text-8xl lg:text-9xl">
+      <div className="flex min-h-screen flex-col items-center justify-center rounded-sm bg-home-1 bg-cover px-4">
+        <h1 className="px-3 py-3 text-center font-bayon font-normal text-tech-gold backdrop-blur-lg xs:rounded-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl">
           G<span className="text-white">eorgi</span>a Tech{" "}
           <span className="text-white">Esports</span>
         </h1>
-        <div className="flex justify-center">
+        <div className="flex w-full justify-center">
           <button
             onClick={() => (window.location.href = "/games")}
-            className="mx-3 mt-8 rounded-md bg-tech-gold px-4 py-2 font-bayon text-2xl text-white hover:bg-tech-gold/90 sm:mt-12 sm:px-6 sm:py-3 sm:text-4xl"
+            className="mt-8 rounded-md bg-tech-gold px-4 py-2 font-bayon text-xl text-white hover:bg-tech-gold/90 xs:mt-10 xs:px-5 xs:py-2.5 xs:text-xl sm:mt-12 sm:px-6 sm:py-3 sm:text-2xl md:text-3xl lg:text-4xl"
           >
             ENTER COMMUNITY
-          </button>
-          <button
-            onClick={() =>
-              window.open("https://gamefest.gatechesports.com", "_blank")
-            }
-            className="mx-3 mt-8 rounded-md bg-tech-gold px-4 py-2 font-bayon text-2xl text-white hover:bg-tech-gold/90 sm:mt-12 sm:px-6 sm:py-3 sm:text-4xl"
-          >
-            ENTER GAMEFEST
           </button>
         </div>
       </div>
       <div
         id="carousel-section"
-        className="flex flex-col items-center justify-center pt-24"
+        className="flex flex-col items-center justify-center pt-12 xs:pt-16 sm:pt-20 md:pt-24"
       >
         <div>
-          <h2 className="flex justify-center pb-16 pt-24 text-center font-bayon text-7xl font-normal tracking-wide text-white">
+          <h2 className="flex justify-center pb-8 pt-12 text-center font-bayon font-normal tracking-wide text-white xs:pb-12 xs:pt-16 xs:text-3xl sm:pb-14 sm:pt-20 sm:text-4xl md:pb-16 md:pt-24 md:text-5xl lg:text-6xl xl:text-7xl">
             CHOOSE YOUR GAME
           </h2>
         </div>
-        <div className="mt-5 flex w-full max-w-screen-xl flex-col items-center justify-center pb-24">
+        <div className="mt-5 flex w-full max-w-screen-xl flex-col items-center justify-center pb-12 xs:pb-16 sm:pb-20 md:pb-24">
           <Carousel />
           <button
             onClick={handleButtonClick}
             value="/games"
-            className="mt-8 h-16 w-48 rounded-md bg-tech-gold font-barlow text-white"
+            className="mt-6 h-12 w-40 rounded-md bg-tech-gold font-barlow text-white xs:mt-8 xs:h-14 xs:w-44 sm:h-16 sm:w-48"
           >
             VIEW ALL
           </button>
+        </div>
+        <div className="w-full px-4 pb-8 xs:px-6 xs:pb-10 lg:px-8">
+          <h3 className="mb-6 text-center font-bayon text-2xl tracking-wide text-tech-gold xs:mb-8 xs:text-2xl sm:mb-10 sm:text-3xl">
+            Stay Updated
+          </h3>
+          <div className="mx-auto max-w-4xl">
+            <SubscribeForm />
+          </div>
         </div>
       </div>
       <Footer />
