@@ -41,6 +41,7 @@ function GameModal({ isOpen, onClose, gameName, gameDescription }: GameModalProp
         <div className="modal-body">
           <p className="modal-description">{gameDescription}</p>
         </div>
+        
       </div>
     </div>
   );
