@@ -15,7 +15,7 @@ function GameCard(props: GameCardProps) {
           Learn More
         </button>
         {props.discordLink !== "" ?
-        <a href={props.discordLink} target="_blank">
+        <a href={props.discordLink} target="_blank" rel="noopener noreferrer">
           <button className="discord-btn mr-3"></button>
         </a> : null}
       </div>
