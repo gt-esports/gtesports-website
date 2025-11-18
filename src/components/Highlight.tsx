@@ -1,8 +1,7 @@
 import { useEffect, useRef } from "react";
-import { HighlightProps } from "../types";
+import type { HighlightProps } from "../types";
 
-
-function Highlight({ src, poster, captions, controls = true, isOpen, autoPlay = true, className }: HighlightProps) {
+function Highlight({ src, poster, controls = true, isOpen, autoPlay = true, className }: HighlightProps) {
     const videoRef = useRef<HTMLVideoElement | null>(null);
 
     useEffect(() => {
@@ -26,6 +25,15 @@ function Highlight({ src, poster, captions, controls = true, isOpen, autoPlay = 
 
     return (
         <div className={className ?? "w-full"}>
+            {src.includes("youtube.com") ?
+            (
+            <iframe src={src}
+                className="aspect-video h-auto w-full rounded-xl object-contain"
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowFullScreen
+                title="Game Highlight"
+            />
+            ) : (
             <video
                 ref={videoRef}
                 controls={controls}
@@ -38,6 +46,7 @@ function Highlight({ src, poster, captions, controls = true, isOpen, autoPlay = 
                 {/* TODO : Add captions support */}
                 Your browser does not support the video tag.
             </video>
+            )}
         </div>
     );
 }

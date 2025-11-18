@@ -1,14 +1,16 @@
 import { useEffect } from "react";
 import { TfiClose } from "react-icons/tfi"; 
+import Highlight from "./Highlight";
 
 interface GameModalProps {
   isOpen: boolean;
   onClose: () => void;
   gameName: string;
   gameDescription: string;
+  highlightLink?: string;
 }
 
-function GameModal({ isOpen, onClose, gameName, gameDescription }: GameModalProps) {
+function GameModal({ isOpen, onClose, gameName, gameDescription, highlightLink }: GameModalProps) {
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
@@ -41,7 +43,17 @@ function GameModal({ isOpen, onClose, gameName, gameDescription }: GameModalProp
         <div className="modal-body">
           <p className="modal-description">{gameDescription}</p>
         </div>
-        
+
+        {highlightLink && (
+          <Highlight
+            src={highlightLink}
+            poster=""
+            captions={[]}
+            isOpen={true}
+            autoPlay={true}
+            className='px-6 pb-6'
+          />
+        )}
       </div>
     </div>
   );

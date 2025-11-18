@@ -1,4 +1,4 @@
-import { GameCardProps } from "../types";
+import type { GameCardProps } from "../types";
 
 function GameCard(props: GameCardProps) {
   return (

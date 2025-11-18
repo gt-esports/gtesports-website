@@ -6,11 +6,11 @@ import { useState } from "react";
 function GameGrid() {
   const [comp, setComp] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
-  const [selectedGame, setSelectedGame] = useState<{name: string; description: string} | null>(null);
+  const [selectedGame, setSelectedGame] = useState<{name: string; description: string; highlightLink?: string} | null>(null);
 
-  const handleLearnMore = (name: string, description: string) => {
+  const handleLearnMore = (name: string, description: string, highlightLink?: string ) => {
     console.log("Learn more clicked:", name);
-    setSelectedGame({ name, description });
+    setSelectedGame({ name, description, highlightLink});
     setModalOpen(true);
   };
   const handleCloseModal = () => {
@@ -53,7 +53,8 @@ function GameGrid() {
                 name={name}
                 link={game.pageLink}
                 discordLink={game.discordLink}
-                onLearnMore={() => handleLearnMore(name, game.description)}
+                highlightLink={game.highlightLink || ""}
+                onLearnMore={() => handleLearnMore(name, game.description, game.highlightLink)}
               />
             </div>
           )
@@ -64,6 +65,7 @@ function GameGrid() {
         onClose={handleCloseModal}
         gameName={selectedGame?.name || ""}
         gameDescription={selectedGame?.description || ""}
+        highlightLink={selectedGame?.highlightLink}
       />
     </div>
   );

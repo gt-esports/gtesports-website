@@ -31,12 +31,21 @@ import amongus from "../assets/game-covers/gt-arcade-cover.webp";
 import geoguesser from "../assets/game-covers/geoguesser-cover.webp";
 import tetris from "../assets/game-covers/tetris-cover.webp";
 
-export const games = {
+export interface GameData {
+  image: string;
+  pageLink: string;
+  discordLink: string;
+  description: string;
+  highlightLink?: string;
+}
+
+export const games: Record<string, GameData> = {
   "League of Legends": {
     image: league,
     pageLink: "link",
     discordLink: "https://discord.gg/T3vB5jYhdE",
     description: "League of Legends is a 5v5 strategy game where teams battle across Summoner’s Rift using unique champions to destroy the enemy Nexus.",
+    highlightLink: "https://www.youtube.com/embed/KtrVy2KLzIo?si=1JaYZlfXvI8EAXbh",
   },
   "Teamfight Tactics": {
     image: tft,
@@ -166,7 +175,7 @@ export const games = {
   },
 };
 
-export const casual_games = {
+export const casual_games: Record<string, GameData> = {
   Minecraft: {
     image: minecraft,
     pageLink: "link",
