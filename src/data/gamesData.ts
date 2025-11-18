@@ -85,7 +85,7 @@ export const games = {
   Hearthstone: {
     image: hearthstone,
     pageLink: "link",
-    discordLink: "https://discord.gg/qQsErfAyfe", // routes to main GT Esports discord
+    discordLink: "",
   },
   Smite: {
     image: smite,
