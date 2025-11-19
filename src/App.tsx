@@ -10,6 +10,7 @@ import NewsAndEvents from "./pages/NewsAndEvents";
 import About from "./pages/About";
 import Teams from "./pages/Teams";
 import OurTeam from "./pages/OurTeam";
+import Privacy from "./pages/Privacy";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/teams" element={<Teams />} />
           <Route path="/ourteam" element={<OurTeam />} />
+          <Route path="/privacy" element={<Privacy />} />
         </Routes>
       </main>
     </div>
