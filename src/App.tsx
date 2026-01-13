@@ -11,9 +11,13 @@ import About from "./pages/About";
 import Teams from "./pages/Teams";
 import OurTeam from "./pages/OurTeam";
 
+// Analytics
+import { Analytics } from "@vercel/analytics/react";
+
 function App() {
   return (
     <div className="flex min-h-screen flex-col">
+      <Analytics />
       <Navbar />
       <main>
         <Routes>
