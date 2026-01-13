@@ -35,12 +35,12 @@ export const games = {
   "League of Legends": {
     image: league,
     pageLink: "link",
-    discordLink: "https://discord.gg/T3vB5jYhdE",
+    discordLink: "https://discord.com/invite/XRCVn9zDU3",
   },
   "Teamfight Tactics": {
     image: tft,
     pageLink: "link",
-    discordLink: "https://discord.gg/T3vB5jYhdE",
+    discordLink: "https://discord.com/invite/XRCVn9zDU3",
   },
   Valorant: {
     image: valorant,
@@ -85,7 +85,7 @@ export const games = {
   Hearthstone: {
     image: hearthstone,
     pageLink: "link",
-    discordLink: "https://discord.gg/uVGfKd3jre",
+    discordLink: "",
   },
   Smite: {
     image: smite,

@@ -14,9 +14,10 @@ function GameCard(props: GameCardProps) {
         <button className="learn-more-btn text-barlow ml-3 flex items-center justify-center">
           Learn More
         </button>
-        <a href={props.discordLink} target="_blank">
+        {props.discordLink !== "" ?
+        <a href={props.discordLink} target="_blank" rel="noopener noreferrer">
           <button className="discord-btn mr-3"></button>
-        </a>
+        </a> : null}
       </div>
     </div>
   );

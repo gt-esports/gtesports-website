@@ -1,6 +1,6 @@
 import Carousel from "../components/Carousel";
 import Footer from "../components/Footer";
-import SubscribeForm from "../components/Form";
+// import SubscribeForm from "../components/Form";
 
 function Home() {
   // const scrollToSection = (sectionId: string, offset: number = 0) => {
@@ -81,7 +81,15 @@ function Home() {
             Stay Updated
           </h3>
           <div className="mx-auto max-w-4xl">
-            <SubscribeForm />
+            {/* <SubscribeForm /> */}
+            <div className="flex w-full flex-col items-center justify-center rounded-lg border border-white/10 bg-black/40 px-6 py-12 text-center backdrop-blur-sm">
+              <h4 className="font-bayon text-2xl tracking-wider text-white md:text-3xl">
+                COMING SOON
+              </h4>
+              <p className="mt-2 text-lg text-gray-300">
+                Our newsletter signup is currently under maintenance.
+              </p>
+            </div>
           </div>
         </div>
       </div>
