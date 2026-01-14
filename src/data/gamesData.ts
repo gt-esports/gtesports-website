@@ -14,12 +14,11 @@ import cod from "../assets/game-covers/cod-cover.webp";
 import apex from "../assets/game-covers/apex-cover.webp";
 import dota2 from "../assets/game-covers/dota-2-cover.webp";
 import marioKart from "../assets/game-covers/mario-kart-cover.webp";
-import supercell from "../assets/game-covers/supercell-cover.webp";
 import sportsVG from "../assets/game-covers/sports-cover.webp";
 import deadlock from "../assets/game-covers/deadlock-cover.webp";
 import fgcGames from "../assets/game-covers/fgc-cover.webp";
 import marvelRivals from "../assets/game-covers/marvel-rivals-cover.webp";
-
+import clash from "../assets/game-covers/clash-cover.webp";
 import minecraft from "../assets/game-covers/minecraft-cover.webp";
 import genshin from "../assets/game-covers/genshin-impact-cover.webp";
 import pokemonGo from "../assets/game-covers/pokemon-go-cover.webp";
@@ -30,6 +29,7 @@ import hearts_of_iron from "../assets/game-covers/hearts-of-iron-4-cover.webp";
 import amongus from "../assets/game-covers/gt-arcade-cover.webp";
 import geoguesser from "../assets/game-covers/geoguesser-cover.webp";
 import tetris from "../assets/game-covers/tetris-cover.webp";
+import splatoon3 from "../assets/game-covers/splatoon-3-cover.webp";
 
 export const games = {
   "League of Legends": {
@@ -42,7 +42,7 @@ export const games = {
     pageLink: "link",
     discordLink: "https://discord.com/invite/XRCVn9zDU3",
   },
-  Valorant: {
+  "Valorant": {
     image: valorant,
     pageLink: "link",
     discordLink: "https://discord.gg/2aUxJuT",
@@ -62,7 +62,12 @@ export const games = {
     pageLink: "link",
     discordLink: "https://discord.gg/3FUjyXA",
   },
-  Smash: {
+  "Splatoon 3": {
+    image: splatoon3,
+    pageLink: "link",
+    discordLink: "https://discord.gg/eYQnenWuQp",
+  },
+  "Smash Bros": {
     image: smash,
     pageLink: "link",
     discordLink: "https://discord.gg/8Sbt9BFQzJ",
@@ -82,12 +87,12 @@ export const games = {
     pageLink: "link",
     discordLink: "https://discord.gg/pFVVySyuEn",
   },
-  Hearthstone: {
+  "Hearthstone": {
     image: hearthstone,
     pageLink: "link",
     discordLink: "",
   },
-  Smite: {
+  "Smite": {
     image: smite,
     pageLink: "link",
     discordLink: "https://discord.gg/mJGzCCgYCC",
@@ -112,17 +117,17 @@ export const games = {
     pageLink: "link",
     discordLink: "https://discord.gg/Ke74RqzTG9",
   },
-  Supercell: {
-    image: supercell,
+  "Clash Royale": {
+    image: clash,
     pageLink: "link",
-    discordLink: "https://discord.gg/6c6f2KbhYS",
+    discordLink: "https://discord.gg/K4C8jzPBpg",
   },
   "Sports Video Games": {
     image: sportsVG,
     pageLink: "link",
     discordLink: "https://discord.gg/9KVvtMurPD",
   },
-  Deadlock: {
+  "Deadlock": {
     image: deadlock,
     pageLink: "link",
     discordLink: "https://discord.gg/Pvv2HBNqsN",
@@ -137,7 +142,7 @@ export const games = {
     pageLink: "link",
     discordLink: "https://discord.gg/JFVmDyWuMc",
   },
-  Tetris: {
+  "Tetris": {
     image: tetris,
     pageLink: "link",
     discordLink: "https://discord.gg/HxdrD6yVuM",

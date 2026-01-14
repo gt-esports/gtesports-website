@@ -33,12 +33,6 @@ export const executives: ProfileCardProps[] = [
   },
   {
     image: "",
-    name: "Anna N.",
-    position: "Director of Events",
-    linkedinUrl: "",
-  },
-  {
-    image: "",
     name: "Ben E.",
     position: "Competitive Director",
     linkedinUrl: "https://www.linkedin.com/in/benjamin-edmonds-2912ba20a/",
@@ -46,8 +40,8 @@ export const executives: ProfileCardProps[] = [
   {
     image: "",
     name: "Matas G.",
-    position: "Assistant Director of Events and Productions",
-    linkedinUrl: "",
+    position: "Director of Events",
+    linkedinUrl: "https://www.linkedin.com/in/matas-gatautis-2a4bb12b9/",
   },
   {
     image: "",
