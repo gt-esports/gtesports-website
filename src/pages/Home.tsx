@@ -48,13 +48,21 @@ function Home() {
           G<span className="text-white">eorgi</span>a Tech{" "}
           <span className="text-white">Esports</span>
         </h1>
-        <div className="flex w-full justify-center">
+        <div className="flex w-full flex-col items-center justify-center gap-4 sm:flex-row sm:gap-8">
           <button
             onClick={() => (window.location.href = "/games")}
             className="mt-8 rounded-md bg-tech-gold px-4 py-2 font-bayon text-xl text-white hover:bg-tech-gold/90 xs:mt-10 xs:px-5 xs:py-2.5 xs:text-xl sm:mt-12 sm:px-6 sm:py-3 sm:text-2xl md:text-3xl lg:text-4xl"
           >
             ENTER COMMUNITY
           </button>
+          <a
+            href="https://discord.gg/uwdSHXq4sN"
+            target="_blank"
+            rel="noreferrer"
+            className="mt-0 rounded-md bg-[#5865F2] px-4 py-2 font-bayon text-xl text-white hover:bg-[#4752C4] xs:px-5 xs:py-2.5 xs:text-xl sm:mt-12 sm:px-6 sm:py-3 sm:text-2xl md:text-3xl lg:text-4xl shadow-lg transition-transform hover:scale-105"
+          >
+            JOIN DISCORD
+          </a>
         </div>
       </div>
       <div

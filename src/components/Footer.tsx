@@ -23,7 +23,7 @@ function Footer() {
     {
       name: "discord",
       img: discordLogo,
-      link: "https://discord.com/invite/gtesports",
+      link: "https://discord.gg/uwdSHXq4sN",
     },
     { name: "x", img: xLogo, link: "https://twitter.com/gatechesports" },
     {
@@ -90,11 +90,10 @@ function Footer() {
               >
                 <NavLink
                   to={link.link}
-                  className={`${
-                    location.pathname === link.link
-                      ? "text-bright-buzz"
-                      : "text-white"
-                  } underline-offset-4 duration-500 hover:text-bright-buzz`}
+                  className={`${location.pathname === link.link
+                    ? "text-bright-buzz"
+                    : "text-white"
+                    } underline-offset-4 duration-500 hover:text-bright-buzz`}
                 >
                   {link.name}
                 </NavLink>
@@ -104,7 +103,7 @@ function Footer() {
         </div>
         <div className="ml-auto mr-auto mt-9 text-white md:mr-6 md:mt-0 md:text-right lg:mr-12">
           <h1>georgiatechesports@gmail.com</h1>
-          <h1>801 Atlantic Dr NW, Atlanta, GA 30332</h1>
+          <h1>Georgia Institute of Technology, Atlanta, GA 30332</h1>
         </div>
       </div>
     </div>
