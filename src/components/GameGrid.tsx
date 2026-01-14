@@ -26,7 +26,7 @@ function GameGrid() {
   }, []);
 
   const gamesToDisplay = useMemo(() => Object.entries(comp ? games : casual_games).filter(([name]) => name.toLowerCase().includes(lowerSearchTerm)), [comp, lowerSearchTerm]);
-          
+
   function handleFilter(input: string) {
     setSearchTerm(input);
   }
@@ -37,8 +37,14 @@ function GameGrid() {
     exit: { opacity: 0, y: -20 },
   };
 
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    setCurrentIndex(0);
+  }, [comp, searchTerm]);
+
   return (
-    <div className="flex flex-wrap justify-center px-8 md:px-[100px] py-4 min-w-[400px]">
+    <div className="flex flex-wrap justify-center px-4 md:px-[100px] py-4">
       <div className="flex flex-col w-full justify-center pb-4 font-barlow text-xl 2xl:left-56">
         <div className="flex justify-center w-full pb-4 font-barlow text-xl">
           <button
@@ -91,6 +97,7 @@ function GameGrid() {
                 spaceBetween={0}
                 coverflowEffect={{ rotate: 50, stretch: 0, depth: 100, modifier: 1, slideShadows: true }}
                 className="w-full pb-12"
+                onSlideChange={(swiper) => setCurrentIndex(swiper.activeIndex)}
               >
                 {gamesToDisplay.map(([name, game]) => (
                   <SwiperSlide key={name} className="flex justify-center items-center">
@@ -98,6 +105,9 @@ function GameGrid() {
                   </SwiperSlide>
                 ))}
               </Swiper>
+              <div className="flex justify-center font-barlow text-white text-xl">
+                {currentIndex + 1} / {gamesToDisplay.length}
+              </div>
             </motion.div>
           ) : (
             <motion.div
@@ -129,7 +139,7 @@ function GameGrid() {
           )}
         </AnimatePresence>
       </div>
-    </div>
+    </div >
   );
 }
 
