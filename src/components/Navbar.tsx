@@ -3,7 +3,7 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { TfiClose } from "react-icons/tfi";
 import { Link, NavLink, useLocation } from "react-router-dom";
 
-import Logo from "../assets/GTlogo.png";
+import Logo from "../assets/GTLogo.png";
 import {
   SignedOut,
   SignInButton,
@@ -123,8 +123,8 @@ function Navbar() {
             <NavLink
               to={link.link}
               className={`${location.pathname === link.link
-                  ? "text-bright-buzz underline"
-                  : "text-white"
+                ? "text-bright-buzz underline"
+                : "text-white"
                 } underline-offset-4 duration-500 hover:text-bright-buzz`}
               onClick={() => setOpen(false)}
             >
@@ -145,8 +145,8 @@ function Navbar() {
             <NavLink
               to={link.link}
               className={`${location.pathname === link.link
-                  ? "text-bright-buzz underline"
-                  : "text-white"
+                ? "text-bright-buzz underline"
+                : "text-white"
                 } underline-offset-4 duration-500 hover:text-bright-buzz`}
               onClick={() => setOpen(false)}
             >
