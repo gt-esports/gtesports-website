@@ -1,145 +1,92 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, EffectCoverflow, A11y } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/effect-coverflow";
-import GameCard from "./GameCard";
 import { games, casual_games } from "../data/gamesData";
-import CarouselCard from "./CarouselCard";
-import SearchBar from "./SearchBar";
+import GameCard from "./GameCard";
+import { FiSearch } from "react-icons/fi";
 
 function GameGrid() {
-  const [comp, setComp] = useState(true);
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
+  const [isCompetitive, setIsCompetitive] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
-  const lowerSearchTerm = searchTerm.toLowerCase();
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 1024);
-    };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  const gamesToDisplay = useMemo(() => Object.entries(comp ? games : casual_games).filter(([name]) => name.toLowerCase().includes(lowerSearchTerm)), [comp, lowerSearchTerm]);
-
-  function handleFilter(input: string) {
-    setSearchTerm(input);
-  }
-
-  const animationVariants = {
-    initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0 },
-    exit: { opacity: 0, y: -20 },
-  };
-
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  useEffect(() => {
-    setCurrentIndex(0);
-  }, [comp, searchTerm]);
+  const gamesToDisplay = useMemo(() => {
+    const source = isCompetitive ? games : casual_games;
+    return Object.entries(source).filter(([name]) =>
+      name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  }, [isCompetitive, searchTerm]);
 
   return (
-    <div className="flex flex-wrap justify-center px-4 md:px-[100px] py-4">
-      <div className="flex flex-col w-full justify-center pb-4 font-barlow text-xl 2xl:left-56">
-        <div className="flex justify-center w-full pb-4 font-barlow text-xl">
+    <div className="w-full max-w-7xl px-4 py-8">
+      {/* Controls Header */}
+      <div className="mb-12 flex flex-col items-center justify-between gap-6 md:flex-row">
+        {/* Toggle Buttons */}
+        <div className="flex gap-2 rounded-lg bg-white/5 p-1 backdrop-blur-md">
           <button
-            className={
-              comp
-                ? "px-2 text-bright-buzz underline underline-offset-8"
-                : "px-2 text-white underline-offset-4 duration-500 hover:text-bright-buzz"
-            }
-            onClick={() => setComp(true)}
+            onClick={() => setIsCompetitive(true)}
+            className={`rounded-md px-6 py-2 font-outfit text-sm font-bold uppercase tracking-wider transition-all ${isCompetitive
+                ? "bg-tech-gold text-white shadow-lg"
+                : "text-gray-400 hover:text-white"
+              }`}
           >
             Competitive
           </button>
           <button
-            className={
-              !comp
-                ? "px-2 text-bright-buzz underline underline-offset-8"
-                : "px-2 text-white underline-offset-4 duration-500 hover:text-bright-buzz"
-            }
-            onClick={() => setComp(false)}
+            onClick={() => setIsCompetitive(false)}
+            className={`rounded-md px-6 py-2 font-outfit text-sm font-bold uppercase tracking-wider transition-all ${!isCompetitive
+                ? "bg-tech-gold text-white shadow-lg"
+                : "text-gray-400 hover:text-white"
+              }`}
           >
             Casual
           </button>
         </div>
-        <div className="pb-4 flex justify-center">
-          <SearchBar searchTerm={searchTerm} placeholder={"Search games..."} handleInput={handleFilter} />
+
+        {/* Search Bar */}
+        <div className="relative w-full md:w-auto">
+          <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+            <FiSearch className="text-gray-400" />
+          </div>
+          <input
+            type="text"
+            className="w-full rounded-lg border border-white/10 bg-white/5 py-2 pl-10 pr-4 font-inter text-white placeholder-gray-400 focus:border-tech-gold focus:outline-none focus:ring-1 focus:ring-tech-gold md:w-64"
+            placeholder="Search games..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
         </div>
       </div>
 
-      <div className="w-full">
-        <AnimatePresence mode="wait">
-          {isMobile ? (
+      {/* Grid */}
+      <motion.div
+        layout
+        className="grid grid-cols-1 justify-items-center gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+      >
+        <AnimatePresence mode="popLayout">
+          {gamesToDisplay.map(([name, game]) => (
             <motion.div
-              key="mobile"
-              variants={animationVariants}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              transition={{ duration: 0.5 }}
+              key={name}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.2 }}
             >
-              <Swiper
-                effect={"coverflow"}
-                navigation={true}
-                centeredSlides={true}
-                modules={[Pagination, Navigation, EffectCoverflow, A11y]}
-                pagination={{ clickable: true }}
-                loop={false}
-                observer={true}
-                observeParents={true}
-                slidesPerView={1}
-                spaceBetween={0}
-                coverflowEffect={{ rotate: 50, stretch: 0, depth: 100, modifier: 1, slideShadows: true }}
-                className="w-full pb-12"
-                onSlideChange={(swiper) => setCurrentIndex(swiper.activeIndex)}
-              >
-                {gamesToDisplay.map(([name, game]) => (
-                  <SwiperSlide key={name} className="flex justify-center items-center">
-                    <CarouselCard image={game.image} name={name} link={game.discordLink} />
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-              <div className="flex justify-center font-barlow text-white text-xl">
-                {currentIndex + 1} / {gamesToDisplay.length}
-              </div>
+              <GameCard
+                image={game.image}
+                name={name}
+                link={game.pageLink}
+                discordLink={game.discordLink}
+              />
             </motion.div>
-          ) : (
-            <motion.div
-              key="desktop"
-              variants={animationVariants}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              transition={{ duration: 0.5 }}
-            >
-              <div className="flex flex-wrap items-center justify-center">
-                {gamesToDisplay.map(([name, game]) => (
-                  <motion.div
-                    layout
-                    transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                    className="p-3"
-                    key={name}
-                  >
-                    <GameCard
-                      image={game.image}
-                      name={name}
-                      link={game.pageLink}
-                      discordLink={game.discordLink}
-                    />
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          )}
+          ))}
         </AnimatePresence>
-      </div>
-    </div >
+      </motion.div>
+
+      {gamesToDisplay.length === 0 && (
+        <div className="mt-20 text-center text-gray-500">
+          <p className="font-outfit text-xl">No games found.</p>
+        </div>
+      )}
+    </div>
   );
 }
 

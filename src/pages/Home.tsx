@@ -1,107 +1,87 @@
 import Carousel from "../components/Carousel";
-import Footer from "../components/Footer";
 // import SubscribeForm from "../components/Form";
 
 function Home() {
-  // const scrollToSection = (sectionId: string, offset: number = 0) => {
-  //   const targetElement = document.getElementById(sectionId);
-  //   if (!targetElement) return;
-
-  //   const startPosition = window.scrollY;
-  //   const targetPosition =
-  //     targetElement.getBoundingClientRect().top + window.scrollY + offset;
-  //   const distance = targetPosition - startPosition;
-  //   const duration = 1500;
-  //   let start: number | null = null;
-
-  //   function animation(currentTime: number) {
-  //     if (start === null) start = currentTime;
-  //     const timeElapsed = currentTime - start;
-  //     const progress = Math.min(timeElapsed / duration, 1);
-
-  //     const easeInOutCubic = (progress: number) => {
-  //       return progress < 0.5
-  //         ? 4 * progress * progress * progress
-  //         : 1 - Math.pow(-2 * progress + 2, 3) / 2;
-  //     };
-
-  //     window.scrollTo({
-  //       top: startPosition + distance * easeInOutCubic(progress),
-  //     });
-
-  //     if (timeElapsed < duration) {
-  //       requestAnimationFrame(animation);
-  //     }
-  //   }
-
-  //   requestAnimationFrame(animation);
-  // };
-
-  function handleButtonClick(e: React.MouseEvent<HTMLButtonElement>) {
-    window.location.href = (e.target as HTMLButtonElement).value;
-  }
-
   return (
-    <div className="flex w-full flex-col bg-streak bg-cover">
-      <div className="flex min-h-screen flex-col items-center justify-center rounded-sm bg-home-1 bg-cover px-4">
-        <h1 className="px-3 py-3 text-center font-bayon font-normal text-tech-gold backdrop-blur-lg xs:rounded-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl">
-          G<span className="text-white">eorgi</span>a Tech{" "}
-          <span className="text-white">Esports</span>
-        </h1>
-        <div className="flex w-full flex-col items-center justify-center gap-4 sm:flex-row sm:gap-8">
-          <button
-            onClick={() => (window.location.href = "/games")}
-            className="mt-8 rounded-md bg-tech-gold px-4 py-2 font-bayon text-xl text-white hover:bg-tech-gold/90 xs:mt-10 xs:px-5 xs:py-2.5 xs:text-xl sm:mt-12 sm:px-6 sm:py-3 sm:text-2xl md:text-3xl lg:text-4xl"
-          >
-            ENTER COMMUNITY
-          </button>
+    <div className="flex w-full flex-col">
+      {/* Hero Section */}
+      <section className="relative flex min-h-[90vh] w-full flex-col items-center justify-center overflow-hidden bg-home-hero bg-cover bg-center bg-no-repeat px-4 text-center">
+        {/* Overlay gradient for better legibility */}
+        <div className="absolute inset-0 bg-gradient-to-t from-deep-space via-transparent to-deep-space/60"></div>
+
+        <div className="relative z-10 flex flex-col items-center gap-6">
+          <h1 className="font-outfit text-5xl font-extrabold uppercase tracking-tighter text-white sm:text-7xl md:text-8xl lg:text-9xl">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">GEORGIA</span>{" "}
+            <span className="text-tech-gold">TECH</span>
+            <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-tech-gold to-gold-glow">ESPORTS</span>
+          </h1>
+
+          <p className="max-w-2xl font-inter text-lg font-light tracking-wide text-gray-300 sm:text-xl">
+            The premier collegiate esports organization of Georgia Tech.
+            <br className="hidden sm:block" /> Compete, connect, and conquer.
+          </p>
+
+          <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:gap-6">
+            <a
+              href="/games"
+              className="group relative flex items-center justify-center overflow-hidden rounded-full bg-tech-gold px-8 py-4 font-outfit text-lg font-bold tracking-wider text-white transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(179,163,105,0.4)]"
+            >
+              <div className="absolute inset-0 bg-white/20 translate-y-full transition-transform duration-300 group-hover:translate-y-0"></div>
+              <span className="relative">ENTER ARENA</span>
+            </a>
+            <a
+              href="https://discord.gg/uwdSHXq4sN"
+              target="_blank"
+              rel="noreferrer"
+              className="group relative flex items-center justify-center overflow-hidden rounded-full border border-white/20 bg-white/5 px-8 py-4 font-outfit text-lg font-bold tracking-wider text-white backdrop-blur-sm transition-all hover:scale-105 hover:bg-white/10 hover:border-white/40"
+            >
+              <span className="relative">JOIN DISCORD</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Games Carousel Section */}
+      <section id="games" className="relative w-full bg-deep-space py-24">
+        <div className="absolute top-0 h-32 w-full bg-gradient-to-b from-deep-space to-transparent opacity-50"></div>
+
+        <div className="container mx-auto flex flex-col items-center px-4">
+          <h2 className="mb-12 text-center font-outfit text-4xl font-bold uppercase tracking-widest text-white md:text-5xl lg:text-6xl">
+            CHOOSE YOUR <span className="text-tech-gold">GAME</span>
+          </h2>
+
+          <div className="w-full max-w-7xl">
+            <Carousel />
+          </div>
+
           <a
-            href="https://discord.gg/uwdSHXq4sN"
-            target="_blank"
-            rel="noreferrer"
-            className="mt-0 rounded-md bg-[#5865F2] px-4 py-2 font-bayon text-xl text-white hover:bg-[#4752C4] xs:px-5 xs:py-2.5 xs:text-xl sm:mt-12 sm:px-6 sm:py-3 sm:text-2xl md:text-3xl lg:text-4xl shadow-lg transition-transform hover:scale-105"
+            href="/games"
+            className="mt-12 rounded-full border border-white/10 bg-white/5 px-8 py-3 font-outfit text-sm font-semibold tracking-widest text-white transition-all hover:bg-white/10 hover:text-tech-gold"
           >
-            JOIN DISCORD
+            VIEW ALL TEAMS
           </a>
         </div>
-      </div>
-      <div
-        id="carousel-section"
-        className="flex flex-col items-center justify-center pt-12 xs:pt-16 sm:pt-20 md:pt-24"
-      >
-        <div>
-          <h2 className="flex justify-center pb-8 pt-12 text-center font-bayon font-normal tracking-wide text-white xs:pb-12 xs:pt-16 xs:text-3xl sm:pb-14 sm:pt-20 sm:text-4xl md:pb-16 md:pt-24 md:text-5xl lg:text-6xl xl:text-7xl">
-            CHOOSE YOUR GAME
-          </h2>
-        </div>
-        <div className="mt-5 flex w-full max-w-screen-xl flex-col items-center justify-center pb-12 xs:pb-16 sm:pb-20 md:pb-24">
-          <Carousel />
-          <button
-            onClick={handleButtonClick}
-            value="/games"
-            className="mt-6 h-12 w-40 rounded-md bg-tech-gold font-barlow text-white xs:mt-8 xs:h-14 xs:w-44 sm:h-16 sm:w-48"
-          >
-            VIEW ALL
-          </button>
-        </div>
-        <div className="w-full px-4 pb-8 xs:px-6 xs:pb-10 lg:px-8">
-          <h3 className="mb-6 text-center font-bayon text-2xl tracking-wide text-tech-gold xs:mb-8 xs:text-2xl sm:mb-10 sm:text-3xl">
-            Stay Updated
-          </h3>
-          <div className="mx-auto max-w-4xl">
-            {/* <SubscribeForm /> */}
-            <div className="flex w-full flex-col items-center justify-center rounded-lg border border-white/10 bg-black/40 px-6 py-12 text-center backdrop-blur-sm">
-              <h4 className="font-bayon text-2xl tracking-wider text-white md:text-3xl">
-                COMING SOON
-              </h4>
-              <p className="mt-2 text-lg text-gray-300">
-                Our newsletter signup is currently under maintenance.
-              </p>
+      </section>
+
+      {/* Community/Newsletter Section */}
+      <section className="relative w-full bg-gradient-to-b from-deep-space to-black py-24">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-4xl overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-8 text-center backdrop-blur-md sm:p-16">
+            <h3 className="mb-4 font-outfit text-3xl font-bold text-white sm:text-4xl">
+              STAY CONNECTED
+            </h3>
+            <p className="mb-8 font-inter text-gray-400">
+              Join our mailing list to get the latest updates on matches, events, and recruitment.
+            </p>
+
+            <div className="flex w-full flex-col items-center justify-center rounded-xl border border-tech-gold/20 bg-tech-gold/5 px-6 py-8">
+              <span className="font-outfit text-xl font-bold text-tech-gold">COMING SOON</span>
+              <p className="mt-2 text-sm text-gray-500">Newsletter integration is currently under maintenance.</p>
             </div>
           </div>
         </div>
-      </div>
-      <Footer />
+      </section>
     </div>
   );
 }

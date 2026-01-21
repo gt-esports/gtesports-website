@@ -2,137 +2,47 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-  user-select: none;
-}
-html {
-  background-color: #010116;
-  width: 100%;
-  height: 100%;
-}
-body {
-  overflow-x: hidden;
-}
 @layer base {
-  :root {
-    --navbar-height: 10vh;
-    font-family: "Quicksand", sans-serif;
-  }
-
-  .card {
-    height: 390px;
-    background-image: url("assets/game-card-background.png");
-    background-size: cover;
-    background-position: center;
-  }
-
-  .card-image {
-    height: 80%;
-  }
-
-  .learn-more-btn {
-    width: 140px;
-    height: 45px;
-    background-color: #b3a369;
+  html {
+    font-family: "Inter", sans-serif;
+    background-color: #02040F;
     color: white;
-    font-weight: bold;
-    border-radius: 5px;
-    font-size: 16px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s, transform 0.3s;
+    scroll-behavior: smooth;
   }
 
-  .learn-more-btn:hover {
-    background-color: #d2b48c;
-    transform: translateY(-2px);
-  }
-
-  .discord-btn {
-    width: 45px;
-    height: 45px;
-    background-image: url("assets/discord-button.svg");
-    background-size: cover;
-    background-position: center;
-    border-radius: 5px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s, transform 0.3s;
-  }
-
-  .discord-btn:hover {
-    transform: translateY(-1px);
-  }
-
-  .discord-btn:hover::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: inherit;
-    transition: background-color 0.3s;
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Outfit", sans-serif;
   }
 }
 
-.swiper-pagination-horizontal {
-  padding-top: 16px;
-  position: relative;
-  justify-self: center;
-  width: 15rem !important;
-  bottom: 1rem;
+@layer components {
+  .glass-panel {
+    @apply bg-white/5 backdrop-blur-md border border-white/10;
+  }
+  
+  .glass-btn {
+    @apply bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-all duration-300;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-tech-gold to-gold-glow;
+  }
 }
 
-.swiper-pagination .swiper-pagination-bullet {
-  filter: drop-shadow(0px 8px 24px rgba(18, 28, 53, 0.1));
-  background: white;
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
 }
 
-.swiper-pagination .swiper-pagination-bullet-active {
-  background: white;
+::-webkit-scrollbar-track {
+  background: #02040F;
 }
 
-.swiper-button-next,
-.swiper-button-prev {
-  padding: 8px 16px;
-  color: white;
-  opacity: 30%;
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
 }
 
-.swiper-pagination-bullets {
-  display: none;
-}
-
-.swiper-slide {
-  overflow: visible !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
-
-.swiper {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
-
-.swiper-wrapper {
-  display: flex !important;
-  align-items: center !important;
-}
-
-.team-section-heading {
-  position: relative;
-  display: inline-block;
-}
-
-.team-section-heading::after {
-  content: "";
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 3px;
-  background-color: #b3a369; /* tech-gold color */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

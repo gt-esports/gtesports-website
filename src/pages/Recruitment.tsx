@@ -1,18 +1,18 @@
 import RecruitmentCard from "../components/RecruitmentCard";
-import Footer from "../components/Footer";
-
 import { recruitmentData } from "../data/recruitmentData";
 
 function Recruitment() {
   return (
-    <div className="h-full w-full bg-streak bg-cover pt-16">
-      <div className="flex flex-col pt-20 text-white">
-        <h1 className="flex justify-center font-bayon text-6xl text-white">
-          RECRUITMENT
+    <div className="min-h-screen w-full bg-deep-space pt-24">
+      <div className="flex flex-col text-white">
+        <h1 className="mb-4 text-center font-outfit text-5xl font-bold uppercase tracking-widest text-white md:text-6xl">
+          JOIN THE <span className="text-tech-gold">TEAM</span>
         </h1>
-        <div className="flex flex-col pt-8 ">
+        <div className="mx-auto mb-12 h-1 w-24 bg-tech-gold"></div>
+
+        <div className="flex flex-col items-center">
           {Object.entries(recruitmentData).map(([name, game], index) => (
-            <div className="m-6 flex items-center justify-center" key={index}>
+            <div className="mb-8 flex w-full justify-center px-4" key={index}>
               <RecruitmentCard
                 key={index}
                 image={game.image}
@@ -28,9 +28,6 @@ function Recruitment() {
             </div>
           ))}
         </div>
-      </div>
-      <div className="mt-36">
-        <Footer />
       </div>
     </div>
   );

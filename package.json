@@ -12,13 +12,15 @@
   "dependencies": {
     "@clerk/clerk-react": "^5.27.0",
     "@emailjs/browser": "^4.4.1",
+    "@fontsource/inter": "^5.2.8",
+    "@fontsource/outfit": "^5.2.8",
     "@vercel/analytics": "^1.6.1",
     "axios": "^1.7.7",
-    "framer-motion": "^12.23.24",
+    "framer-motion": "^12.27.5",
     "gtesports-website": "file:",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-icons": "^4.10.1",
+    "react-icons": "^4.12.0",
     "react-router-dom": "^6.14.1",
     "swiper": "^11.1.3"
   },

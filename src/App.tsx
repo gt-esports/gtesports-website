@@ -1,6 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-// Components
-import Navbar from "./components/Navbar";
+import Layout from "./components/Layout";
 
 // Pages
 import Home from "./pages/Home";
@@ -16,11 +15,10 @@ import { Analytics } from "@vercel/analytics/react";
 
 function App() {
   return (
-    <div className="flex min-h-screen flex-col">
+    <>
       <Analytics />
-      <Navbar />
-      <main>
-        <Routes>
+      <Routes>
+        <Route element={<Layout />}>
           <Route path="/" element={<Navigate to="/home" />} />
           <Route path="/home" element={<Home />} />
           <Route path="/games" element={<Games />} />
@@ -29,9 +27,9 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/teams" element={<Teams />} />
           <Route path="/ourteam" element={<OurTeam />} />
-        </Routes>
-      </main>
-    </div>
+        </Route>
+      </Routes>
+    </>
   );
 }
 

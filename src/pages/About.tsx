@@ -1,6 +1,5 @@
-"use client";
+// "use client";
 
-import Footer from "../components/Footer";
 import AboutInformation from "../components/AboutInformation";
 import { useEffect } from "react";
 import axios from "axios";
@@ -20,15 +19,13 @@ function About() {
   }, []);
 
   return (
-    <div className="flex min-h-screen flex-col bg-streak bg-cover pt-36">
+    <div className="flex min-h-screen flex-col bg-deep-space pt-24">
       <div className="mb-8 text-center">
-        <h1 className="font-bayon text-6xl tracking-wider text-white">ABOUT</h1>
+        <h1 className="font-outfit text-5xl font-bold tracking-wider text-white md:text-6xl">ABOUT <span className="text-tech-gold">US</span></h1>
         <div className="mx-auto mt-4 h-1 w-24 bg-tech-gold"></div>
       </div>
 
       <AboutInformation />
-
-      <Footer />
     </div>
   );
 }

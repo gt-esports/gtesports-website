@@ -1,112 +1,111 @@
-import { Link, NavLink, useLocation } from "react-router-dom";
-
-import Logo from "../assets/GTLogo.png";
-
+import { Link, NavLink } from "react-router-dom";
+import Logo from "../assets/GTlogo.png";
 import facebookLogo from "../assets/facebook-icon.svg";
 import xLogo from "../assets/x-icon.svg";
 import instagramLogo from "../assets/instagram-icon.svg";
 import discordLogo from "../assets/discord-icon.svg";
 
 function Footer() {
-  const location = useLocation();
-
   const links = [
-    { name: "HOME", link: "/home" },
-    // { name: "TEAMS", link: "/teams" },
-    { name: "GAMES", link: "/games" },
-    { name: "RECRUITMENT", link: "/recruitment" },
-    // { name: "NEWS & EVENTS", link: "/newsandevents" },
-    { name: "ABOUT", link: "/about" },
+    { name: "Home", link: "/home" },
+    { name: "Games", link: "/games" },
+    { name: "Recruitment", link: "/recruitment" },
+    { name: "About", link: "/about" },
+    { name: "Our Team", link: "/ourteam" },
   ];
 
   const socialMedia = [
     {
-      name: "discord",
+      name: "Discord",
       img: discordLogo,
       link: "https://discord.gg/uwdSHXq4sN",
     },
-    { name: "x", img: xLogo, link: "https://twitter.com/gatechesports" },
+    { name: "Twitter", img: xLogo, link: "https://twitter.com/gatechesports" },
     {
-      name: "instagram",
+      name: "Instagram",
       img: instagramLogo,
       link: "https://www.instagram.com/gatechesports_/",
     },
     {
-      name: "facebook",
+      name: "Facebook",
       img: facebookLogo,
       link: "https://www.facebook.com/groups/gtesports/",
     },
   ];
 
   return (
-    <div className="mt-40 flex w-full flex-col bg-footer-shadow pb-6 pt-6">
-      <div className="mb-4 flex w-full flex-wrap items-center justify-between md:flex-nowrap">
-        {/* gatech logo */}
-        <div className="ml-10 py-4 font-bayon tracking-wide">
-          <Link to="/home" className="flex items-center flex-wrap">
-            <img
-              src={Logo}
-              alt="GT Esports Logo"
-              width={72}
-              height={72}
-              className="mr-2 h-12 w-12 xs:h-14 xs:w-14 sm:h-16 sm:w-16 md:h-18 md:w-18"
-            />
-            <span className="whitespace-nowrap text-xl xs:text-2xl sm:text-3xl">
-              <span className="text-tech-gold">GEORGIA TECH</span>{" "}
-              <span className="ml-1 text-white">ESPORTS</span>
-            </span>
-          </Link>
+    <footer className="mt-20 border-t border-white/10 bg-black/60 pt-16 backdrop-blur-lg">
+      <div className="mx-auto max-w-7xl px-6 pb-12 xl:px-8">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+          {/* Brand Column */}
+          <div className="flex flex-col gap-6">
+            <Link to="/" className="flex items-center gap-3">
+              <img src={Logo} alt="GT Esports Logo" className="h-12 w-12" />
+              <div className="flex flex-col font-outfit leading-none">
+                <span className="text-lg font-bold text-tech-gold tracking-wider">GEORGIA TECH</span>
+                <span className="text-sm font-light text-white tracking-[0.2em]">ESPORTS</span>
+              </div>
+            </Link>
+            <p className="max-w-xs text-sm text-gray-400">
+              The official esports organization of the Georgia Institute of Technology. Fostering competitive excellence and community.
+            </p>
+          </div>
+
+          {/* Quick Links */}
+          <div className="flex flex-col gap-4">
+            <h3 className="font-outfit text-lg font-bold tracking-wide text-white">Navigation</h3>
+            <ul className="flex flex-col gap-3">
+              {links.map((link) => (
+                <li key={link.name}>
+                  <NavLink
+                    to={link.link}
+                    className="text-sm text-gray-400 transition-colors hover:text-tech-gold"
+                  >
+                    {link.name}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Socials */}
+          <div className="flex flex-col gap-4">
+            <h3 className="font-outfit text-lg font-bold tracking-wide text-white">Community</h3>
+            <ul className="flex flex-col gap-3">
+              {socialMedia.map((social) => (
+                <li key={social.name}>
+                  <a
+                    href={social.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 text-sm text-gray-400 transition-colors hover:text-tech-gold"
+                  >
+                    <img src={social.img} alt={social.name} className="h-5 w-5 opacity-80" />
+                    {social.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div className="flex flex-col gap-4">
+            <h3 className="font-outfit text-lg font-bold tracking-wide text-white">Contact</h3>
+            <div className="flex flex-col gap-2 text-sm text-gray-400">
+              <a href="mailto:georgiatechesports@gmail.com" className="hover:text-tech-gold">
+                georgiatechesports@gmail.com
+              </a>
+              <p>Georgia Institute of Technology</p>
+              <p>Atlanta, GA 30332</p>
+            </div>
+          </div>
         </div>
 
-        {/* social media */}
-        <div className="ml-auto mr-auto flex flex-wrap items-center justify-center gap-3 text-xl text-white md:mr-0 lg:mr-0">
-          <h1 className="w-full text-center">Connect With Us</h1>
-          <ul className="flex flex-wrap justify-center">
-            {socialMedia.map((icon) => (
-              <li key={icon.name}>
-                <Link to={icon.link}>
-                  <img
-                    src={icon.img}
-                    alt={`${icon.name} logo`}
-                    width={32}
-                    height={32}
-                    className="m-2"
-                  />
-                </Link>
-              </li>
-            ))}
-          </ul>
+        <div className="mt-16 border-t border-white/10 pt-8 text-center text-sm text-gray-500">
+          <p>&copy; {new Date().getFullYear()} Georgia Tech Esports. All rights reserved.</p>
         </div>
       </div>
-
-      {/* nav link and info */}
-      <div className="flex w-full flex-wrap justify-between px-6 pb-6 text-center md:flex-nowrap">
-        <div className="w-full md:w-auto">
-          <ul className="ml-6 flex flex-wrap justify-center gap-6">
-            {links.map((link) => (
-              <li
-                key={link.name}
-                className="text-center text-lg md:my-0 md:mr-6"
-              >
-                <NavLink
-                  to={link.link}
-                  className={`${location.pathname === link.link
-                    ? "text-bright-buzz"
-                    : "text-white"
-                    } underline-offset-4 duration-500 hover:text-bright-buzz`}
-                >
-                  {link.name}
-                </NavLink>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="ml-auto mr-auto mt-9 text-white md:mr-6 md:mt-0 md:text-right lg:mr-12">
-          <h1>georgiatechesports@gmail.com</h1>
-          <h1>Georgia Institute of Technology, Atlanta, GA 30332</h1>
-        </div>
-      </div>
-    </div>
+    </footer>
   );
 }
 

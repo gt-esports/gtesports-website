@@ -1,9 +1,8 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { TfiClose } from "react-icons/tfi";
-import { Link, NavLink, useLocation } from "react-router-dom";
-
-import Logo from "../assets/GTLogo.png";
+import { Link, NavLink } from "react-router-dom";
+import Logo from "../assets/GTlogo.png";
 import {
   SignedOut,
   SignInButton,
@@ -12,48 +11,15 @@ import {
 } from "@clerk/clerk-react";
 
 function Navbar() {
-  const location = useLocation();
   const [open, setOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const menuRef = useRef<HTMLUListElement | null>(null);
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 900) {
-        setOpen(false);
-      }
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-        setOpen(false);
-      }
-    };
-
-    if (open) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [open]);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      const threshold = 100;
-      setIsScrolled(window.scrollY > threshold);
+      setScrolled(window.scrollY > 50);
     };
-
     window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const links = [
@@ -62,117 +28,109 @@ function Navbar() {
     { name: "OUR TEAM", link: "/ourteam" },
     { name: "GAMES", link: "/games" },
     { name: "RECRUITMENT", link: "/recruitment" },
-    // { name: "NEWS & EVENTS", link: "/newsandevents" },
   ];
 
   return (
-    <div
-      className={`fixed z-10 flex h-[--navbar-height] w-full items-center justify-between border-0 bg-transparent px-4 py-3 transition-all duration-500 xs:px-5 xs:py-3.5 sm:px-6 sm:py-4 md:flex md:px-12 md:py-5 lg:px-16 xl:px-20 ${isScrolled ? "bg-opacity-70 backdrop-blur-md" : "bg-transparent"
-        }`}
-    >
-      <div className="font-bayon tracking-wide">
-        <Link to="/" className="flex items-center">
-          <img
-            src={Logo}
-            alt="GT Esports Logo"
-            width={68}
-            height={68}
-            className="h-9 w-9 xs:h-10 xs:w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 lg:h-16 lg:w-16"
-          />
-          <span className="ml-1 text-base text-tech-gold xs:ml-1.5 xs:text-lg sm:ml-2 sm:text-xl md:ml-2.5 md:text-2xl lg:ml-3 lg:text-3xl xl:text-4xl">GEORGIA TECH</span>{" "}
-          <span className="ml-0.5 text-base text-white xs:ml-1 xs:text-lg sm:ml-1.5 sm:text-xl md:ml-2 md:text-2xl lg:ml-2.5 lg:text-3xl xl:text-4xl">
-            ESPORTS
-          </span>
-        </Link>
-      </div>
-      <div
-        onClick={() => setOpen(!open)}
-        className="z-[2] mr-2 cursor-pointer text-3xl text-bright-buzz md:hidden"
-      >
-        {!open ? <RxHamburgerMenu /> : <TfiClose />}
-      </div>
-
-      {/* Mobile Menu */}
-      <ul
-        ref={menuRef}
-        className={`fixed right-0 top-0 z-[1] h-screen w-2/5 bg-black/90 pt-14 transition-all duration-300 ease-in md:hidden ${open ? "translate-x-0 px-4" : "translate-x-full opacity-0"
+    <>
+      <nav
+        className={`fixed top-0 z-50 w-full transition-all duration-300 ${scrolled ? "bg-nav-bg backdrop-blur-md border-b border-white/10" : "bg-transparent"
           }`}
       >
-        {/* LOGIN button */}
-        <li
-          className={`text-md w-full py-4 text-right text-white transition-all duration-700 ease-in-out hover:text-bright-buzz ${open ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
-            }`}
-        >
-          <SignedOut>
-            <SignInButton mode="modal">
-              <button>LOGIN</button>
-            </SignInButton>
-          </SignedOut>
-
-          <SignedIn>
-            <UserButton />
-          </SignedIn>
-        </li>
-        {links.map((link, index) => (
-          <li
-            key={link.name}
-            style={{ transitionDelay: `${index * 50}ms` }}
-            className={`text-md w-full py-4 text-right transition-all duration-700 ease-in-out ${open ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
-              }`}
-          >
-            <NavLink
-              to={link.link}
-              className={`${location.pathname === link.link
-                ? "text-bright-buzz underline"
-                : "text-white"
-                } underline-offset-4 duration-500 hover:text-bright-buzz`}
-              onClick={() => setOpen(false)}
-            >
-              {link.name}
-            </NavLink>
-          </li>
-        ))}
-      </ul>
-
-      {/* Desktop Menu */}
-      <ul className="hidden md:static md:z-auto md:flex md:items-center md:space-x-3 lg:space-x-4">
-        {links.map((link, index) => (
-          <li
-            key={link.name}
-            style={{ transitionDelay: `${index * 100}ms` }}
-            className="text-md py-4 md:py-0"
-          >
-            <NavLink
-              to={link.link}
-              className={`${location.pathname === link.link
-                ? "text-bright-buzz underline"
-                : "text-white"
-                } underline-offset-4 duration-500 hover:text-bright-buzz`}
-              onClick={() => setOpen(false)}
-            >
-              {link.name}
-            </NavLink>
-          </li>
-        ))}
-        {/* LOGIN button */}
-        <li className="text-white duration-500 hover:text-bright-buzz">
-          <SignedOut>
-            <SignInButton mode="modal">
-              <button>LOGIN</button>
-            </SignInButton>
-          </SignedOut>
-
-          <SignedIn>
-            <div className="mt-2">
-              <UserButton
-                userProfileMode="navigation"
-                userProfileUrl="/profile"
-              />
+        <div className="relative z-50 mx-auto flex h-[10vh] max-w-7xl items-center justify-between px-6 xl:px-8">
+          {/* Logo */}
+          <Link to="/" className="flex items-center gap-3 group">
+            <img
+              src={Logo}
+              alt="GT Esports Logo"
+              className="h-10 w-10 transition-transform duration-300 group-hover:scale-110 sm:h-12 sm:w-12"
+            />
+            <div className="flex flex-col font-outfit leading-none">
+              <span className="text-lg font-bold text-tech-gold tracking-wider">GEORGIA TECH</span>
+              <span className="text-sm font-light text-white tracking-[0.2em]">ESPORTS</span>
             </div>
-          </SignedIn>
-        </li>
-      </ul>
-    </div>
+          </Link>
+
+          {/* Desktop Menu */}
+          <div className="hidden items-center gap-8 md:flex">
+            <ul className="flex items-center gap-8">
+              {links.map((link) => (
+                <li key={link.name}>
+                  <NavLink
+                    to={link.link}
+                    className={({ isActive }) =>
+                      `text-sm font-medium tracking-wide transition-all duration-300 hover:text-tech-gold ${isActive ? "text-tech-gold" : "text-gray-300"
+                      }`
+                    }
+                  >
+                    {link.name}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+
+            {/* Auth Buttons */}
+            <div className="border-l border-white/20 pl-8">
+              <SignedOut>
+                <SignInButton mode="modal">
+                  <button className="glass-btn rounded-md px-6 py-2 text-sm font-semibold text-white hover:text-tech-gold border border-white/10">
+                    LOGIN
+                  </button>
+                </SignInButton>
+              </SignedOut>
+              <SignedIn>
+                <UserButton
+                  userProfileMode="navigation"
+                  userProfileUrl="/profile"
+                  afterSignOutUrl="/"
+                />
+              </SignedIn>
+            </div>
+          </div>
+
+          {/* Mobile Toggle */}
+          <button
+            onClick={() => setOpen(!open)}
+            className="text-2xl text-white transition-colors hover:text-tech-gold md:hidden"
+          >
+            {open ? <TfiClose /> : <RxHamburgerMenu />}
+          </button>
+        </div>
+      </nav>
+
+      {/* Mobile Menu Overlay */}
+      <div
+        className={`fixed inset-0 z-40 bg-black/95 backdrop-blur-xl transition-transform duration-300 md:hidden ${open ? "translate-x-0" : "translate-x-full"
+          }`}
+      >
+        <div className="flex flex-col items-center justify-center space-y-8 pt-32 text-center">
+          {links.map((link) => (
+            <NavLink
+              key={link.name}
+              to={link.link}
+              onClick={() => setOpen(false)}
+              className={({ isActive }) =>
+                `text-2xl font-outfit font-bold tracking-widest transition-all ${isActive ? "text-tech-gold" : "text-white"
+                }`
+              }
+            >
+              {link.name}
+            </NavLink>
+          ))}
+          <div className="mt-8">
+            <SignedOut>
+              <SignInButton mode="modal">
+                <button className="text-xl font-medium text-white hover:text-tech-gold">
+                  LOGIN
+                </button>
+              </SignInButton>
+            </SignedOut>
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
 

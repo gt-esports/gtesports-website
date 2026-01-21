@@ -1,16 +1,15 @@
 import GameGrid from "../components/GameGrid";
-import Footer from "../components/Footer";
 
 function Games() {
   return (
-    <div className="flex flex-col justify-center bg-streak bg-cover pt-24 md:pt-36">
-      <div className="flex items-center justify-center">
-        <h1 className="justify-center font-bayon text-6xl text-white">GAMES</h1>
-      </div>
-      <div className="items-center pt-4">
+    <div className="min-h-screen w-full bg-deep-space pt-24">
+      <div className="container mx-auto flex flex-col items-center">
+        <h1 className="mb-4 text-center font-outfit text-5xl font-bold uppercase tracking-widest text-white md:text-6xl">
+          <span className="text-tech-gold">Our</span> Games
+        </h1>
+        <div className="h-1 w-24 bg-tech-gold mb-8"></div>
         <GameGrid />
       </div>
-      <Footer />
     </div>
   );
 }

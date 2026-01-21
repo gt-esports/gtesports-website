@@ -9,27 +9,19 @@ module.exports = {
         lg: "1200px",
       },
       fontFamily: {
-        quicksand: ["Quicksand", "sans-serif"],
-        bayon: ["Bayon", "sans-serif"],
-        barlow: ["Barlow", "sans-serif"],
+        outfit: ["Outfit", "sans-serif"],
+        inter: ["Inter", "sans-serif"],
       },
       colors: {
         "tech-gold": "#B3A369",
-        "navy-blue": "#003057",
-        "bright-buzz": "#FFCC00",
-        "light-purple": "#241F3F",
-        "dark-purple": "#0D072B",
+        "gold-glow": "#D4AF37",
+        "deep-space": "#02040F",
+        "navy-dark": "#001f3f",
+        "nav-bg": "rgba(2, 4, 15, 0.8)",
       },
       backgroundImage: {
-        "home-1": "url('./assets/home-1.jpg')",
-        "normal-streak": "url('./assets/streaks.jpg')",
-        streak:
-          "linear-gradient(0deg, rgba(22, 34, 57, 0.52) 0%, rgba(0, 0, 0, 0.92) 100%), url('./assets/streaks.jpg')",
-        necard:
-          "linear-gradient(180deg, #545454 6.25%, rgba(174, 174, 174, 0.72) 96.87%)",
-      },
-      backgroundColor: {
-        "footer-shadow": "rgba(0, 0, 0, 0.6)", // 60% opacity black
+        "home-hero": "linear-gradient(to bottom, rgba(2, 4, 15, 0.3), rgba(2, 4, 15, 1)), url('./assets/home-1.jpg')",
+        "card-gradient": "linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%)",
       },
     },
   },
