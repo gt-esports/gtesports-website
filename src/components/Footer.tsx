@@ -47,7 +47,7 @@ function Footer() {
               </div>
             </Link>
             <p className="max-w-xs text-sm text-gray-400">
-              The official esports organization of the Georgia Institute of Technology. Fostering competitive excellence and community.
+              The official esports and gaming student organization of the Georgia Institute of Technology. Fostering competitive excellence and community.
             </p>
           </div>
 

@@ -10,7 +10,12 @@
     scroll-behavior: smooth;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: "Outfit", sans-serif;
   }
 }
@@ -19,7 +24,7 @@
   .glass-panel {
     @apply bg-white/5 backdrop-blur-md border border-white/10;
   }
-  
+
   .glass-btn {
     @apply bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-all duration-300;
   }
@@ -45,4 +50,44 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+/* Swiper Navigation Customization */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #B3A369 !important;
+  /* tech-gold */
+  background-color: rgba(2, 4, 15, 0.8);
+  /* deep-space with opacity */
+  width: 50px !important;
+  height: 50px !important;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
+  transition: all 0.3s ease;
+  z-index: 50 !important;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 20px !important;
+  font-weight: bold;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background-color: #B3A369;
+  color: #02040F !important;
+  box-shadow: 0 0 15px rgba(179, 163, 105, 0.4);
+  transform: scale(1.1);
+}
+
+.swiper-pagination-bullet {
+  background: white !important;
+  opacity: 0.5;
+}
+
+.swiper-pagination-bullet-active {
+  background: #B3A369 !important;
+  opacity: 1;
 }
