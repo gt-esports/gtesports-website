@@ -1,5 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
-import Logo from "../assets/GTlogo.png";
+import Logo from "../assets/GTLogo.png";
 import facebookLogo from "../assets/facebook-icon.svg";
 import xLogo from "../assets/x-icon.svg";
 import instagramLogo from "../assets/instagram-icon.svg";

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { TfiClose } from "react-icons/tfi";
 import { Link, NavLink } from "react-router-dom";
-import Logo from "../assets/GTlogo.png";
+import Logo from "../assets/GTLogo.png";
 import {
   SignedOut,
   SignInButton,
