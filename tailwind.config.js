@@ -20,7 +20,7 @@ module.exports = {
         "nav-bg": "rgba(2, 4, 15, 0.8)",
       },
       backgroundImage: {
-        "home-hero": "linear-gradient(to bottom, rgba(2, 4, 15, 0.3), rgba(2, 4, 15, 1)), url('./assets/home-1.jpg')",
+        "home-hero": "linear-gradient(to bottom, rgba(2, 4, 15, 0.3), rgba(2, 4, 15, 1)), url('/landing.jpg')",
         "card-gradient": "linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%)",
       },
     },
