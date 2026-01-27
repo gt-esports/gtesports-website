@@ -1,4 +1,5 @@
 import Carousel from "../components/Carousel";
+import HomeAbout from "../components/HomeAbout";
 // import SubscribeForm from "../components/Form";
 
 function Home() {
@@ -50,6 +51,8 @@ function Home() {
           </div>
         </div>
       </section>
+
+      <HomeAbout />
 
       {/* Games Carousel Section */}
       <section id="games" className="relative w-full bg-deep-space py-24">
