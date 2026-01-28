@@ -6,13 +6,17 @@ import { executives, development, creative } from "../data/teamsData";
 const OurTeam: React.FC = () => {
   const renderSection = (title: string, members: ProfileCardProps[]) => {
     return (
-      <section className="py-12">
-        <h2 className="mb-10 text-center font-outfit text-3xl font-bold tracking-wider text-tech-gold">
-          {title}
-        </h2>
-        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 px-4 sm:grid-cols-2 lg:grid-cols-3">
+      <section className="py-16">
+        <div className="mb-12 flex flex-col items-center">
+          <h2 className="mb-4 text-center font-outfit text-4xl font-bold tracking-wider text-tech-gold">
+            {title}
+          </h2>
+          <div className="h-0.5 w-24 bg-gradient-to-r from-transparent via-tech-gold to-transparent opacity-50"></div>
+        </div>
+
+        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {members.map((member) => (
-            <div key={member.name} className="flex justify-center">
+            <div key={member.name} className="flex justify-center h-full">
               <ProfileCard {...member} />
             </div>
           ))}
@@ -22,12 +26,20 @@ const OurTeam: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-deep-space pt-24">
-      <div className="container mx-auto px-4 pb-12">
-        <h1 className="mb-4 text-center font-outfit text-5xl font-bold tracking-widest text-white md:text-6xl">
-          OUR <span className="text-tech-gold">TEAM</span>
-        </h1>
-        <div className="mx-auto mb-12 h-1 w-24 bg-tech-gold"></div>
+    <div className="min-h-screen bg-deep-space pt-24 pb-20 relative overflow-hidden">
+      {/* Background Decorative Elements */}
+      <div className="pointer-events-none absolute top-0 left-1/4 h-[500px] w-[500px] -translate-y-1/2 rounded-full bg-tech-gold/5 blur-[120px]"></div>
+      <div className="pointer-events-none absolute bottom-0 right-1/4 h-[500px] w-[500px] translate-y-1/2 rounded-full bg-blue-500/5 blur-[120px]"></div>
+
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="mb-8 text-center">
+          <h1 className="mb-6 font-outfit text-6xl font-bold tracking-tight text-white md:text-7xl">
+            OUR <span className="bg-gradient-to-r from-tech-gold to-yellow-200 bg-clip-text text-transparent">TEAM</span>
+          </h1>
+          <p className="mx-auto max-w-2xl text-lg text-gray-400 font-inter">
+            Meet the individuals driving the future of esports and gaming at Georgia Tech.
+          </p>
+        </div>
 
         {renderSection("EXECUTIVES", executives)}
         {renderSection("DEVELOPMENT", development)}
