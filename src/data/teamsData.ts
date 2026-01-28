@@ -55,8 +55,14 @@ export const development: ProfileCardProps[] = [
   {
     image: "",
     name: "May L.",
-    position: "Software Developer",
+    position: "Project Lead",
     linkedinUrl: "https://www.linkedin.com/in/mei-li-ba800b290/",
+  },
+  {
+    image: "",
+    name: "Sid P.",
+    position: "Project Lead",
+    linkedinUrl: "https://www.linkedin.com/in/siddhu-palanivel/",
   },
   {
     image: "",
@@ -75,12 +81,6 @@ export const development: ProfileCardProps[] = [
     name: "Sneh P.",
     position: "Software Developer",
     linkedinUrl: "https://www.linkedin.com/in/sneh-patel-b73162244/"
-  },
-  {
-    image: "",
-    name: "Sid P.",
-    position: "Software Developer",
-    linkedinUrl: "https://www.linkedin.com/in/siddhu-palanivel/",
   },
   {
     image: "",
