@@ -17,7 +17,7 @@ export const executives: ProfileCardProps[] = [
     image: "",
     name: "Jimmy N.",
     position: "Finance Director",
-    linkedinUrl: "",
+    linkedinUrl: "https://www.linkedin.com/in/jimmynguyen123",
   },
   {
     image: "",
