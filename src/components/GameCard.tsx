@@ -24,16 +24,16 @@ function GameCard(props: GameCardProps) {
 
       {/* Buttons Section */}
       <div className="flex h-[20%] w-full items-center justify-between gap-2 bg-black/40 px-4 backdrop-blur-sm">
-        <button className="flex-1 rounded-md bg-white/10 py-2 font-outfit text-xs font-bold uppercase tracking-wider text-white transition-colors hover:bg-tech-gold hover:text-white">
+        {/* <button className="flex-1 rounded-md bg-white/10 py-2 font-outfit text-xs font-bold uppercase tracking-wider text-white transition-colors hover:bg-tech-gold hover:text-white">
           Details
-        </button>
+        </button> */}
 
         {props.discordLink && (
           <a
             href={props.discordLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex h-8 w-8 items-center justify-center rounded-md bg-[#5865F2]/20 text-[#5865F2] transition-colors hover:bg-[#5865F2] hover:text-white"
+            className="flex flex-1 items-center justify-center rounded-md bg-[#5865F2]/20 py-2 text-[#5865F2] transition-colors hover:bg-[#5865F2] hover:text-white"
             title="Join Discord"
           >
             <FaDiscord size={18} />
