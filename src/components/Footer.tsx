@@ -43,7 +43,7 @@ function Footer() {
               <img src={Logo} alt="GT Esports Logo" className="h-12 w-12" />
               <div className="flex flex-col font-outfit leading-none">
                 <span className="text-lg font-bold text-tech-gold tracking-wider">GEORGIA TECH</span>
-                <span className="text-sm font-light text-white tracking-[0.2em]">ESPORTS</span>
+                <span className="text-sm font-light text-white tracking-[0.2em]">ESPORTS ORGANIZATION</span>
               </div>
             </Link>
             <p className="max-w-xs text-sm text-gray-400">
@@ -102,7 +102,7 @@ function Footer() {
         </div>
 
         <div className="mt-16 border-t border-white/10 pt-8 text-center text-sm text-gray-500">
-          <p>&copy; {new Date().getFullYear()} Georgia Tech Esports. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Georgia Tech Esports Organization. All rights reserved.</p>
         </div>
       </div>
     </footer>

@@ -16,6 +16,10 @@ function Home() {
             <span className="text-tech-gold">TECH</span>
             <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-tech-gold to-gold-glow">ESPORTS</span>
+            <br />
+            <span className="block text-3xl sm:text-5xl md:text-6xl lg:text-7xl tracking-[0.2em] text-transparent bg-clip-text bg-gradient-to-r from-tech-gold to-gold-glow mt-2 md:mt-4">
+              ORGANIZATION
+            </span>
           </h1>
 
           <p className="max-w-2xl font-inter text-lg font-light tracking-wide text-gray-300 sm:text-xl">

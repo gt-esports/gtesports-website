@@ -46,7 +46,7 @@ function Navbar() {
             />
             <div className="flex flex-col font-outfit leading-none">
               <span className="text-lg font-bold text-tech-gold tracking-wider">GEORGIA TECH</span>
-              <span className="text-sm font-light text-white tracking-[0.2em]">ESPORTS</span>
+              <span className="text-sm font-light text-white tracking-[0.2em]">ESPORTS ORGANIZATION</span>
             </div>
           </Link>
 
