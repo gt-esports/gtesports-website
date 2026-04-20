@@ -5,18 +5,6 @@ export interface GameCardProps {
   link: string;
 }
 
-export interface RecruitmentCardProps {
-  applicationStatus: string;
-  image: string;
-  name: string;
-  discordLink: string;
-  recruitmentInfo: string;
-  description: string;
-  contactEmail: string;
-  contactDiscord: string;
-  learnMoreLink: string;
-}
-
 export interface ProfileCardProps {
   image?: string;
   name: string;
