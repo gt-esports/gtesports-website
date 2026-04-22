@@ -4,6 +4,8 @@ import facebookLogo from "../assets/facebook-icon.svg";
 import xLogo from "../assets/x-icon.svg";
 import instagramLogo from "../assets/instagram-icon.svg";
 import discordLogo from "../assets/discord-icon.svg";
+import twitchLogo from "../assets/twitch.svg";
+import youtubeLogo from "../assets/youtube.svg";
 
 function Footer() {
   const links = [
@@ -30,6 +32,16 @@ function Footer() {
       name: "Facebook",
       img: facebookLogo,
       link: "https://www.facebook.com/groups/gtesports/",
+    },
+    {
+      name: "Twitch",
+      img: twitchLogo,
+      link: "https://twitch.tv/esportsgatech",
+    },
+    {
+      name: "YouTube",
+      img: youtubeLogo,
+      link: "https://www.youtube.com/@esportsgatech",
     },
   ];
 
