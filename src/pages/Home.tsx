@@ -29,20 +29,22 @@ function Home() {
 
           <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:gap-6">
             <a
-              href="https://techhack.gatechesports.com"
+              href="https://gamefest.gatechesports.com"
               target="_blank"
               rel="noreferrer"
               className="group relative flex items-center justify-center overflow-hidden rounded-full bg-gradient-to-r from-tech-gold to-gold-glow px-8 py-4 font-outfit text-lg font-bold tracking-wider text-white transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(212,175,55,0.6)]"
             >
               <div className="absolute inset-0 bg-white/20 translate-y-full transition-transform duration-300 group-hover:translate-y-0"></div>
-              <span className="relative">HACKATHON</span>
+              <span className="relative">GAMEFEST</span>
             </a>
             <a
-              href="/games"
-              className="group relative flex items-center justify-center overflow-hidden rounded-full bg-tech-gold px-8 py-4 font-outfit text-lg font-bold tracking-wider text-white transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(179,163,105,0.4)]"
+              href="https://techhack.gatechesports.com"
+              target="_blank"
+              rel="noreferrer"
+              className="group relative flex items-center justify-center overflow-hidden rounded-full border border-white/20 bg-white/5 px-8 py-4 font-outfit text-lg font-bold tracking-wider text-white backdrop-blur-sm transition-all hover:scale-105 hover:border-white/40 hover:bg-white/10"
             >
               <div className="absolute inset-0 bg-white/20 translate-y-full transition-transform duration-300 group-hover:translate-y-0"></div>
-              <span className="relative">ENTER ARENA</span>
+              <span className="relative">HACKATHON</span>
             </a>
             <a
               href="https://discord.gg/uwdSHXq4sN"
