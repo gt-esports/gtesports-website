@@ -13,6 +13,13 @@ Clone the repository and run the following command:
 npm i
 ```
 
+or 
+
+```
+npm install
+```
+
+
 To run the application, use:
 
 ```
