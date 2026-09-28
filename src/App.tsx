@@ -9,6 +9,8 @@ import NewsAndEvents from "./pages/NewsAndEvents";
 import About from "./pages/About";
 import Teams from "./pages/Teams";
 import OurTeam from "./pages/OurTeam";
+import Auth from "./pages/Auth";
+import AuthCallback from "./pages/AuthCallback";
 
 // Analytics
 import { Analytics } from "@vercel/analytics/react";
@@ -27,6 +29,8 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/teams" element={<Teams />} />
           <Route path="/ourteam" element={<OurTeam />} />
+          <Route path="/auth" element={<Auth />} />
+          <Route path="/auth/callback" element={<AuthCallback />} />
         </Route>
       </Routes>
     </>
