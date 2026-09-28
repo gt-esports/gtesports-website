@@ -1,18 +1,15 @@
 import { useEffect, useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { TfiClose } from "react-icons/tfi";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import Logo from "../assets/GTLogo.png";
-import {
-  SignedOut,
-  SignInButton,
-  SignedIn,
-  UserButton,
-} from "@clerk/clerk-react";
+import { useAuth } from "../context/AuthContext";
 
 function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { user, profile, loading, signOut } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,6 +18,16 @@ function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleSignOut = async () => {
+    await signOut();
+    navigate("/home");
+  };
+
+  const displayName =
+    profile?.full_name ||
+    user?.user_metadata?.full_name ||
+    "User";
 
   const links = [
     { name: "HOME", link: "/home" },
@@ -70,20 +77,28 @@ function Navbar() {
 
             {/* Auth Buttons */}
             <div className="border-l border-white/20 pl-8">
-              <SignedOut>
-                <SignInButton mode="modal">
-                  <button className="glass-btn rounded-md px-6 py-2 text-sm font-semibold text-white hover:text-tech-gold border border-white/10">
-                    LOGIN
+              {loading ? (
+                <div className="h-9 w-20" />
+              ) : user ? (
+                <div className="flex items-center gap-4">
+                  <span className="text-sm font-medium text-gray-300">
+                    {displayName}
+                  </span>
+                  <button
+                    onClick={handleSignOut}
+                    className="glass-btn rounded-md px-4 py-2 text-sm font-semibold text-white hover:text-tech-gold border border-white/10"
+                  >
+                    SIGN OUT
                   </button>
-                </SignInButton>
-              </SignedOut>
-              <SignedIn>
-                <UserButton
-                  userProfileMode="navigation"
-                  userProfileUrl="/profile"
-                  afterSignOutUrl="/"
-                />
-              </SignedIn>
+                </div>
+              ) : (
+                <Link
+                  to="/auth"
+                  className="glass-btn rounded-md px-6 py-2 text-sm font-semibold text-white hover:text-tech-gold border border-white/10"
+                >
+                  LOGIN
+                </Link>
+              )}
             </div>
           </div>
 
@@ -117,16 +132,30 @@ function Navbar() {
             </NavLink>
           ))}
           <div className="mt-8">
-            <SignedOut>
-              <SignInButton mode="modal">
-                <button className="text-xl font-medium text-white hover:text-tech-gold">
-                  LOGIN
+            {loading ? null : user ? (
+              <div className="flex flex-col items-center gap-4">
+                <span className="text-lg font-medium text-gray-300">
+                  {displayName}
+                </span>
+                <button
+                  onClick={() => {
+                    handleSignOut();
+                    setOpen(false);
+                  }}
+                  className="text-xl font-medium text-white hover:text-tech-gold"
+                >
+                  SIGN OUT
                 </button>
-              </SignInButton>
-            </SignedOut>
-            <SignedIn>
-              <UserButton />
-            </SignedIn>
+              </div>
+            ) : (
+              <Link
+                to="/auth"
+                onClick={() => setOpen(false)}
+                className="text-xl font-medium text-white hover:text-tech-gold"
+              >
+                LOGIN
+              </Link>
+            )}
           </div>
         </div>
       </div>
