@@ -4,6 +4,7 @@ import kevinHu from "../assets/headshots/kevinHu.webp";
 import benEdmonds from "../assets/headshots/benEdmonds.webp";
 import matasG from "../assets/headshots/matasG.webp";
 import kevinZ from "../assets/headshots/kevinZ.webp";
+import zachG from "../assets/headshots/zachG.webp";
 
 export const executives: ProfileCardProps[] = [
   {
@@ -55,10 +56,10 @@ export const executives: ProfileCardProps[] = [
     linkedinUrl: "https://www.linkedin.com/in/nathan-s-1130822b6/",
   },
   {
-    image: "",
+    image: zachG,
     name: "Zach Gonzalez",
     position: "Associate Competition Director",
-    linkedinUrl: "",
+    linkedinUrl: "www.linkedin.com/in/zach-gonzalez-598a0343b",
   },
   {
     image: "",
