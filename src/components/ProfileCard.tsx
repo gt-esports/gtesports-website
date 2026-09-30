@@ -1,7 +1,7 @@
 // ProfileCard.tsx
 import type React from "react";
 import type { ProfileCardProps } from "../types";
-import gamer_image from "../assets/gamer.png";
+import gamer_image from "../assets/placeholders/gamer.png";
 import { FaLinkedin } from "react-icons/fa";
 
 // Default placeholder image URL

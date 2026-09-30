@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { TfiClose } from "react-icons/tfi";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import Logo from "../assets/GTLogo.png";
+import Logo from "../assets/branding/gt-esports-logo.png";
 import { useAuth } from "../context/AuthContext";
 
 function Navbar() {

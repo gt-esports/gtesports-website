@@ -1,11 +1,11 @@
 import { Link, NavLink } from "react-router-dom";
-import Logo from "../assets/GTLogo.png";
-import facebookLogo from "../assets/facebook-icon.svg";
-import xLogo from "../assets/x-icon.svg";
-import instagramLogo from "../assets/instagram-icon.svg";
-import discordLogo from "../assets/discord-icon.svg";
-import twitchLogo from "../assets/twitch.svg";
-import youtubeLogo from "../assets/youtube.svg";
+import Logo from "../assets/branding/gt-esports-logo.png";
+import facebookLogo from "../assets/icons/facebook.svg";
+import xLogo from "../assets/icons/x.svg";
+import instagramLogo from "../assets/icons/instagram.svg";
+import discordLogo from "../assets/icons/discord.svg";
+import twitchLogo from "../assets/icons/twitch.svg";
+import youtubeLogo from "../assets/icons/youtube.svg";
 
 function Footer() {
   const links = [

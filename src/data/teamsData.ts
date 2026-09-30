@@ -1,8 +1,12 @@
 import type { ProfileCardProps } from "../types";
+import djFrattHeadshot from "../assets/headshots/dj-fratt.webp";
+import kevinHu from "../assets/headshots/kevinHu.webp";
+import benEdmonds from "../assets/headshots/benEdmonds.webp";
+import matasG from "../assets/headshots/matasG.webp";
 
 export const executives: ProfileCardProps[] = [
   {
-    image: "",
+    image: djFrattHeadshot,
     name: "DJ Fratt",
     position: "President",
     linkedinUrl: "https://www.linkedin.com/in/dj-fratt/",
@@ -14,7 +18,7 @@ export const executives: ProfileCardProps[] = [
     linkedinUrl: "https://www.linkedin.com/in/alecdempsey/",
   },
   {
-    image: "",
+    image: kevinHu,
     name: "Kevin Hu",
     position: "Director of Innovation & Development",
     linkedinUrl: "https://www.linkedin.com/in/sijunkevinhu/",
@@ -32,13 +36,13 @@ export const executives: ProfileCardProps[] = [
     linkedinUrl: "https://www.linkedin.com/in/anthea-chu-639390333/",
   },
   {
-    image: "",
+    image: benEdmonds,
     name: "Ben Edmonds",
     position: "Competition Director",
     linkedinUrl: "https://www.linkedin.com/in/benjamin-edmonds-2912ba20a/",
   },
   {
-    image: "",
+    image: matasG,
     name: "Matas Gatautis",
     position: "Director of Events",
     linkedinUrl: "https://www.linkedin.com/in/matas-gatautis-2a4bb12b9/",
