@@ -3,6 +3,7 @@ import djFrattHeadshot from "../assets/headshots/dj-fratt.webp";
 import kevinHu from "../assets/headshots/kevinHu.webp";
 import benEdmonds from "../assets/headshots/benEdmonds.webp";
 import matasG from "../assets/headshots/matasG.webp";
+import kevinZ from "../assets/headshots/kevinZ.webp";
 
 export const executives: ProfileCardProps[] = [
   {
@@ -24,7 +25,7 @@ export const executives: ProfileCardProps[] = [
     linkedinUrl: "https://www.linkedin.com/in/sijunkevinhu/",
   },
   {
-    image: "",
+    image: kevinZ,
     name: "Kevin Xiang Zhang",
     position: "Finance Director",
     linkedinUrl: "https://www.linkedin.com/in/kevin-x-zhang",
