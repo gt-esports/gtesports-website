@@ -1,6 +1,6 @@
 import type { ProfileCardProps } from "../types";
 import djFrattHeadshot from "../assets/headshots/dj-fratt.webp";
-import kevinhu from "../assets/headshots/kevinhu.webp";
+import kevinHu from "../assets/headshots/kevinHu.webp";
 import benEdmonds from "../assets/headshots/benEdmonds.webp";
 import matasG from "../assets/headshots/matasG.webp";
 
@@ -18,7 +18,7 @@ export const executives: ProfileCardProps[] = [
     linkedinUrl: "https://www.linkedin.com/in/alecdempsey/",
   },
   {
-    image: kevinhu,
+    image: kevinHu,
     name: "Kevin Hu",
     position: "Director of Innovation & Development",
     linkedinUrl: "https://www.linkedin.com/in/sijunkevinhu/",
