@@ -5,7 +5,7 @@ import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import Games from "./pages/Games";
 import Recruitment from "./pages/Recruitment";
-import NewsAndEvents from "./pages/NewsAndEvents";
+import News from "./pages/News";
 import About from "./pages/About";
 import Teams from "./pages/Teams";
 import OurTeam from "./pages/OurTeam";
@@ -25,7 +25,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/games" element={<Games />} />
           <Route path="/recruitment" element={<Recruitment />} />
-          <Route path="/newsandevents" element={<NewsAndEvents />} />
+          <Route path="/news" element={<News />} />
           <Route path="/about" element={<About />} />
           <Route path="/teams" element={<Teams />} />
           <Route path="/ourteam" element={<OurTeam />} />
