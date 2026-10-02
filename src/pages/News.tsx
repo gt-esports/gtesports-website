@@ -1,14 +1,7 @@
-import { useState } from "react";
-import NewsCard from "../components/NewsCard";
-import { newsCategories, newsPosts, type NewsCategory } from "../data/newsData";
+import { FaArrowRight, FaDiscord, FaRegNewspaper } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function News() {
-  const [category, setCategory] = useState<NewsCategory>("All news");
-  const filteredPosts = newsPosts.filter(
-    (post) => category === "All news" || post.category === category
-  );
-  const [leadPost, ...remainingPosts] = filteredPosts;
-
   return (
     <div className="min-h-screen bg-deep-space pb-12 pt-12 sm:pt-20">
       <div className="mx-auto max-w-7xl px-6 xl:px-8">
@@ -22,59 +15,42 @@ function News() {
           </p>
         </header>
 
-        <section aria-label="News posts">
-          <div className="mb-8 flex flex-col gap-3 border-b border-white/10 pb-6 md:flex-row md:items-center md:justify-between md:gap-6">
-            <div className="flex flex-wrap gap-2" role="group" aria-label="Filter news by category">
-              {newsCategories.map((option) => (
-                <button
-                  key={option}
-                  type="button"
-                  aria-pressed={category === option}
-                  onClick={() => setCategory(option)}
-                  className={`min-h-[44px] rounded-full border px-5 py-2 text-sm font-medium transition-colors duration-200 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tech-gold focus-visible:ring-offset-4 focus-visible:ring-offset-deep-space ${
-                    category === option
-                      ? "border-tech-gold bg-tech-gold text-deep-space"
-                      : "border-white/20 bg-white/5 text-gray-300 hover:border-tech-gold/50 hover:text-white"
-                  }`}
-                >
-                  {option}
-                </button>
-              ))}
+        <section
+          aria-labelledby="news-coming-soon"
+          className="rounded-2xl border border-white/10 bg-white/[0.03] px-6 py-16 text-center sm:px-8 sm:py-20 lg:py-24"
+        >
+          <div className="mx-auto flex max-w-2xl flex-col items-center">
+            <div className="mb-8 flex h-16 w-16 items-center justify-center rounded-2xl border border-tech-gold/20 bg-tech-gold/10 text-tech-gold" aria-hidden="true">
+              <FaRegNewspaper className="text-3xl" />
             </div>
-            <p className="shrink-0 text-sm text-gray-400" role="status" aria-live="polite" aria-atomic="true">
-              {filteredPosts.length} {filteredPosts.length === 1 ? "post" : "posts"}
+            <h2 id="news-coming-soon" className="font-outfit text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl">
+              Coming soon
+            </h2>
+            <p className="mt-6 max-w-xl leading-relaxed text-gray-300 sm:text-lg">
+              Team news, event announcements, and community stories are on their way.
+              Check back soon for the latest from GT Esports.
             </p>
-          </div>
+            <p className="mt-4 max-w-xl leading-relaxed text-gray-400">
+              In the meantime, join our Discord to stay connected or find your next game.
+            </p>
 
-          <p className="mb-8 text-sm leading-relaxed text-gray-400">
-            <span className="font-medium text-tech-gold">Sample posts.</span>{" "}
-            Stories and publication dates below are examples for this preview.
-          </p>
-
-          {leadPost ? (
-            <div className="space-y-8">
-              <NewsCard post={leadPost} featured />
-              {remainingPosts.length > 0 && (
-                <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-                  {remainingPosts.map((post) => (
-                    <NewsCard key={post.id} post={post} />
-                  ))}
-                </div>
-              )}
-            </div>
-          ) : (
-            <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-6 py-16 text-center">
-              <h2 className="font-outfit text-2xl font-bold text-white">No posts yet</h2>
-              <p className="mt-3 text-gray-300">Check another category for updates from GT Esports.</p>
-              <button
-                type="button"
-                onClick={() => setCategory("All news")}
-                className="mt-6 min-h-[44px] rounded-full border border-tech-gold/50 px-6 py-2 font-medium text-tech-gold hover:bg-tech-gold/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tech-gold focus-visible:ring-offset-4 focus-visible:ring-offset-deep-space"
+            <div className="mt-8 flex w-full max-w-sm flex-col gap-3 sm:w-auto sm:max-w-none sm:flex-row">
+              <a
+                href="https://discord.gg/uwdSHXq4sN"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex min-h-[44px] items-center justify-center gap-2 rounded-full bg-tech-gold px-6 py-3 font-outfit text-sm font-bold text-deep-space transition-colors duration-200 hover:bg-gold-glow motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tech-gold focus-visible:ring-offset-4 focus-visible:ring-offset-deep-space"
               >
-                View all news
-              </button>
+                Join Discord <FaDiscord aria-hidden="true" />
+              </a>
+              <Link
+                to="/games"
+                className="flex min-h-[44px] items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3 font-outfit text-sm font-semibold text-white transition-colors duration-200 hover:border-tech-gold/50 hover:bg-white/10 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tech-gold focus-visible:ring-offset-4 focus-visible:ring-offset-deep-space"
+              >
+                Explore games <FaArrowRight aria-hidden="true" />
+              </Link>
             </div>
-          )}
+          </div>
         </section>
       </div>
     </div>
