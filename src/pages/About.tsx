@@ -3,6 +3,7 @@
 import AboutInformation from "../components/AboutInformation";
 import { useEffect } from "react";
 import axios from "axios";
+import ImageCarousel from "../components/ImageCarousel";
 
 function About() {
   const fetchAPI = async () => {
@@ -24,6 +25,7 @@ function About() {
         <h1 className="font-outfit text-5xl font-bold tracking-wider text-white md:text-6xl">ABOUT <span className="text-tech-gold">US</span></h1>
         <div className="mx-auto mt-4 h-1 w-24 bg-tech-gold"></div>
       </div>
+      <ImageCarousel />
 
       <AboutInformation />
     </div>
