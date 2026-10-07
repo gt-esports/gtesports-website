@@ -56,7 +56,7 @@ function RecruitmentBanner() {
             href="/ourteam"
             className="group/btn flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3 font-outfit text-sm font-bold text-white transition-all hover:border-white/40 hover:bg-white/10"
           >
-            VIEW TEAMS{" "}
+            VIEW TEAM{" "}
             <FaArrowRight className="transition-transform group-hover/btn:translate-x-1" />
           </a>
         </div>
