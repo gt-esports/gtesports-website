@@ -12,7 +12,7 @@ function AboutInformation() {
             WHO WE ARE
           </h3>
           <p className="font-quicksand text-lg leading-relaxed text-white">
-            Georgia Tech Esports, or GT Esports, is an organization and a
+            Georgia Tech Esports Organization, or GT Esports, is an organization and a
             community for all gamers, both competitive and casual. We strive to
             help nurture the growth of both our communities around Georgia Tech.
             For our competitive players, we help our competitive teams to
@@ -35,7 +35,7 @@ function AboutInformation() {
             collegiate esports competition - we are a hive of innovators
             creating the next transformative models for the esports space. With
             a rich history extending to the beginning of commercial gaming,
-            Georgia Tech Esports has long been a driving force in the background
+            Georgia Tech Esports Organization has long been a driving force in the background
             of competitive gaming for good, and we strive to carry on that
             mission.
           </p>

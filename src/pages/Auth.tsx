@@ -112,13 +112,13 @@ function LoginForm({ signIn, onSwitchToSignUp }: LoginFormProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={(event) => void handleSubmit(event)} className="space-y-6">
       <div>
         <h2 className="font-outfit text-2xl font-bold text-white">
           Welcome Back
         </h2>
         <p className="mt-1 text-sm text-gray-400">
-          Sign in to your GT Esports account
+          Sign in to your GT Esports Organization account
         </p>
       </div>
 
@@ -290,7 +290,7 @@ function SignUpForm({ signUp, onSwitchToLogin }: SignUpFormProps) {
           Create Account
         </h2>
         <p className="mt-1 text-sm text-gray-400">
-          Join the GT Esports community
+          Join the GT Esports Organzation community
         </p>
       </div>
 

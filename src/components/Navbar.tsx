@@ -48,7 +48,7 @@ function Navbar() {
           <Link to="/" className="flex items-center gap-3 group">
             <img
               src={Logo}
-              alt="GT Esports Logo"
+              alt="GT Esports Organization Logo"
               className="h-10 w-10 transition-transform duration-300 group-hover:scale-110 sm:h-12 sm:w-12"
             />
             <div className="flex flex-col font-outfit leading-none">

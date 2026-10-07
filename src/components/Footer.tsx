@@ -52,7 +52,7 @@ function Footer() {
           {/* Brand Column */}
           <div className="flex flex-col gap-6">
             <Link to="/" className="flex items-center gap-3">
-              <img src={Logo} alt="GT Esports Logo" className="h-12 w-12" />
+              <img src={Logo} alt="GT Esports Organization Logo" className="h-12 w-12" />
               <div className="flex flex-col font-outfit leading-none">
                 <span className="text-lg font-bold text-tech-gold tracking-wider">GEORGIA TECH</span>
                 <span className="text-sm font-light text-white tracking-[0.2em]">ESPORTS ORGANIZATION</span>
