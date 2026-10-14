@@ -12,6 +12,7 @@ import OurTeam from "./pages/OurTeam";
 import Auth from "./pages/Auth";
 import AuthCallback from "./pages/AuthCallback";
 import Admin from "./pages/Admin";
+import AdminAccessPage from "./pages/AdminAccess";
 import RequireAdmin from "./components/RequireAdmin";
 
 // Analytics
@@ -34,7 +35,9 @@ function App() {
           <Route path="/auth" element={<Auth />} />
           <Route path="/auth/callback" element={<AuthCallback />} />
           <Route element={<RequireAdmin />}>
-            <Route path="/admin/*" element={<Admin />} />
+            <Route path="/admin" element={<Admin />}>
+              <Route path="access" element={<AdminAccessPage />} />
+            </Route>
           </Route>
         </Route>
       </Routes>

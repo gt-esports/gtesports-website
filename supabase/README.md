@@ -30,6 +30,7 @@ supabase db push
 | `20261014012336_add_admin_authorization.sql` | Adds protected role assignments and the `is_admin()` policy helper |
 | `20261014013944_add_site_content.sql` | Adds public content documents with admin-only publishing and server-owned revisions |
 | `20261014015340_add_team_headshot_uploads.sql` | Adds the public headshot bucket with admin-only uploads |
+| `20261014020429_add_admin_management.sql` | Adds checked admin listing, grants, and removals for the admin dashboard |
 
 ## Environment Variables
 
@@ -54,7 +55,7 @@ Supabase is configured to require email verification on sign up. After a user si
 Signed-in users are members unless `public.user_roles` explicitly assigns them
 `admin`. A missing assignment is a normal member; a failed role lookup denies admin
 access. Signup metadata cannot grant permissions. Clients can read only their own
-assignment and cannot insert, update, or delete assignments, including admins.
+assignment and cannot directly insert, update, or delete assignments, including admins.
 
 Grant the first admin through the SQL Editor using the registered account email:
 
@@ -71,6 +72,24 @@ Ensure this returns exactly one row. To revoke access:
 update public.user_roles set role = 'member'
 where user_id = 'REPLACE_WITH_USER_UUID';
 ```
+
+After the first admin is assigned, use the separate **Admin access** card on the
+administration dashboard and choose **Manage admin access**. This opens
+`/admin/access`, a dedicated page for granting or removing other admins, with a
+link back to administration. Content editor tabs only switch between website pages;
+visiting admin access and returning preserves unpublished content drafts.
+Grants require an existing account with a verified email address;
+email lookup ignores case and surrounding whitespace. The dashboard lists current
+admins with their names and emails. Removing access requires confirmation and
+leaves the account as a member. Admins cannot remove themselves, preventing lockout.
+
+The `list_admins()`, `grant_admin(target_email)`, and
+`revoke_admin(target_user_id)` RPCs require current database admin access. Their
+privileged implementations are in the unexposed `private` schema; public wrappers
+use invoker permissions. Keep `private` out of the Data API's exposed schemas.
+No role-table write permissions or broader profile-reading policies are granted
+to browser clients. Role mutations serialize and recheck the caller's permissions
+after acquiring the lock, so simultaneous removals cannot revoke every admin.
 
 Reload the app after changing a role. Database policies read current assignments
 on every request, so revocation does not depend on refreshing a JWT.
@@ -154,6 +173,16 @@ insert path and abuse controls. Never expose a service-role key in the browser.
 Run `supabase/tests/admin_authorization.sql` in the SQL Editor as postgres.
 It tests admin CRUD, member/anonymous denials, role privacy, blocked self-promotion,
 ignored user metadata, and immediate revocation. All fixtures roll back.
+
+Run `supabase/tests/admin_management.sql` for admin listing, normalized email
+grants, repeated grants, verified-email requirements, removal, self-removal
+protection, direct-table write denials, and member/anonymous/revoked-caller denials.
+The migration and transactional checks were applied successfully to `main-site`;
+all fixtures rolled back and existing account roles were preserved. Concurrent
+mutual revocation was also tested in a temporary local Postgres database: only the
+first removal succeeds and one admin remains. Browser grant, removal, and error
+feedback were checked with local mock accounts; real account flows still require
+verification after frontend deployment.
 
 Run `supabase/tests/site_content.sql` for admin publishing, public reads,
 member/anonymous write denials, immediate revocation, version tampering, content
