@@ -1,31 +1,18 @@
 import { useState, type FC } from "react";
 import ProfileCard from "../components/ProfileCard";
-import type { ProfileCardProps } from "../types";
-import {
-  creative,
-  development,
-  events,
-  executives,
-  finance,
-  production,
-} from "../data/teamsData";
-
-const departments = [
-  { title: "DEVELOPMENT", members: development },
-  { title: "CREATIVE", members: creative },
-  { title: "EVENTS", members: events },
-  { title: "FINANCE", members: finance },
-  { title: "PRODUCTION", members: production },
-];
+import type { TeamMember } from "../data/contentSchema";
+import { teamDepartments } from "../data/contentSchema";
+import { useSiteContent } from "../hooks/useSiteContent";
 
 interface DepartmentProps {
+  id: string;
   title: string;
-  members: ProfileCardProps[];
+  members: TeamMember[];
 }
 
-const Department: FC<DepartmentProps> = ({ title, members }) => {
+const Department: FC<DepartmentProps> = ({ id, title, members }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const panelId = `${title.toLowerCase()}-team`;
+  const panelId = `department-${id}-team`;
 
   return (
     <div
@@ -68,7 +55,7 @@ const Department: FC<DepartmentProps> = ({ title, members }) => {
             {members.length > 0 ? (
               <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {members.map((member) => (
-                  <div key={member.name} className="flex h-full justify-center">
+                  <div key={member.id} className="flex h-full justify-center">
                     <ProfileCard {...member} />
                   </div>
                 ))}
@@ -86,7 +73,8 @@ const Department: FC<DepartmentProps> = ({ title, members }) => {
 };
 
 const OurTeam: FC = () => {
-  const renderSection = (title: string, members: ProfileCardProps[]) => {
+  const content = useSiteContent("team");
+  const renderSection = (title: string, members: TeamMember[]) => {
     return (
       <section className="py-16">
         <div className="mb-12 flex flex-col items-center">
@@ -98,7 +86,7 @@ const OurTeam: FC = () => {
 
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {members.map((member) => (
-            <div key={member.name} className="flex justify-center h-full">
+            <div key={member.id} className="flex justify-center h-full">
               <ProfileCard {...member} />
             </div>
           ))}
@@ -119,11 +107,11 @@ const OurTeam: FC = () => {
             OUR <span className="bg-gradient-to-r from-tech-gold to-yellow-200 bg-clip-text text-transparent">TEAM</span>
           </h1>
           <p className="mx-auto max-w-2xl text-lg text-gray-400 font-inter">
-            Meet the individuals driving the future of esports and gaming at Georgia Tech.
+            {content.introduction}
           </p>
         </div>
 
-        {renderSection("EXECUTIVES", executives)}
+        {renderSection("EXECUTIVES", content.executives)}
 
         <section aria-labelledby="departments-heading" className="pb-16">
           <div className="mb-10 flex flex-col items-center">
@@ -137,8 +125,8 @@ const OurTeam: FC = () => {
           </div>
 
           <div className="mx-auto flex max-w-7xl flex-col gap-4 px-2 sm:px-6">
-            {departments.map(({ title, members }) => (
-              <Department key={title} title={title} members={members} />
+            {teamDepartments.map(({ id, title }) => (
+              <Department key={id} id={id} title={title} members={content.departments.find(department => department.id === id)?.members ?? []} />
             ))}
           </div>
         </section>

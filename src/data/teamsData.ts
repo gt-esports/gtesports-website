@@ -1,10 +1,10 @@
 import type { ProfileCardProps } from "../types";
-import djFrattHeadshot from "../assets/headshots/dj-fratt.webp";
-import kevinHu from "../assets/headshots/kevinHu.webp";
-import benEdmonds from "../assets/headshots/benEdmonds.webp";
-import matasG from "../assets/headshots/matasG.webp";
-import kevinZ from "../assets/headshots/kevinZ.webp";
-import zachG from "../assets/headshots/zachG.webp";
+const djFrattHeadshot = "/headshots/dj-fratt.webp";
+const kevinHu = "/headshots/kevinHu.webp";
+const benEdmonds = "/headshots/benEdmonds.webp";
+const matasG = "/headshots/matasG.webp";
+const kevinZ = "/headshots/kevinZ.webp";
+const zachG = "/headshots/zachG.webp";
 
 export const executives: ProfileCardProps[] = [
   {

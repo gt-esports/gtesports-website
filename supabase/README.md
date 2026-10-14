@@ -28,6 +28,7 @@ supabase db push
 |------|-------------|
 | `00001_create_profiles.sql` | Creates the `profiles` table, auto-sync trigger from `auth.users`, and RLS policies |
 | `20261014012336_add_admin_authorization.sql` | Adds protected role assignments and the `is_admin()` policy helper |
+| `20261014013944_add_site_content.sql` | Adds public content documents with admin-only publishing and server-owned revisions |
 
 ## Environment Variables
 
@@ -77,11 +78,41 @@ on every request, so revocation does not depend on refreshing a JWT.
 the permissions lookup. `/admin/*` is guarded by `RequireAdmin`; add future admin
 pages under that guard. The navbar displays ADMIN only after admin access is verified.
 
-### Future site content and contact management
+### Site content editing
+
+The admin dashboard has separate About Us, FAQs, and Our Team editors. Admins can
+edit About Us body text and the team introduction; add, remove, and reorder FAQs;
+and manage members, roles, headshot URLs, and LinkedIn links within the existing
+executive and department rosters. Page headings, button labels, and department
+sections (including their names and order) are defined in code. FAQ answers support
+`[label](https://example.com)` and same-site links such as `[Games](/games)`.
+HTML is rendered as text. Headshots accept HTTP(S) URLs or same-site paths; empty
+headshots use the existing avatar. Bundled headshots use stable `/headshots/` paths
+so publishing a roster does not save build-specific asset filenames.
+
+Each section has its own **Publish changes** button. Switching editor tabs preserves
+drafts; **Discard edits and reload published content** replaces the local draft.
+Public pages fetch published documents on mount. Reload an already-open public page
+to see a new publication. Until the first publication, or if loading fails, public
+pages use the bundled content. A failed admin load requires a retry rather than
+silently editing fallback content.
+
+`public.site_content` stores one JSON document per section (`about`, `faq`, `team`).
+Visitors and members can read published content. Only accounts recognized by
+`is_admin()` can insert or update it. Clients cannot delete documents or change
+sections, timestamps, or revisions. Removing an FAQ or member edits
+the relevant document. Content shape and size are constrained in the database;
+the app validates required fields and URL schemes before saving or rendering.
+
+Server-owned revisions prevent stale edits from overwriting newer publications.
+On a conflict, copy any edits you want to preserve before reloading the published
+content. Browser close/reload warns when there are unpublished changes.
+
+### Future contact management
 
 The route guard controls the interface. Every new table, Storage bucket, or server
-endpoint must also enforce authorization. No content editor or contact inbox is
-implemented yet. Existing public contact submission remains separate from admin
+endpoint must also enforce authorization. No contact inbox is implemented yet.
+Existing public contact submission remains separate from admin
 contact management.
 
 For an admin-only table, replace `contacts` with the actual table name:
@@ -106,6 +137,12 @@ insert path and abuse controls. Never expose a service-role key in the browser.
 Run `supabase/tests/admin_authorization.sql` in the SQL Editor as postgres.
 It tests admin CRUD, member/anonymous denials, role privacy, blocked self-promotion,
 ignored user metadata, and immediate revocation. All fixtures roll back.
+
+Run `supabase/tests/site_content.sql` for admin publishing, public reads,
+member/anonymous write denials, immediate revocation, version tampering, content
+constraints, and stale-save protection. This migration and its SQL checks were
+applied successfully to `main-site`; fixtures rolled back and no page content was
+published during verification. The frontend still requires deployment.
 
 The authorization migration and SQL checks were applied successfully to the
 `main-site` project. This does not deploy the frontend or grant a real account admin

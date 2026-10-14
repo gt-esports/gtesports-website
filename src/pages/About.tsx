@@ -1,23 +1,6 @@
-// "use client";
-
 import AboutInformation from "../components/AboutInformation";
-import { useEffect } from "react";
-import axios from "axios";
 
 function About() {
-  const fetchAPI = async () => {
-    try {
-      const response = await axios.get("http://localhost:8080/api");
-      console.log((response.data as { about?: string })?.about);
-    } catch (error) {
-      console.error("Error fetching API data:", error);
-    }
-  };
-
-  useEffect(() => {
-    void fetchAPI();
-  }, []);
-
   return (
     <div className="flex min-h-screen flex-col bg-deep-space pt-24">
       <div className="mb-8 text-center">
