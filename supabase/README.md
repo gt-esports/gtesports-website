@@ -83,17 +83,18 @@ pages under that guard. The navbar displays ADMIN only after admin access is ver
 
 The admin dashboard has separate About Us, FAQs, and Our Team editors. Admins can
 edit About Us body text and the team introduction; add, remove, and reorder FAQs;
-and manage members, roles, headshot URLs, and LinkedIn links within the existing
+and manage members, roles, headshot uploads, and LinkedIn links within the existing
 executive and department rosters. Page headings, button labels, and department
 sections (including their names and order) are defined in code. FAQ answers support
 `[label](https://example.com)` and same-site links such as `[Games](/games)`.
-HTML is rendered as text. Headshots accept HTTP(S) URLs or same-site paths; empty
-headshots use the existing avatar. Bundled headshots use stable `/headshots/` paths
+HTML is rendered as text. Headshots are managed through upload, preview, and remove
+controls; their URLs are stored internally. Empty headshots use the existing avatar.
+Bundled headshots use stable `/headshots/` paths
 so publishing a roster does not save build-specific asset filenames.
 
 To upload a headshot, open **Admin → Our Team**, expand a member, and choose an image
 under **Upload headshot**. JPG, PNG, and WebP files up to 5 MB are supported. The
-uploaded image previews immediately and its URL is filled in automatically; click
+uploaded image previews immediately and its URL is saved internally; click
 **Publish changes** to attach it to the public roster. Uploading locks the team
 editor until the request finishes so publishing or replacing a draft cannot race
 the upload. An upload error preserves the previous headshot.

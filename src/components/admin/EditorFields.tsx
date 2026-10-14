@@ -62,7 +62,7 @@ function Members({ content, update }: { content: TeamMember[]; update: (content:
       <div className="mt-4 space-y-4">
         <HeadshotUpload image={member.image} name={member.name} onChange={image => update(content.map(item => item.id === member.id ? { ...item, image } : item))} />
         <div className="grid gap-4 sm:grid-cols-2">
-          {([['name', 'Name'], ['position', 'Role'], ['image', 'Headshot URL'], ['linkedinUrl', 'LinkedIn URL']] as const).map(([key, label]) => <Field key={key} label={label} value={member[key]} optional={key === 'image' || key === 'linkedinUrl'} hint={key === 'image' ? 'Use a full HTTP(S) image URL or a site path. Leave empty for the default avatar.' : key === 'linkedinUrl' ? 'Use the full URL, including https://.' : undefined} onChange={value => update(content.map(item => item.id === member.id ? { ...item, [key]: value } : item))} />)}
+          {([['name', 'Name'], ['position', 'Role'], ['linkedinUrl', 'LinkedIn URL']] as const).map(([key, label]) => <Field key={key} label={label} value={member[key]} optional={key === 'linkedinUrl'} hint={key === 'linkedinUrl' ? 'Use the full URL, including https://.' : undefined} onChange={value => update(content.map(item => item.id === member.id ? { ...item, [key]: value } : item))} />)}
         </div>
         <Actions label={member.name || 'member'} index={index} count={content.length} onMove={direction => update(move(content, index, direction))} onRemove={() => update(content.filter(item => item.id !== member.id))} />
       </div>
