@@ -36,7 +36,7 @@ export default function HeadshotUpload({ image, name, onChange }: {
   return <div className="space-y-3 rounded-lg border border-white/10 p-4">
     {image && <img src={image} alt={`${name || 'Member'} headshot preview`} className="h-24 w-24 rounded-full object-cover" />}
     <label htmlFor={id} className="block text-sm font-medium text-gray-200">Upload headshot</label>
-    <input id={id} type="file" accept="image/jpeg,image/png,image/webp" disabled={uploading} aria-describedby={`${id}-hint`} className="block w-full text-sm text-gray-300 file:mr-4 file:rounded-lg file:border-0 file:bg-tech-gold file:px-4 file:py-2 file:font-semibold file:text-deep-space disabled:opacity-50" onChange={event => {
+    <input id={id} type="file" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp" disabled={uploading} aria-describedby={`${id}-hint`} className="block w-full text-sm text-gray-300 file:mr-4 file:rounded-lg file:border-0 file:bg-tech-gold file:px-4 file:py-2 file:font-semibold file:text-deep-space disabled:opacity-50" onChange={event => {
       const file = event.currentTarget.files?.[0];
       event.currentTarget.value = '';
       if (file) void upload(file);

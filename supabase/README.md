@@ -119,6 +119,12 @@ uploaded image previews immediately and its URL is saved internally; click
 **Publish changes** to attach it to the public roster. Uploading locks the team
 editor until the request finishes so publishing or replacing a draft cannot race
 the upload. An upload error preserves the previous headshot.
+The uploader detects JPG/PNG/WebP from the file contents, including images with
+missing browser MIME types or misleading filename extensions. Stored paths and
+content types match the detected format. Unsupported bytes are rejected even if
+the filename ends in `.webp`. Storage failures display the actual error message.
+Run `npm run test:headshots` to check format detection, upload metadata, limits,
+and error feedback without writing files to the live bucket.
 
 The `team-headshots` Storage bucket is public so visitors can view roster photos.
 Only current database admins can upload or list objects. Bucket limits enforce file
