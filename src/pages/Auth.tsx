@@ -1,13 +1,31 @@
 import { useState, type FormEvent, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import discordIcon from "../assets/icons/discord.svg";
 
 type Tab = "login" | "signup";
 
 function Auth() {
   const [activeTab, setActiveTab] = useState<Tab>("login");
-  const { user, loading, signIn, signUp } = useAuth();
+  const { user, loading, signIn, signUp, signInWithDiscord } = useAuth();
+  const [discordError, setDiscordError] = useState<string | null>(null);
+  const [discordSubmitting, setDiscordSubmitting] = useState(false);
   const navigate = useNavigate();
+
+  const handleDiscordSignIn = async () => {
+    setDiscordError(null);
+    setDiscordSubmitting(true);
+    try {
+      const { error } = await signInWithDiscord();
+      if (error) {
+        setDiscordError(error);
+        setDiscordSubmitting(false);
+      }
+    } catch {
+      setDiscordError("Unable to connect to Discord. Please try again.");
+      setDiscordSubmitting(false);
+    }
+  };
 
   // Redirect if already logged in
   useEffect(() => {
@@ -53,6 +71,23 @@ function Auth() {
 
         {/* Form Card */}
         <div className="glass-panel rounded-2xl p-8">
+          <button
+            type="button"
+            onClick={() => void handleDiscordSignIn()}
+            disabled={discordSubmitting}
+            className="flex w-full items-center justify-center gap-3 rounded-lg bg-[#5865F2] px-4 py-3 text-sm font-bold text-white transition-colors hover:bg-[#4752C4] disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            <img src={discordIcon} alt="" aria-hidden="true" className="h-5 w-5 shrink-0 brightness-0 invert" />
+            <span>{discordSubmitting ? "CONNECTING TO DISCORD..." : "CONTINUE WITH DISCORD"}</span>
+          </button>
+          {discordError && (
+            <p role="alert" className="mt-3 text-sm text-red-400">{discordError}</p>
+          )}
+          <div className="my-6 flex items-center gap-3 text-xs text-gray-400">
+            <div className="h-px flex-1 bg-white/10" />
+            <span>or continue with email</span>
+            <div className="h-px flex-1 bg-white/10" />
+          </div>
           {activeTab === "login" ? (
             <LoginForm
               signIn={signIn}
@@ -284,7 +319,7 @@ function SignUpForm({ signUp, onSwitchToLogin }: SignUpFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={(event) => void handleSubmit(event)} className="space-y-6">
       <div>
         <h2 className="font-outfit text-2xl font-bold text-white">
           Create Account
