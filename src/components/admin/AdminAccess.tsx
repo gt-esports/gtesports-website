@@ -52,7 +52,7 @@ export default function AdminAccess() {
     <div className="space-y-6">
       <div>
         <h1 className="font-outfit text-3xl font-bold">Admin access</h1>
-        <p className="mt-2 text-gray-300">Admins can publish site content and manage other admins. Access changes take effect immediately.</p>
+        <p className="mt-2 text-gray-300">Admins can publish site content, manage marketing contacts, and manage other admins. Access changes take effect immediately.</p>
       </div>
       {error && <p role="alert" className="rounded-lg border border-red-400/40 bg-red-400/10 p-4 text-red-200">{error}</p>}
       {notice && <p role="status" className="text-green-300">{notice}</p>}

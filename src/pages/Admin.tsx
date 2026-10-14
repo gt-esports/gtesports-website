@@ -12,7 +12,14 @@ export default function Admin() {
     {/* Keep content drafts mounted while visiting the separate access page. */}
     <section hidden={!showingContent} className="mx-auto max-w-5xl px-6 py-16">
       <h1 className="font-outfit text-3xl font-bold text-white">Administration</h1>
-      <p className="mt-4 text-gray-300">Manage website content and who has admin access.</p>
+      <p className="mt-4 text-gray-300">Manage website content, marketing contacts, and admin access.</p>
+      <section aria-labelledby="marketing-contacts-heading" className="mt-8 flex flex-col gap-4 rounded-xl border border-white/10 bg-white/5 p-5 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <h2 id="marketing-contacts-heading" className="font-outfit text-xl font-semibold">Marketing contacts</h2>
+          <p className="mt-1 text-sm text-gray-400">Manage newsletter subscribers and alumni. Import your existing spreadsheet.</p>
+        </div>
+        <Link to="/admin/contacts" className="shrink-0 rounded-lg border border-tech-gold/50 px-5 py-3 text-center font-medium text-tech-gold transition hover:bg-tech-gold/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-tech-gold">Manage contacts <span aria-hidden="true">→</span></Link>
+      </section>
       <section aria-labelledby="admin-access-heading" className="my-8 flex flex-col gap-4 rounded-xl border border-white/10 bg-white/5 p-5 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h2 id="admin-access-heading" className="font-outfit text-xl font-semibold">Admin access</h2>

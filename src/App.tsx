@@ -13,6 +13,7 @@ import Auth from "./pages/Auth";
 import AuthCallback from "./pages/AuthCallback";
 import Admin from "./pages/Admin";
 import AdminAccessPage from "./pages/AdminAccess";
+import MarketingContactsPage from "./pages/MarketingContacts";
 import RequireAdmin from "./components/RequireAdmin";
 
 // Analytics
@@ -37,6 +38,7 @@ function App() {
           <Route element={<RequireAdmin />}>
             <Route path="/admin" element={<Admin />}>
               <Route path="access" element={<AdminAccessPage />} />
+              <Route path="contacts" element={<MarketingContactsPage />} />
             </Route>
           </Route>
         </Route>

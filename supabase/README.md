@@ -31,6 +31,8 @@ supabase db push
 | `20261014013944_add_site_content.sql` | Adds public content documents with admin-only publishing and server-owned revisions |
 | `20261014015340_add_team_headshot_uploads.sql` | Adds the public headshot bucket with admin-only uploads |
 | `20261014020429_add_admin_management.sql` | Adds checked admin listing, grants, and removals for the admin dashboard |
+| `20261014025403_add_marketing_contacts.sql` | Adds private marketing contacts, unique normalized emails, and server-owned revisions |
+| `20261014025827_add_marketing_contact_groups.sql` | Adds Newsletter/Alumni/Both groups and active/unsubscribed/do-not-contact statuses |
 
 ## Environment Variables
 
@@ -144,29 +146,50 @@ Server-owned revisions prevent stale edits from overwriting newer publications.
 On a conflict, copy any edits you want to preserve before reloading the published
 content. Browser close/reload warns when there are unpublished changes.
 
-### Future contact management
+### Marketing contacts
 
-The route guard controls the interface. Every new table, Storage bucket, or server
-endpoint must also enforce authorization. No contact inbox is implemented yet.
-Existing public contact submission remains separate from admin
-contact management.
+Open **Admin → Manage contacts** (`/admin/contacts`) to manage newsletter subscribers
+and alumni. Each email has one record with a **Newsletter**, **Alumni**, or
+**Newsletter + Alumni** group. Newsletter and Alumni filters each include contacts
+belonging to both groups. Email status is **Active**, **Unsubscribed**, or
+**Do not contact**; these labels track eligibility and do not send emails.
+Optional fields include name, organization, category, last-contacted date, and notes.
+Admins can add/edit records, search all text fields, filter by group/status, and
+delete after confirmation. Concurrent edits/deletions check the loaded revision;
+a stale change requires refreshing and reopening the record.
 
-For an admin-only table, replace `contacts` with the actual table name:
+To migrate an existing spreadsheet, export it as CSV with an `email` header.
+Optional headers are `name`, `organization`, `category`, `contact_group`, `status`,
+`last_contacted`, and `notes`. Headers ignore case and spaces become underscores.
+Groups use `newsletter`, `alumni`, or `both`; statuses use `active`, `unsubscribed`,
+or `do_not_contact`; dates use `YYYY-MM-DD`. Missing group/status values default to
+`newsletter`/`active`, so include those columns to retain alumni membership and
+unsubscribes. Files must be under 1 MB with at most 500 contact rows. Quoted commas,
+quotes, multiline notes, UTF-8 BOMs, and Windows line endings are supported.
 
-```sql
-alter table public.contacts enable row level security;
-revoke all on public.contacts from public, anon, authenticated;
-grant select, insert, update, delete on public.contacts to authenticated;
-create policy "Admins manage contacts"
-on public.contacts for all to authenticated
-using ((select public.is_admin()))
-with check ((select public.is_admin()));
-```
+The import shows a preview before saving. Invalid records reject the entire
+preview. Duplicate emails ignore case/whitespace; the first CSV record wins within
+a file. Existing database records are skipped, preserving their group, unsubscribe
+status, and notes. Change existing records through **Edit**. The import is one
+atomic database request. **Export shown contacts** downloads exactly the current
+search/group/status results, including status and group columns; filter to Active
+when preparing a mailing list. Formula prefixes are neutralized for spreadsheet
+safety. There is no automatic account signup, newsletter signup form, mailing
+provider integration, or email sending in this feature. Public contact submissions
+remain separate.
 
-For site content, use the same admin policy and add a separate SELECT grant/policy
-for published content visible to visitors. Contact records must not inherit public
-SELECT access. Any public contact submission endpoint needs its own narrowly scoped
-insert path and abuse controls. Never expose a service-role key in the browser.
+`public.marketing_contacts` enforces admin-only CRUD using current `is_admin()`
+assignments and RLS. Visitors have no table grants; signed-in members cannot read
+or mutate records. The database normalizes emails, enforces uniqueness/field limits,
+and owns record IDs on update, creation timestamps, update timestamps, and revisions.
+
+Both migrations and `supabase/tests/marketing_contacts.sql` passed on `main-site`.
+SQL checks cover admin CRUD, member/visitor/revoked-admin denials, group/status
+validation, normalization, duplicate imports preserving unsubscribes, server-owned
+fields, and stale edits/deletions. All fixtures rolled back. Run
+`npm run test:contacts` for CSV and validation checks. Browser flows were verified
+locally with mock accounts/data; real account flows require frontend deployment.
+No security advisor finding targeted the contacts table or trigger function.
 
 ### Verification
 
