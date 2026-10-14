@@ -1,6 +1,7 @@
 import { useId } from 'react';
 import type { AboutContent, FAQItem, TeamContent, TeamMember } from '../../data/contentSchema';
 import { teamDepartments } from '../../data/contentSchema';
+import HeadshotUpload from './HeadshotUpload';
 
 const buttonClass = 'rounded-lg border border-white/20 px-3 py-2 text-sm text-gray-200 hover:border-tech-gold hover:text-tech-gold disabled:opacity-30';
 
@@ -59,6 +60,7 @@ function Members({ content, update }: { content: TeamMember[]; update: (content:
     {content.map((member, index) => <details key={member.id} className="rounded-lg border border-white/10 bg-black/20 p-4">
       <summary className="cursor-pointer font-medium text-gray-200">{member.name || 'New member'} <span className="text-sm text-gray-400">— {member.position || 'Add a role'}</span></summary>
       <div className="mt-4 space-y-4">
+        <HeadshotUpload image={member.image} name={member.name} onChange={image => update(content.map(item => item.id === member.id ? { ...item, image } : item))} />
         <div className="grid gap-4 sm:grid-cols-2">
           {([['name', 'Name'], ['position', 'Role'], ['image', 'Headshot URL'], ['linkedinUrl', 'LinkedIn URL']] as const).map(([key, label]) => <Field key={key} label={label} value={member[key]} optional={key === 'image' || key === 'linkedinUrl'} hint={key === 'image' ? 'Use a full HTTP(S) image URL or a site path. Leave empty for the default avatar.' : key === 'linkedinUrl' ? 'Use the full URL, including https://.' : undefined} onChange={value => update(content.map(item => item.id === member.id ? { ...item, [key]: value } : item))} />)}
         </div>

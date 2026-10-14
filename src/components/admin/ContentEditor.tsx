@@ -2,6 +2,7 @@ import { useEffect, useState, type ReactNode } from 'react';
 import type { ContentMap, ContentSection } from '../../data/contentSchema';
 import { defaultContent } from '../../data/siteContent';
 import { fetchContent, publishContent } from '../../lib/siteContent';
+import { UploadActivityContext } from './UploadActivityContext';
 
 export default function ContentEditor<K extends ContentSection>({ section, title, children }: {
   section: K; title: string;
@@ -12,6 +13,8 @@ export default function ContentEditor<K extends ContentSection>({ section, title
   const [revision, setRevision] = useState(0);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [uploads, setUploads] = useState(0);
+  const busy = saving || uploads > 0;
   const [error, setError] = useState<string | null>(null);
   const [notice, setNotice] = useState('');
   const [reload, setReload] = useState(0);
@@ -30,13 +33,14 @@ export default function ContentEditor<K extends ContentSection>({ section, title
   }, [section, reload]);
 
   useEffect(() => {
-    if (!dirty) return;
+    if (!dirty && !uploads) return;
     const warn = (event: BeforeUnloadEvent) => { event.preventDefault(); event.returnValue = ''; };
     window.addEventListener('beforeunload', warn);
     return () => window.removeEventListener('beforeunload', warn);
-  }, [dirty]);
+  }, [dirty, uploads]);
 
   const publish = async () => {
+    if (busy) return;
     setSaving(true); setError(null); setNotice('');
     try {
       const next = await publishContent(section, draft, revision);
@@ -56,15 +60,17 @@ export default function ContentEditor<K extends ContentSection>({ section, title
       {error && <p role="alert" className="rounded-lg border border-red-400/40 bg-red-400/10 p-4 text-red-200">{error}</p>}
       {notice && <p role="status" className="text-green-300">{notice}</p>}
       {!loading && (!error || dirty || revision > 0) && (
-        <fieldset disabled={saving} className="space-y-6 disabled:opacity-60">
-          {children(draft, value => { setDraft(value); setNotice(''); })}
+        <fieldset disabled={busy} className="space-y-6 disabled:opacity-60">
+          <UploadActivityContext.Provider value={uploading => setUploads(count => Math.max(0, count + (uploading ? 1 : -1)))}>
+            {children(draft, value => { setDraft(value); setNotice(''); })}
+          </UploadActivityContext.Provider>
           <div className="flex flex-wrap items-center gap-4 border-t border-white/10 pt-6">
-            <button disabled={!dirty || saving} className="rounded-lg bg-tech-gold px-5 py-3 font-semibold text-deep-space transition hover:bg-yellow-200 disabled:cursor-not-allowed disabled:opacity-50">{saving ? 'Publishing...' : 'Publish changes'}</button>
+            <button disabled={!dirty || busy} className="rounded-lg bg-tech-gold px-5 py-3 font-semibold text-deep-space transition hover:bg-yellow-200 disabled:cursor-not-allowed disabled:opacity-50">{saving ? 'Publishing...' : uploads ? 'Uploading headshot...' : 'Publish changes'}</button>
             <span className="text-sm text-gray-400">{dirty ? 'Unpublished changes' : 'Up to date'}</span>
           </div>
         </fieldset>
       )}
-      <button type="button" disabled={loading || saving} onClick={() => setReload(value => value + 1)} className="text-sm text-gray-300 underline disabled:opacity-50">{dirty ? 'Discard edits and reload published content' : 'Reload published content'}</button>
+      <button type="button" disabled={loading || busy} onClick={() => setReload(value => value + 1)} className="text-sm text-gray-300 underline disabled:opacity-50">{dirty ? 'Discard edits and reload published content' : 'Reload published content'}</button>
     </form>
   );
 }

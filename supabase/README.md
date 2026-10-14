@@ -29,6 +29,7 @@ supabase db push
 | `00001_create_profiles.sql` | Creates the `profiles` table, auto-sync trigger from `auth.users`, and RLS policies |
 | `20261014012336_add_admin_authorization.sql` | Adds protected role assignments and the `is_admin()` policy helper |
 | `20261014013944_add_site_content.sql` | Adds public content documents with admin-only publishing and server-owned revisions |
+| `20261014015340_add_team_headshot_uploads.sql` | Adds the public headshot bucket with admin-only uploads |
 
 ## Environment Variables
 
@@ -90,6 +91,21 @@ HTML is rendered as text. Headshots accept HTTP(S) URLs or same-site paths; empt
 headshots use the existing avatar. Bundled headshots use stable `/headshots/` paths
 so publishing a roster does not save build-specific asset filenames.
 
+To upload a headshot, open **Admin → Our Team**, expand a member, and choose an image
+under **Upload headshot**. JPG, PNG, and WebP files up to 5 MB are supported. The
+uploaded image previews immediately and its URL is filled in automatically; click
+**Publish changes** to attach it to the public roster. Uploading locks the team
+editor until the request finishes so publishing or replacing a draft cannot race
+the upload. An upload error preserves the previous headshot.
+
+The `team-headshots` Storage bucket is public so visitors can view roster photos.
+Only current database admins can upload or list objects. Bucket limits enforce file
+size and MIME types; the app additionally checks file signatures. Each upload has
+a unique filename. Browser clients cannot overwrite or delete uploaded files.
+**Remove headshot** restores the avatar after publishing; it does not delete the
+stored image. Replaced and discarded uploads are retained and can be cleaned up
+through the Storage dashboard once they are no longer referenced by the roster.
+
 Each section has its own **Publish changes** button. Switching editor tabs preserves
 drafts; **Discard edits and reload published content** replaces the local draft.
 Public pages fetch published documents on mount. Reload an already-open public page
@@ -143,6 +159,13 @@ member/anonymous write denials, immediate revocation, version tampering, content
 constraints, and stale-save protection. This migration and its SQL checks were
 applied successfully to `main-site`; fixtures rolled back and no page content was
 published during verification. The frontend still requires deployment.
+
+Run `supabase/tests/team_headshots.sql` to verify bucket settings, admin uploads,
+member/visitor denials, revocation, allowed paths/extensions, and overwrite protection.
+It uses transactional Storage metadata fixtures without uploading actual files.
+The bucket migration and permission checks were applied successfully to `main-site`.
+An authenticated admin upload through the browser still needs verification after
+frontend deployment.
 
 The authorization migration and SQL checks were applied successfully to the
 `main-site` project. This does not deploy the frontend or grant a real account admin
