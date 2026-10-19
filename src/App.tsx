@@ -28,11 +28,13 @@ function App() {
           <Route path="/" element={<Navigate to="/home" />} />
           <Route path="/home" element={<Home />} />
           <Route path="/games" element={<Games />} />
-          <Route path="/recruitment" element={<Recruitment />} />
+          <Route path="/join-us" element={<Recruitment />} />
+          <Route path="/recruitment" element={<Navigate to="/join-us" replace />} />
           <Route path="/news" element={<News />} />
           <Route path="/about" element={<About />} />
           <Route path="/teams" element={<Teams />} />
-          <Route path="/ourteam" element={<OurTeam />} />
+          <Route path="/leadership" element={<OurTeam />} />
+          <Route path="/ourteam" element={<Navigate to="/leadership" replace />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/auth/callback" element={<AuthCallback />} />
           <Route element={<RequireAdmin />}>
