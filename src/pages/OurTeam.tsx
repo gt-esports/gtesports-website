@@ -62,7 +62,7 @@ const Department: FC<DepartmentProps> = ({ id, title, members }) => {
               </div>
             ) : (
               <p className="text-center font-inter text-gray-400">
-                Team roster coming soon.
+                Leadership profiles coming soon.
               </p>
             )}
           </div>
@@ -103,11 +103,11 @@ const OurTeam: FC = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="mb-8 text-center">
-          <h1 className="mb-6 font-outfit text-6xl font-bold tracking-tight text-white md:text-7xl">
-            OUR <span className="bg-gradient-to-r from-tech-gold to-yellow-200 bg-clip-text text-transparent">TEAM</span>
+          <h1 className="mb-6 font-outfit text-4xl font-bold tracking-tight text-white sm:text-6xl md:text-7xl">
+            OUR <span className="bg-gradient-to-r from-tech-gold to-yellow-200 bg-clip-text text-transparent">LEADERSHIP</span>
           </h1>
           <p className="mx-auto max-w-2xl text-lg text-gray-400 font-inter">
-            {content.introduction}
+            Meet the student leaders and department members behind GT Esports. {content.introduction}
           </p>
         </div>
 
