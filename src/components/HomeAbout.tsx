@@ -20,7 +20,7 @@ function HomeAbout() {
 
                             <div className="space-y-4 font-inter text-gray-400">
                                 <p>
-                                    Represent Georgia Tech Esports in the highest levels of collegiate esports. We participate in major leagues like NACE, CLoL, and more, offering travel opportunities and the chance to compete on the big stage.
+                                    Represent Georgia Tech Esports Organization in the highest levels of collegiate esports. We participate in major leagues like NACE, CLoL, and more, offering travel opportunities and the chance to compete on the big stage.
                                 </p>
                                 <p>
                                     Join our Main Discord for general updates, but be sure to check out our <span className="text-tech-gold">Games Page</span> to find the specific Discord community and tryout information for your game of choice.
@@ -53,7 +53,7 @@ function HomeAbout() {
 
                             <div className="space-y-4 font-inter text-gray-400">
                                 <p>
-                                    Gaming is for everyone. You don't need to be a top-tier player to be part of GT Esports.
+                                    Gaming is for everyone. You don't need to be a top-tier player to be part of GT Esports Organization.
                                 </p>
                                 <p>
                                     We host regular LAN parties, watch parties, and casual game nights that are open to all students. It's the perfect place to make friends, de-stress from classes, and enjoy the social side of gaming.

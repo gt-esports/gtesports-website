@@ -7,40 +7,37 @@ function AuthCallback() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Supabase appends tokens as a hash fragment (e.g. #access_token=...&type=signup)
-    // The supabase client automatically picks these up, but we need to wait for the
-    // session to be established before redirecting.
+    let active = true;
+    const params = new URLSearchParams(window.location.search);
+    const hash = new URLSearchParams(window.location.hash.slice(1));
+    const oauthError = params.get("error_description") ?? hash.get("error_description")
+      ?? params.get("error") ?? hash.get("error");
+
+    if (oauthError) {
+      setError(oauthError);
+      window.history.replaceState(null, "", window.location.pathname);
+      return;
+    }
+
+    // The browser Supabase client processes OAuth tokens before getSession resolves.
     const handleCallback = async () => {
-      const { error: sessionError } = await supabase.auth.getSession();
-
-      if (sessionError) {
-        setError(sessionError.message);
-        return;
-      }
-
-      // Listen for the auth state to confirm the session is active
-      const {
-        data: { subscription },
-      } = supabase.auth.onAuthStateChange((event) => {
-        if (event === "SIGNED_IN") {
-          subscription.unsubscribe();
+      try {
+        const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+        if (!active) return;
+        if (sessionError) {
+          setError(sessionError.message);
+        } else if (session) {
           navigate("/home", { replace: true });
+        } else {
+          setError("No session was created. Please return to login and try again.");
         }
-      });
-
-      // If the user is already signed in (token was processed before the listener),
-      // check the current session and redirect
-      const {
-        data: { session },
-      } = await supabase.auth.getSession();
-
-      if (session) {
-        subscription.unsubscribe();
-        navigate("/home", { replace: true });
+      } catch {
+        if (active) setError("Unable to complete sign-in. Please try again.");
       }
     };
 
-    handleCallback();
+    void handleCallback();
+    return () => { active = false; };
   }, [navigate]);
 
   if (error) {
@@ -64,7 +61,7 @@ function AuthCallback() {
             </svg>
           </div>
           <h2 className="font-outfit text-xl font-bold text-white">
-            Verification Failed
+            Sign-in Failed
           </h2>
           <p className="mt-2 text-sm text-gray-400">{error}</p>
           <button
@@ -82,7 +79,7 @@ function AuthCallback() {
     <div className="flex min-h-[80vh] items-center justify-center px-4">
       <div className="text-center">
         <div className="mx-auto mb-4 h-8 w-8 animate-spin rounded-full border-2 border-tech-gold border-t-transparent" />
-        <p className="text-sm text-gray-400">Verifying your account...</p>
+        <p className="text-sm text-gray-400">Completing sign-in...</p>
       </div>
     </div>
   );
