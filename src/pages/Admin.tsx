@@ -32,13 +32,13 @@ export default function Admin() {
         <p className="mt-2 text-gray-300">Choose a page to edit. Publishing makes changes visible to visitors.</p>
       </div>
       <nav aria-label="Content editors" className="my-8 flex flex-wrap gap-3">
-        {([['about', 'About Us'], ['faq', 'FAQs'], ['team', 'Our Team']] as const).map(([section, label]) => (
+        {([['about', 'About Us'], ['faq', 'FAQs'], ['team', 'Leadership']] as const).map(([section, label]) => (
           <button key={section} type="button" aria-pressed={tab === section} onClick={() => setTab(section)} className={`rounded-lg border px-5 py-3 font-medium transition ${tab === section ? 'border-tech-gold bg-tech-gold text-deep-space' : 'border-white/20 text-gray-300 hover:border-tech-gold'}`}>{label}</button>
         ))}
       </nav>
       <div hidden={tab !== 'about'}><ContentEditor section="about" title="About Us">{(content, update) => <AboutFields content={content} update={update} />}</ContentEditor></div>
       <div hidden={tab !== 'faq'}><ContentEditor section="faq" title="FAQs">{(content, update) => <FAQFields content={content} update={update} />}</ContentEditor></div>
-      <div hidden={tab !== 'team'}><ContentEditor section="team" title="Our Team">{(content, update) => <TeamFields content={content} update={update} />}</ContentEditor></div>
+      <div hidden={tab !== 'team'}><ContentEditor section="team" title="Leadership">{(content, update) => <TeamFields content={content} update={update} />}</ContentEditor></div>
     </section>
     <Outlet />
     </>

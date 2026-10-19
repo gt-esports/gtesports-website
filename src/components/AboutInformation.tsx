@@ -31,13 +31,13 @@ function AboutInformation() {
         </div>
       </div>
 
-      {/* Meet Our Team Button */}
+      {/* Meet Our Leadership Button */}
       <div className="flex justify-center">
         <Link
-          to="/ourteam"
+          to="/leadership"
           className="inline-block rounded-full bg-tech-gold px-10 py-4 font-bold uppercase tracking-wide text-white shadow-lg transition-all duration-300 hover:bg-yellow-500 hover:shadow-xl"
         >
-          Meet Our Team
+          Meet Our Leadership
         </Link>
       </div>
 
