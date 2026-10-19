@@ -14,12 +14,11 @@ import cod from "../assets/game-covers/cod-cover.webp";
 import apex from "../assets/game-covers/apex-cover.webp";
 import dota2 from "../assets/game-covers/dota-2-cover.webp";
 import marioKart from "../assets/game-covers/mario-kart-cover.webp";
-import supercell from "../assets/game-covers/supercell-cover.webp";
 import sportsVG from "../assets/game-covers/sports-cover.webp";
 import deadlock from "../assets/game-covers/deadlock-cover.webp";
 import fgcGames from "../assets/game-covers/fgc-cover.webp";
 import marvelRivals from "../assets/game-covers/marvel-rivals-cover.webp";
-
+import clash from "../assets/game-covers/clash-cover.webp";
 import minecraft from "../assets/game-covers/minecraft-cover.webp";
 import genshin from "../assets/game-covers/genshin-impact-cover.webp";
 import pokemonGo from "../assets/game-covers/pokemon-go-cover.webp";
@@ -30,6 +29,7 @@ import hearts_of_iron from "../assets/game-covers/hearts-of-iron-4-cover.webp";
 import amongus from "../assets/game-covers/gt-arcade-cover.webp";
 import geoguesser from "../assets/game-covers/geoguesser-cover.webp";
 import tetris from "../assets/game-covers/tetris-cover.webp";
+import splatoon3 from "../assets/game-covers/splatoon-3-cover.webp";
 
 export interface GameData {
   image: string;
@@ -43,17 +43,17 @@ export const games: Record<string, GameData> = {
   "League of Legends": {
     image: league,
     pageLink: "link",
-    discordLink: "https://discord.gg/T3vB5jYhdE",
+    discordLink: "https://discord.com/invite/XRCVn9zDU3",
     description: "League of Legends is a 5v5 strategy game where teams battle across Summoner’s Rift using unique champions to destroy the enemy Nexus.",
     highlightLink: "https://www.youtube.com/embed/KtrVy2KLzIo?si=1JaYZlfXvI8EAXbh",
   },
   "Teamfight Tactics": {
     image: tft,
     pageLink: "link",
-    discordLink: "https://discord.gg/T3vB5jYhdE",
+    discordLink: "https://discord.com/invite/XRCVn9zDU3",
     description: "TFT is an auto-battler where you build and position champions to outlast opponents through smart strategy and economy management.",
   },
-  Valorant: {
+  "Valorant": {
     image: valorant,
     pageLink: "link",
     discordLink: "https://discord.gg/2aUxJuT",
@@ -77,7 +77,13 @@ export const games: Record<string, GameData> = {
     discordLink: "https://discord.gg/3FUjyXA",
     description: "Counter-Strike 2 is a tactical FPS emphasizing precision, teamwork, and quick strategy between terrorists and counter-terrorists.",
   },
-  Smash: {
+  "Splatoon 3": {
+    image: splatoon3,
+    pageLink: "link",
+    discordLink: "https://discord.gg/eYQnenWuQp",
+    description: "Splatoon 3 is a team-based action game with ink-powered battles, creative weapons, and objective-based modes.",
+  },
+  "Smash Bros": {
     image: smash,
     pageLink: "link",
     discordLink: "https://discord.gg/8Sbt9BFQzJ",
@@ -101,13 +107,13 @@ export const games: Record<string, GameData> = {
     discordLink: "https://discord.gg/pFVVySyuEn",
     description: "Osu! and other rhythm games challenge players’ timing, precision, and reflexes through music-driven gameplay.",
   },
-  Hearthstone: {
+  "Hearthstone": {
     image: hearthstone,
     pageLink: "link",
-    discordLink: "https://discord.gg/uVGfKd3jre",
+    discordLink: "",
     description: "Hearthstone is a strategic card game where players build decks and use hero powers to outwit opponents in turn-based duels.",
   },
-  Smite: {
+  "Smite": {
     image: smite,
     pageLink: "link",
     discordLink: "https://discord.gg/mJGzCCgYCC",
@@ -137,11 +143,11 @@ export const games: Record<string, GameData> = {
     discordLink: "https://discord.gg/Ke74RqzTG9",
     description: "Mario Kart is a colorful racing game where players compete using power-ups, skill, and chaos across whimsical tracks.",
   },
-  Supercell: {
-    image: supercell,
+  "Clash Royale": {
+    image: clash,
     pageLink: "link",
-    discordLink: "https://discord.gg/6c6f2KbhYS",
-    description: "Supercell titles like Clash Royale and Brawl Stars deliver fast, strategic, and competitive mobile gaming experiences.",
+    discordLink: "https://discord.gg/K4C8jzPBpg",
+    description: "Clash Royale is a real-time strategy game where players build decks and battle to take down opposing towers.",
   },
   "Sports Video Games": {
     image: sportsVG,
@@ -149,7 +155,7 @@ export const games: Record<string, GameData> = {
     discordLink: "https://discord.gg/9KVvtMurPD",
     description: "Sports games bring realism and competition to titles like FIFA, NBA 2K, and Madden for fans of athletic gameplay.",
   },
-  Deadlock: {
+  "Deadlock": {
     image: deadlock,
     pageLink: "link",
     discordLink: "https://discord.gg/Pvv2HBNqsN",
@@ -167,7 +173,7 @@ export const games: Record<string, GameData> = {
     discordLink: "https://discord.gg/JFVmDyWuMc",
     description: "Marvel Rivals is a team shooter where iconic Marvel heroes battle with unique powers and coordinated team play.",
   },
-  Tetris: {
+  "Tetris": {
     image: tetris,
     pageLink: "link",
     discordLink: "https://discord.gg/HxdrD6yVuM",
