@@ -24,6 +24,7 @@ function Navbar() {
     { name: "ABOUT", link: "/about" },
     { name: "OUR TEAM", link: "/ourteam" },
     { name: "GAMES", link: "/games" },
+    { name: "NEWS", link: "/news" },
     { name: "RECRUITMENT", link: "/recruitment" },
   ];
 
@@ -35,7 +36,7 @@ function Navbar() {
       >
         <div className="relative z-50 mx-auto flex h-[10vh] max-w-7xl items-center justify-between px-6 xl:px-8">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group">
+          <Link to="/" className="flex items-center gap-3 group lg:shrink-0">
             <img
               src={Logo}
               alt="GT Esports Organization Logo"
@@ -55,7 +56,7 @@ function Navbar() {
                   <NavLink
                     to={link.link}
                     className={({ isActive }) =>
-                      `text-sm font-medium tracking-wide transition-all duration-300 hover:text-tech-gold ${isActive ? "text-tech-gold" : "text-gray-300"
+                      `whitespace-nowrap text-sm font-medium tracking-wide transition-all duration-300 motion-reduce:transition-none hover:text-tech-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tech-gold focus-visible:ring-offset-4 focus-visible:ring-offset-deep-space ${isActive ? "text-tech-gold" : "text-gray-300"
                       }`
                     }
                   >
@@ -66,7 +67,7 @@ function Navbar() {
             </ul>
 
             {/* Auth Buttons */}
-            <div className="border-l border-white/20 pl-8">
+            <div className="shrink-0 border-l border-white/20 pl-4 xl:pl-8">
               {loading ? (
                 <div className="h-9 w-20" />
               ) : user ? (
@@ -84,10 +85,12 @@ function Navbar() {
 
           {/* Mobile Toggle */}
           <button
-            aria-label={open ? "Close navigation" : "Open navigation"}
+            type="button"
+            aria-label={open ? "Close navigation menu" : "Open navigation menu"}
             aria-expanded={open}
+            aria-controls="mobile-navigation"
             onClick={() => setOpen(!open)}
-            className="text-2xl text-white transition-colors hover:text-tech-gold xl:hidden"
+            className="text-2xl text-white transition-colors hover:text-tech-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tech-gold xl:hidden"
           >
             {open ? <TfiClose /> : <RxHamburgerMenu />}
           </button>
@@ -96,7 +99,9 @@ function Navbar() {
 
       {/* Mobile Menu Overlay */}
       <div
-        className={`fixed inset-0 z-40 overflow-y-auto bg-black/95 backdrop-blur-xl transition-transform duration-300 xl:hidden ${open ? "translate-x-0" : "translate-x-full"
+        id="mobile-navigation"
+        aria-hidden={!open}
+        className={`fixed inset-0 z-40 overflow-y-auto bg-black/95 backdrop-blur-xl transition-transform duration-300 motion-reduce:transition-none xl:hidden ${open ? "translate-x-0" : "translate-x-full"
           }`}
       >
         <div className="flex flex-col items-center justify-center space-y-8 pb-56 pt-32 text-center">
@@ -104,9 +109,10 @@ function Navbar() {
             <NavLink
               key={link.name}
               to={link.link}
+              tabIndex={open ? 0 : -1}
               onClick={() => setOpen(false)}
               className={({ isActive }) =>
-                `text-2xl font-outfit font-bold tracking-widest transition-all ${isActive ? "text-tech-gold" : "text-white"
+                `text-2xl font-outfit font-bold tracking-widest transition-all motion-reduce:transition-none hover:text-tech-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tech-gold focus-visible:ring-offset-4 focus-visible:ring-offset-deep-space ${isActive ? "text-tech-gold" : "text-white"
                 }`
               }
             >
@@ -119,6 +125,7 @@ function Navbar() {
             ) : (
               <Link
                 to="/auth"
+                tabIndex={open ? 0 : -1}
                 onClick={() => setOpen(false)}
                 className="text-xl font-medium text-white hover:text-tech-gold"
               >
