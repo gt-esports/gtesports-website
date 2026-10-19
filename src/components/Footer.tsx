@@ -11,9 +11,10 @@ function Footer() {
   const links = [
     { name: "Home", link: "/home" },
     { name: "Games", link: "/games" },
-    { name: "Recruitment", link: "/recruitment" },
+    { name: "News", link: "/news" },
+    { name: "Join Us", link: "/join-us" },
     { name: "About", link: "/about" },
-    { name: "Our Team", link: "/ourteam" },
+    { name: "Leadership", link: "/leadership" },
   ];
 
   const socialMedia = [

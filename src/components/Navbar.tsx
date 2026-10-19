@@ -1,36 +1,79 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { TfiClose } from "react-icons/tfi";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import AccountMenu from "./AccountMenu";
 import Logo from "../assets/branding/gt-esports-logo.png";
 import { useAuth } from "../context/AuthContext";
+
+const primaryLinks = [
+  { name: "GAMES", link: "/games" },
+  { name: "NEWS", link: "/news" },
+];
+const aboutLinks = [
+  { name: "About Us", link: "/about" },
+  { name: "Leadership", link: "/leadership" },
+];
+const mobileLinks = [...primaryLinks, ...aboutLinks, { name: "Join Us", link: "/join-us" }];
+const focusClass = "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tech-gold focus-visible:ring-offset-4 focus-visible:ring-offset-deep-space";
 
 function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { user, loading } = useAuth();
+  const [aboutOpen, setAboutOpen] = useState(false);
+  const aboutContainer = useRef<HTMLLIElement>(null);
+  const aboutTrigger = useRef<HTMLButtonElement>(null);
+  const mobileTrigger = useRef<HTMLButtonElement>(null);
+  const { pathname } = useLocation();
+  const aboutActive = aboutLinks.some(({ link }) => pathname === link);
+
+  useEffect(() => {
+    if (!aboutOpen && !open) return;
+    const closeOutside = (event: PointerEvent) => {
+      if (event.target instanceof Node && !aboutContainer.current?.contains(event.target)) setAboutOpen(false);
+    };
+    const closeEscape = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return;
+      if (aboutOpen) aboutTrigger.current?.focus();
+      else mobileTrigger.current?.focus();
+      setAboutOpen(false);
+      setOpen(false);
+    };
+    document.addEventListener("pointerdown", closeOutside);
+    document.addEventListener("keydown", closeEscape);
+    return () => {
+      document.removeEventListener("pointerdown", closeOutside);
+      document.removeEventListener("keydown", closeEscape);
+    };
+  }, [aboutOpen, open]);
+
+  useEffect(() => {
+    if (!open) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const desktop = window.matchMedia("(min-width: 1280px)");
+    const closeOnDesktop = () => { if (desktop.matches) setOpen(false); };
+    desktop.addEventListener("change", closeOnDesktop);
+    return () => {
+      document.body.style.overflow = previous;
+      desktop.removeEventListener("change", closeOnDesktop);
+    };
+  }, [open]);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
-    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const links = [
-    { name: "HOME", link: "/home" },
-    { name: "ABOUT", link: "/about" },
-    { name: "OUR TEAM", link: "/ourteam" },
-    { name: "GAMES", link: "/games" },
-    { name: "NEWS", link: "/news" },
-    { name: "RECRUITMENT", link: "/recruitment" },
-  ];
 
   return (
     <>
-      <nav
+      <nav aria-label="Main navigation"
         className={`fixed top-0 z-50 w-full transition-all duration-300 ${scrolled ? "bg-nav-bg backdrop-blur-md border-b border-white/10" : "bg-transparent"
           }`}
       >
@@ -51,7 +94,7 @@ function Navbar() {
           {/* Desktop Menu */}
           <div className="hidden items-center gap-8 xl:flex">
             <ul className="flex items-center gap-8">
-              {links.map((link) => (
+              {primaryLinks.map((link) => (
                 <li key={link.name}>
                   <NavLink
                     to={link.link}
@@ -64,7 +107,27 @@ function Navbar() {
                   </NavLink>
                 </li>
               ))}
+              <li ref={aboutContainer} className="relative" onBlur={(event) => {
+                if (!event.currentTarget.contains(event.relatedTarget)) setAboutOpen(false);
+              }}>
+                <button ref={aboutTrigger} type="button" aria-expanded={aboutOpen} aria-controls="about-navigation"
+                  onClick={() => setAboutOpen((value) => !value)}
+                  className={`flex min-h-[44px] items-center gap-2 text-sm font-medium tracking-wide hover:text-tech-gold ${focusClass} ${aboutActive ? "text-tech-gold" : "text-gray-300"}`}>
+                  ABOUT <span aria-hidden="true" className={`transition-transform motion-reduce:transition-none ${aboutOpen ? "rotate-180" : ""}`}>⌄</span>
+                </button>
+                {aboutOpen && (
+                  <ul id="about-navigation" className="absolute right-0 top-full mt-3 w-48 rounded-xl border border-white/10 bg-nav-bg p-2 shadow-2xl">
+                    {aboutLinks.map((link) => (
+                      <li key={link.link}><NavLink to={link.link} onClick={() => setAboutOpen(false)}
+                        className={({ isActive }) => `block rounded-lg px-4 py-3 text-sm hover:bg-white/5 hover:text-tech-gold ${focusClass} ${isActive ? "text-tech-gold" : "text-gray-300"}`}>
+                        {link.name}
+                      </NavLink></li>
+                    ))}
+                  </ul>
+                )}
+              </li>
             </ul>
+            <NavLink to="/join-us" className={`rounded-full bg-tech-gold px-6 py-3 text-sm font-bold text-deep-space transition-colors hover:bg-gold-glow ${focusClass}`}>JOIN US</NavLink>
 
             {/* Auth Buttons */}
             <div className="shrink-0 border-l border-white/20 pl-4 xl:pl-8">
@@ -85,11 +148,12 @@ function Navbar() {
 
           {/* Mobile Toggle */}
           <button
+            ref={mobileTrigger}
             type="button"
             aria-label={open ? "Close navigation menu" : "Open navigation menu"}
             aria-expanded={open}
             aria-controls="mobile-navigation"
-            onClick={() => setOpen(!open)}
+            onClick={() => { setOpen((value) => !value); setAboutOpen(false); }}
             className="text-2xl text-white transition-colors hover:text-tech-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tech-gold xl:hidden"
           >
             {open ? <TfiClose /> : <RxHamburgerMenu />}
@@ -98,43 +162,23 @@ function Navbar() {
       </nav>
 
       {/* Mobile Menu Overlay */}
-      <div
-        id="mobile-navigation"
-        aria-hidden={!open}
-        className={`fixed inset-0 z-40 overflow-y-auto bg-black/95 backdrop-blur-xl transition-transform duration-300 motion-reduce:transition-none xl:hidden ${open ? "translate-x-0" : "translate-x-full"
-          }`}
-      >
-        <div className="flex flex-col items-center justify-center space-y-8 pb-56 pt-32 text-center">
-          {links.map((link) => (
-            <NavLink
-              key={link.name}
-              to={link.link}
-              tabIndex={open ? 0 : -1}
-              onClick={() => setOpen(false)}
-              className={({ isActive }) =>
-                `text-2xl font-outfit font-bold tracking-widest transition-all motion-reduce:transition-none hover:text-tech-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tech-gold focus-visible:ring-offset-4 focus-visible:ring-offset-deep-space ${isActive ? "text-tech-gold" : "text-white"
-                }`
-              }
-            >
-              {link.name}
-            </NavLink>
-          ))}
-          <div className="mt-8">
-            {loading ? null : user ? (
-              <AccountMenu onNavigate={() => setOpen(false)} />
-            ) : (
-              <Link
-                to="/auth"
-                tabIndex={open ? 0 : -1}
-                onClick={() => setOpen(false)}
-                className="text-xl font-medium text-white hover:text-tech-gold"
-              >
-                LOGIN
-              </Link>
-            )}
+      {open && (
+        <nav id="mobile-navigation" aria-label="Mobile navigation" className="fixed inset-0 z-40 overflow-y-auto bg-black/95 backdrop-blur-xl xl:hidden">
+          <div className="flex min-h-full flex-col items-center gap-6 px-6 pb-28 pt-32 text-center">
+            {mobileLinks.map((link) => (
+              <NavLink key={link.link} to={link.link} onClick={() => setOpen(false)}
+                className={({ isActive }) => `${focusClass} ${link.link === "/join-us" ? "rounded-full bg-tech-gold px-8 py-3 text-xl text-deep-space" : `text-2xl text-white hover:text-tech-gold ${isActive ? "text-tech-gold" : ""}`} font-outfit font-bold tracking-wide`}>
+                {link.name}
+              </NavLink>
+            ))}
+            <div className="mt-4">
+              {loading ? null : user ? <AccountMenu onNavigate={() => setOpen(false)} /> : (
+                <Link to="/auth" onClick={() => setOpen(false)} className={`text-xl font-medium text-white hover:text-tech-gold ${focusClass}`}>LOGIN</Link>
+              )}
+            </div>
           </div>
-        </div>
-      </div>
+        </nav>
+      )}
     </>
   );
 }

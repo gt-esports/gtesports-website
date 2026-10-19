@@ -13,7 +13,7 @@ function RecruitmentBanner() {
 
         <div className="flex flex-wrap items-center gap-4">
           <h2 className="font-outfit text-3xl font-bold uppercase text-white md:text-4xl">
-            Recruitment is currently closed
+            Leadership applications are currently closed
           </h2>
           <span className="rounded-full border border-tech-gold/40 bg-tech-gold/10 px-4 py-1 font-outfit text-xs font-bold uppercase tracking-wider text-tech-gold">
             Next cycle: {nextCycle}
@@ -22,25 +22,16 @@ function RecruitmentBanner() {
 
         <div className="space-y-4 font-inter text-gray-400">
           <p>
-            We're not actively recruiting for our Development, Creative,
-            Production, Finance, or Events departments right now — but new
+            We're not currently accepting leadership and department applications for Development, Creative,
+            Production, Finance, or Events departments — but new
             cycles open up each semester.
           </p>
           <p>
             Join our <span className="text-tech-gold">Main Discord</span> to
-            stay in the loop. All recruitment announcements, tryout dates, and
+            stay in the loop. Leadership recruitment announcements and
             application links are posted there as soon as we reopen.
           </p>
-          <p>
-            Interested in competing? Head to the{" "}
-            <a
-              href="/games"
-              className="text-tech-gold underline hover:text-white"
-            >
-              Games page
-            </a>{" "}
-            to find the Discord and tryout info for your specific game.
-          </p>
+
         </div>
 
         <div className="mt-4 flex flex-wrap gap-4">
@@ -53,10 +44,10 @@ function RecruitmentBanner() {
             JOIN OUR DISCORD <FaDiscord />
           </a>
           <a
-            href="/ourteam"
+            href="/leadership"
             className="group/btn flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3 font-outfit text-sm font-bold text-white transition-all hover:border-white/40 hover:bg-white/10"
           >
-            VIEW TEAM{" "}
+            MEET OUR LEADERSHIP{" "}
             <FaArrowRight className="transition-transform group-hover/btn:translate-x-1" />
           </a>
         </div>

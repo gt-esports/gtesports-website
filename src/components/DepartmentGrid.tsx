@@ -19,7 +19,7 @@ function DepartmentGrid() {
             href="#apply"
             className="group/btn flex items-center gap-2 rounded-full bg-tech-gold px-8 py-3 font-outfit text-sm font-bold text-white transition-all hover:bg-white hover:text-deep-space"
           >
-            APPLY NOW{" "}
+            VIEW APPLICATION STATUS{" "}
             <FaArrowRight className="transition-transform group-hover/btn:translate-x-1" />
           </a>
         </div>
