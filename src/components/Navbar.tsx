@@ -79,7 +79,7 @@ function Navbar() {
       >
         <div className="relative z-50 mx-auto flex h-[10vh] max-w-7xl items-center justify-between px-6 xl:px-8">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group lg:shrink-0">
+          <Link to="/" onClick={() => { setOpen(false); setAboutOpen(false); }} className="flex items-center gap-3 group lg:shrink-0">
             <img
               src={Logo}
               alt="GT Esports Organization Logo"
@@ -167,7 +167,7 @@ function Navbar() {
           <div className="flex min-h-full flex-col items-center gap-6 px-6 pb-28 pt-32 text-center">
             {mobileLinks.map((link) => (
               <NavLink key={link.link} to={link.link} onClick={() => setOpen(false)}
-                className={({ isActive }) => `${focusClass} ${link.link === "/join-us" ? "rounded-full bg-tech-gold px-8 py-3 text-xl text-deep-space" : `text-2xl text-white hover:text-tech-gold ${isActive ? "text-tech-gold" : ""}`} font-outfit font-bold tracking-wide`}>
+                className={({ isActive }) => `${focusClass} ${link.link === "/join-us" ? "rounded-full bg-tech-gold px-8 py-3 text-xl text-deep-space" : `text-2xl hover:text-tech-gold ${isActive ? "text-tech-gold" : "text-white"}`} font-outfit font-bold tracking-wide`}>
                 {link.name}
               </NavLink>
             ))}

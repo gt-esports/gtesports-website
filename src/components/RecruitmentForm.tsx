@@ -11,7 +11,7 @@ function RecruitmentForm() {
           Leadership Application
         </h2>
         <p className="mb-8 font-inter text-sm text-gray-400">
-          Leadership Leadership and department applications will open here when the next recruitment cycle begins.
+          Leadership and department applications will open here when the next recruitment cycle begins.
         </p>
         <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
           <div className="flex flex-col gap-4 sm:flex-row">
