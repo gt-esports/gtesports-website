@@ -3,7 +3,8 @@ export interface GameCardProps {
   name: string;
   discordLink: string;
   link: string;
-  highlightLink?: HighlightProps["src"];
+  highlightLink?: string;
+  category: "Competitive" | "Casual";
   onLearnMore: () => void;
 }
 
@@ -15,11 +16,12 @@ export interface ProfileCardProps {
 }
 
 export interface HighlightProps {
-    src: string,
-    poster: string,
-    captions: string[],
-    controls?: boolean,
-    isOpen: boolean,
-    autoPlay?: boolean,
-    className?: string,
+  src: string;
+  title?: string;
+  poster?: string;
+  captions?: { src: string; srcLang: string; label: string; default?: boolean }[];
+  controls?: boolean;
+  isOpen: boolean;
+  autoPlay?: boolean;
+  className?: string;
 }
