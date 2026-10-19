@@ -10,12 +10,12 @@ function Recruitment() {
   return (
     <div className="min-h-screen w-full bg-deep-space pt-24">
       <header className="mx-auto max-w-4xl px-6 pb-12 pt-12 text-center sm:pt-20">
-        <p className="mb-4 text-sm font-semibold uppercase tracking-[0.25em] text-tech-gold">Find your place at GT Esports</p>
+        <p className="mb-4 text-sm font-semibold uppercase tracking-[0.25em] text-tech-gold">Find your place at GT Esports Organization</p>
         <h1 className="mb-6 font-outfit text-5xl font-bold uppercase tracking-widest text-white md:text-6xl">
           JOIN <span className="text-tech-gold">US</span>
         </h1>
         <p className="mx-auto max-w-2xl text-lg leading-relaxed text-gray-300">
-          Compete for Georgia Tech, find people to play with, or help shape our community. There's more than one way to get involved.
+          Compete with GT Esports Organization, find people to play with, or help shape our community. There's more than one way to get involved.
         </p>
       </header>
 
@@ -24,7 +24,7 @@ function Recruitment() {
         <div className="grid gap-6 md:grid-cols-2">
           <article className="flex flex-col rounded-3xl border border-tech-gold/20 bg-tech-gold/5 p-8 sm:p-10">
             <FaTrophy aria-hidden="true" className="mb-6 text-3xl text-tech-gold" />
-            <h3 className="mb-4 font-outfit text-2xl font-bold text-white">Compete for Georgia Tech</h3>
+            <h3 className="mb-4 font-outfit text-2xl font-bold text-white">Compete with GT Esports Organization</h3>
             <p className="mb-4 leading-relaxed text-gray-300">Ready to take your game further? Explore our games and connect with the community for the title you play.</p>
             <p className="mb-8 leading-relaxed text-gray-400">Tryout schedules and roster opportunities vary by game. Check your game's Discord for current announcements and next steps.</p>
             <Link to="/games" className={`mt-auto self-start rounded-full bg-tech-gold px-6 py-3 font-bold text-deep-space transition-colors hover:bg-gold-glow ${focusClass}`}>Explore games &amp; tryouts</Link>
@@ -45,7 +45,7 @@ function Recruitment() {
           <div className="mb-10 text-center">
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-tech-gold">Build the community behind the games</p>
             <h2 id="leadership-heading" className="mb-4 font-outfit text-3xl font-bold text-white sm:text-4xl">Leadership &amp; Departments</h2>
-            <p className="mx-auto max-w-2xl leading-relaxed text-gray-300">Help run events, create content, build our technology, and support GT Esports behind the scenes. Explore our departments and leadership application status below.</p>
+            <p className="mx-auto max-w-2xl leading-relaxed text-gray-300">Help run events, create content, build our technology, and support GT Esports Organization behind the scenes. Explore our departments and leadership application status below.</p>
           </div>
           <RecruitmentBanner />
         </div>
