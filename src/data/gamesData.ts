@@ -45,7 +45,6 @@ export const games: Record<string, GameData> = {
     pageLink: "link",
     discordLink: "https://discord.com/invite/XRCVn9zDU3",
     description: "League of Legends is a 5v5 strategy game where teams battle across Summoner’s Rift using unique champions to destroy the enemy Nexus.",
-    highlightLink: "https://www.youtube.com/embed/KtrVy2KLzIo?si=1JaYZlfXvI8EAXbh",
   },
   "Teamfight Tactics": {
     image: tft,
