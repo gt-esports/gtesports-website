@@ -3,9 +3,11 @@
 
 import { useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
-import { faqs } from "../data/faqData";
+import { useSiteContent } from "../hooks/useSiteContent";
+import ContentText from './ContentText';
 
 function FAQ() {
+  const faqs = useSiteContent('faq');
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const handleToggle = (index: number) => {
@@ -16,12 +18,15 @@ function FAQ() {
     <div className="mx-auto w-full space-y-4">
       {faqs.map((faq, index) => (
         <div
-          key={index}
+          key={faq.id}
           className={`rounded-lg border border-gray-700 bg-gray-800 p-4 transition-all duration-200 ease-in-out ${
             openIndex === index ? "bg-opacity-80" : "bg-opacity-60"
           }`}
         >
           <button
+            type="button"
+            aria-expanded={openIndex === index}
+            aria-controls={`faq-${faq.id}`}
             onClick={() => handleToggle(index)}
             className="flex w-full items-center justify-between text-left font-semibold text-white focus:outline-none"
           >
@@ -33,8 +38,8 @@ function FAQ() {
             />
           </button>
           {openIndex === index && (
-            <p className="mt-4 select-text text-start leading-relaxed text-gray-200">
-              {faq.answer}
+            <p id={`faq-${faq.id}`} className="mt-4 whitespace-pre-line select-text text-start leading-relaxed text-gray-200">
+              <ContentText text={faq.answer} />
             </p>
           )}
         </div>

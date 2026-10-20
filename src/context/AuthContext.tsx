@@ -14,11 +14,16 @@ interface Profile {
   created_at: string;
 }
 
+type UserRole = "member" | "admin";
+
 interface AuthContextType {
   user: User | null;
   session: Session | null;
   profile: Profile | null;
   loading: boolean;
+  role: UserRole | null;
+  isAdmin: boolean;
+  authorizationError: string | null;
   signUp: (
     email: string,
     password: string,
@@ -28,6 +33,7 @@ interface AuthContextType {
     email: string,
     password: string
   ) => Promise<{ error: string | null }>;
+  signInWithDiscord: () => Promise<{ error: string | null }>;
   signOut: () => Promise<void>;
 }
 
@@ -38,7 +44,7 @@ async function fetchProfile(userId: string): Promise<Profile | null> {
     .from("profiles")
     .select("*")
     .eq("id", userId)
-    .single();
+    .single<Profile>();
 
   if (error) {
     console.error("Error fetching profile:", error.message);
@@ -54,37 +60,69 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [profile, setProfile] = useState<Profile | null>(null);
   const [loading, setLoading] = useState(true);
 
+  const [role, setRole] = useState<UserRole | null>(null);
+  const [authorizationError, setAuthorizationError] = useState<string | null>(null);
+
   useEffect(() => {
-    // Get the initial session
-    supabase.auth.getSession().then(({ data: { session: currentSession } }) => {
-      setSession(currentSession);
-      setUser(currentSession?.user ?? null);
+    let active = true;
+    let revision = 0;
 
-      if (currentSession?.user) {
-        fetchProfile(currentSession.user.id).then(setProfile);
-      }
-
-      setLoading(false);
-    });
-
-    // Listen for auth state changes
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange(async (_event, newSession) => {
+    const loadSession = async (newSession: Session | null) => {
+      const request = ++revision;
       setSession(newSession);
       setUser(newSession?.user ?? null);
+      setProfile(null);
+      setRole(null);
+      setAuthorizationError(null);
+      setLoading(true);
 
-      if (newSession?.user) {
-        const userProfile = await fetchProfile(newSession.user.id);
-        setProfile(userProfile);
-      } else {
-        setProfile(null);
+      try {
+        if (newSession?.user) {
+          const [userProfile, result] = await Promise.all([
+            fetchProfile(newSession.user.id),
+            supabase.from("user_roles").select("role")
+              .eq("user_id", newSession.user.id).maybeSingle(),
+          ]);
+          // Discard requests from a previous account, sign-out, or unmounted provider.
+          if (!active || request !== revision) return;
+          setProfile(userProfile);
+          if (result.error) throw result.error;
+          const value: unknown = result.data?.role;
+          if (value !== undefined && value !== "member" && value !== "admin") {
+            throw new Error("Unknown user role");
+          }
+          // No explicit assignment means ordinary member access.
+          setRole(value === "admin" ? "admin" : "member");
+        }
+      } catch (error) {
+        if (!active || request !== revision) return;
+        console.error("Unable to load account permissions:", error);
+        setRole(null);
+        setAuthorizationError("Unable to verify your permissions. Please reload and try again.");
+      } finally {
+        if (active && request === revision) setLoading(false);
       }
+    };
 
-      setLoading(false);
-    });
+    // INITIAL_SESSION handles startup. Keep the callback synchronous and defer
+    // database calls until the auth callback has released its internal lock.
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (_event, newSession) => {
+        const eventRevision = ++revision;
+        setSession(newSession);
+        setUser(newSession?.user ?? null);
+        setProfile(null);
+        setRole(null);
+        setLoading(true);
+        window.setTimeout(() => {
+          if (active && eventRevision === revision) void loadSession(newSession);
+        }, 0);
+      }
+    );
 
     return () => {
+      active = false;
+      ++revision;
       subscription.unsubscribe();
     };
   }, []);
@@ -128,14 +166,26 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return { error: null };
   };
 
+  const signInWithDiscord = async (): Promise<{ error: string | null }> => {
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: "discord",
+      options: {
+        redirectTo: `${window.location.origin}/auth/callback`,
+      },
+    });
+    return { error: error?.message ?? null };
+  };
+
   const signOut = async () => {
-    await supabase.auth.signOut();
+    const { error } = await supabase.auth.signOut();
+    if (error) throw error;
+    setRole(null);
     setProfile(null);
   };
 
   return (
     <AuthContext.Provider
-      value={{ user, session, profile, loading, signUp, signIn, signOut }}
+      value={{ user, session, profile, loading, role, isAdmin: !loading && role === "admin", authorizationError, signUp, signIn, signInWithDiscord, signOut }}
     >
       {children}
     </AuthContext.Provider>

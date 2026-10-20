@@ -8,10 +8,10 @@ function RecruitmentForm() {
     <section id="apply" className="w-full scroll-mt-24 px-4 pb-20">
       <div className="container mx-auto max-w-2xl rounded-3xl border border-white/10 bg-white/5 p-8 md:p-12">
         <h2 className="mb-2 font-outfit text-3xl font-bold uppercase text-white">
-          Application
+          Leadership Application
         </h2>
         <p className="mb-8 font-inter text-sm text-gray-400">
-          Applications will open here when recruitment begins.
+          Leadership and department applications will open here when the next recruitment cycle begins.
         </p>
         <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
           <div className="flex flex-col gap-4 sm:flex-row">
