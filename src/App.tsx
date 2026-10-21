@@ -15,6 +15,7 @@ import Admin from "./pages/Admin";
 import AdminAccessPage from "./pages/AdminAccess";
 import MarketingContactsPage from "./pages/MarketingContacts";
 import RequireAdmin from "./components/RequireAdmin";
+import NewsArticle from "./pages/NewsArticle";
 
 // Analytics
 import { Analytics } from "@vercel/analytics/react";
@@ -31,6 +32,7 @@ function App() {
           <Route path="/join-us" element={<Recruitment />} />
           <Route path="/recruitment" element={<Navigate to="/join-us" replace />} />
           <Route path="/news" element={<News />} />
+          <Route path="/news/:slug" element={<NewsArticle />} />
           <Route path="/about" element={<About />} />
           <Route path="/teams" element={<Teams />} />
           <Route path="/leadership" element={<OurTeam />} />
