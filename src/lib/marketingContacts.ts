@@ -1,10 +1,12 @@
 import { supabase } from './supabase';
 import { normalizeContact, type ContactInput, type MarketingContact } from '../data/marketingContacts';
 
-function requestError(error: { code?: string }, fallback: string): Error {
+function requestError(error: { code?: string; message?: string }, fallback: string): Error {
   if (error.code === '23505') return new Error('A contact with this email already exists. Search for it to edit the existing record.');
   if (error.code === '42501') return new Error('Your admin access could not be verified. Reload the page and try again.');
   if (error.code === '42P01' || error.code === 'PGRST205') return new Error('Contact storage is not available yet. Apply the marketing contacts migration and retry.');
+  if (error.code === 'PGRST202' || error.code === '42883') return new Error('Newsletter signup is not available yet. Apply the subscribe_newsletter function and retry.');
+  if (error.code === '22023' && error.message) return new Error(error.message);
   return new Error(fallback);
 }
 
@@ -43,4 +45,15 @@ export async function importContacts(contacts: ContactInput[]): Promise<number> 
     .upsert(contacts.map(normalizeContact), { onConflict: 'email', ignoreDuplicates: true }).select('id');
   if (error) throw requestError(error, 'Import failed. No contacts were imported. Please try again.');
   return data.length;
+}
+
+export async function subscribeNewsletter(email: string, name: string): Promise<void> {
+  const subscriber_email = email.trim();
+  const subscriber_name = name.trim();
+  if (!subscriber_email || subscriber_email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(subscriber_email)) {
+    throw new Error('Enter a valid email address.');
+  }
+  if (subscriber_name.length > 200) throw new Error('Name must be at most 200 characters.');
+  const { error } = await supabase.rpc('subscribe_newsletter', { subscriber_email, subscriber_name });
+  if (error) throw requestError(error, 'Unable to subscribe. Please try again.');
 }
