@@ -1,80 +1,96 @@
-"use client";
-
 import type React from "react";
-import { useRef } from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { subscribeNewsletter } from "../lib/marketingContacts";
+
+const inputClass =
+  "w-full rounded-lg border border-white/15 bg-deep-space/80 px-4 py-3 text-white placeholder:text-gray-500 focus:border-tech-gold focus:outline-none focus:ring-1 focus:ring-tech-gold";
 
 const SubscribeForm: React.FC = () => {
-  const formRef = useRef<HTMLFormElement>(null);
-  const subscribe = (e: React.FormEvent) => {
-    e.preventDefault();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState("");
 
-    if (!formRef.current) return;
+  const subscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (saving) return;
+    setSaving(true);
+    setError("");
+    try {
+      await subscribeNewsletter(email, name);
+      setSubmitted(true);
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : "Unable to subscribe. Please try again.");
+    } finally {
+      setSaving(false);
+    }
   };
 
   return (
-    <FormOuter>
-      <SubscribeInner formRef={formRef} subscribe={subscribe} />
-    </FormOuter>
-  );
-};
+    <div className="w-full rounded-lg border border-white/10 bg-black/40 px-6 py-10 backdrop-blur-sm sm:px-10">
+      <div className="mx-auto max-w-xl">
+        <p className="mb-8 text-center font-quicksand text-lg text-gray-300">
+          Join our mailing list for matches, events, and recruitment updates.
+        </p>
 
-const SubscribeInner = ({formRef, subscribe} : {formRef: React.RefObject<HTMLFormElement>, subscribe: (e: React.FormEvent) => void}) => {
-  return (
-    <div className="relative w-full overflow-hidden rounded-lg bg-gradient-to-b from-navy-blue to-tech-gold shadow-xl">
-      {/* Main content container with improved mobile layout */}
-      <div className="flex w-full flex-col p-6 sm:p-8 md:flex-row md:gap-8">
-        {/* Form Section - Full width on mobile */}
-        <div className="w-full font-quicksand">
-          <h2 className="mb-6 text-2xl font-bold text-white">Subscribe to our Email Newsletter</h2>
-          <form
-            ref={formRef}
-            onSubmit={subscribe}
-            className="space-y-4 text-white"
-          >
-            <div className="flex w-full gap-4">
+        {submitted ? (
+          <p className="text-center font-quicksand text-lg text-tech-gold">
+            Thanks for subscribing{name.trim() ? `, ${name.trim()}` : ""}!
+          </p>
+        ) : (
+          <form onSubmit={subscribe} className="space-y-4 font-quicksand">
+            <div>
+              <label htmlFor="newsletter-name" className="mb-2 block text-sm font-medium text-gray-300">
+                Name
+              </label>
               <input
-              type="text"
-              name="first-name"
-              placeholder="Enter your first name"
-              className="w-full rounded-md border-navy-blue bg-navy-blue p-3 focus:outline-none focus:ring-2 focus:ring-yellow-400"
-              required
-              />
-              <input
+                id="newsletter-name"
                 type="text"
-                name="last-name"
-                placeholder="Enter your last name"
-                className="w-full rounded-md border-navy-blue bg-navy-blue p-3 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                name="name"
+                autoComplete="name"
+                placeholder="Your name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className={inputClass}
                 required
+                maxLength={200}
+                disabled={saving}
               />
             </div>
-            <input
-              type="email"
-              name="email"
-              placeholder="Enter your email address"
-              className="w-full rounded-md border-navy-blue bg-navy-blue p-3 focus:outline-none focus:ring-2 focus:ring-yellow-400"
-              required
-            />
-            <p className="text-gray-400 text-sm">
-              By filling out this form, you agree to the terms & conditions in our <Link to="/privacy">Privacy Form</Link>
-            </p>
+            <div>
+              <label htmlFor="newsletter-email" className="mb-2 block text-sm font-medium text-gray-300">
+                Email
+              </label>
+              <input
+                id="newsletter-email"
+                type="email"
+                name="email"
+                autoComplete="email"
+                placeholder="you@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className={inputClass}
+                required
+                maxLength={254}
+                disabled={saving}
+              />
+            </div>
+            {error && (
+              <p role="alert" className="text-sm text-red-400">
+                {error}
+              </p>
+            )}
             <button
               type="submit"
-              className="w-full rounded-md bg-tech-gold py-3 font-bold text-white shadow-md transition-colors hover:bg-tech-gold/[0.7] focus:outline-none"
+              disabled={saving}
+              className="mt-2 w-full rounded-full bg-tech-gold py-3 font-bold uppercase tracking-wide text-deep-space shadow-lg transition-all duration-300 hover:bg-yellow-500 hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-50"
             >
-              Subscribe
+              {saving ? "Subscribing..." : "Subscribe"}
             </button>
           </form>
-        </div>
+        )}
       </div>
-    </div>
-  );
-};
-
-const FormOuter: React.FC<React.PropsWithChildren> = ({ children }) => {
-  return (
-    <div className="flex w-full items-center justify-center px-4 sm:px-0">
-      {children}
     </div>
   );
 };
