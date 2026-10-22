@@ -109,7 +109,7 @@ export async function searchNewsByTitle(term: string, limit?: number): Promise<N
     return data ?? [];
 }
 
-export async function fetchArticleById(id: number): Promise<NewsArticle | null> {
+export async function fetchArticleById(id: string): Promise<NewsArticle | null> {
     const response = await supabase
         .from('news_posts')
         .select('*')

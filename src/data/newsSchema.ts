@@ -1,5 +1,5 @@
 export interface NewsArticle {
-    id: number,
+    id: string,
     title: string,
     slug: string,
     excerpt: string,
@@ -13,7 +13,7 @@ export interface NewsArticle {
     revision?: number,
     created_at: string,
     updated_at: string,
-    published_at: string
+    published_at: string | null
 }
 
 export type Status = 'Draft' | 'Review' | 'Published' | 'Archived'
