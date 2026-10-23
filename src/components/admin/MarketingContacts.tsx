@@ -27,13 +27,14 @@ export default function MarketingContacts() {
 
   useEffect(() => {
     let active = true;
+    const controller = new AbortController();
     setLoading(true); setLoaded(false); setError('');
-    void fetchContacts().then(data => {
+    void fetchContacts(controller.signal).then(data => {
       if (active) { setContacts(data); setLoaded(true); }
     }).catch((err: unknown) => {
       if (active) { setContacts([]); setError(err instanceof Error ? err.message : 'Unable to load contacts.'); }
     }).finally(() => { if (active) setLoading(false); });
-    return () => { active = false; };
+    return () => { active = false; controller.abort(); };
   }, [reload]);
 
   useEffect(() => {
