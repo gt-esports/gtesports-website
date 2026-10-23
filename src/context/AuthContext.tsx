@@ -7,12 +7,11 @@ import {
 } from "react";
 import { supabase } from "../lib/supabase";
 import type { User, Session } from "@supabase/supabase-js";
+import { ACCESS_DENIED_EVENT, esportsApi } from "../lib/esportsApi";
+import { ApiError, fetchAccount, type Account } from "../lib/esportsApiClient";
+import { createAccountAuthorization } from "../lib/accountAuthorization";
 
-interface Profile {
-  id: string;
-  full_name: string | null;
-  created_at: string;
-}
+type Profile = NonNullable<Account["profile"]>;
 
 type UserRole = "member" | "admin";
 
@@ -39,21 +38,6 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-async function fetchProfile(userId: string): Promise<Profile | null> {
-  const { data, error } = await supabase
-    .from("profiles")
-    .select("*")
-    .eq("id", userId)
-    .single<Profile>();
-
-  if (error) {
-    console.error("Error fetching profile:", error.message);
-    return null;
-  }
-
-  return data;
-}
-
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
@@ -64,66 +48,41 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [authorizationError, setAuthorizationError] = useState<string | null>(null);
 
   useEffect(() => {
-    let active = true;
-    let revision = 0;
-
-    const loadSession = async (newSession: Session | null) => {
-      const request = ++revision;
-      setSession(newSession);
-      setUser(newSession?.user ?? null);
-      setProfile(null);
-      setRole(null);
-      setAuthorizationError(null);
-      setLoading(true);
-
-      try {
-        if (newSession?.user) {
-          const [userProfile, result] = await Promise.all([
-            fetchProfile(newSession.user.id),
-            supabase.from("user_roles").select("role")
-              .eq("user_id", newSession.user.id).maybeSingle(),
-          ]);
-          // Discard requests from a previous account, sign-out, or unmounted provider.
-          if (!active || request !== revision) return;
-          setProfile(userProfile);
-          if (result.error) throw result.error;
-          const value: unknown = result.data?.role;
-          if (value !== undefined && value !== "member" && value !== "admin") {
-            throw new Error("Unknown user role");
-          }
-          // No explicit assignment means ordinary member access.
-          setRole(value === "admin" ? "admin" : "member");
-        }
-      } catch (error) {
-        if (!active || request !== revision) return;
-        console.error("Unable to load account permissions:", error);
-        setRole(null);
-        setAuthorizationError("Unable to verify your permissions. Please reload and try again.");
-      } finally {
-        if (active && request === revision) setLoading(false);
-      }
-    };
-
-    // INITIAL_SESSION handles startup. Keep the callback synchronous and defer
-    // database calls until the auth callback has released its internal lock.
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (_event, newSession) => {
-        const eventRevision = ++revision;
+    const authorization = createAccountAuthorization<Session>({
+      load: (newSession, signal) => fetchAccount(esportsApi, newSession, signal),
+      reset: (newSession) => {
         setSession(newSession);
         setUser(newSession?.user ?? null);
         setProfile(null);
         setRole(null);
+        setAuthorizationError(null);
         setLoading(true);
-        window.setTimeout(() => {
-          if (active && eventRevision === revision) void loadSession(newSession);
-        }, 0);
-      }
+      },
+      authorize: (account) => {
+        setProfile(account.profile);
+        setRole(account.role);
+      },
+      fail: (error) => {
+        setProfile(null);
+        setRole(null);
+        setAuthorizationError(error instanceof ApiError ? error.message : "Unable to verify your permissions. Please reload and try again.");
+      },
+      settle: () => setLoading(false),
+    });
+    const denied = (event: Event) => {
+      if (!(event instanceof CustomEvent)) return;
+      const detail: unknown = event.detail;
+      if (typeof detail !== "object" || detail === null || !("userId" in detail) || typeof detail.userId !== "string") return;
+      authorization.deny(detail.userId, new ApiError("forbidden", "Your access could not be verified. Reload the page or sign in again."));
+    };
+    window.addEventListener(ACCESS_DENIED_EVENT, denied);
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (_event, newSession) => authorization.setSession(newSession)
     );
-
     return () => {
-      active = false;
-      ++revision;
+      authorization.dispose();
       subscription.unsubscribe();
+      window.removeEventListener(ACCESS_DENIED_EVENT, denied);
     };
   }, []);
 
