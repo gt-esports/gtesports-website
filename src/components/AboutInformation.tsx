@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import FAQ from "./FAQ";
 import { useSiteContent } from "../hooks/useSiteContent";
-// import SubscribeForm from "./Form";
+import SubscribeForm from "./Form";
 
 function AboutInformation() {
   const content = useSiteContent("about");
@@ -57,15 +57,7 @@ function AboutInformation() {
           Stay Updated
         </h3>
         <div className="mx-auto max-w-4xl">
-          {/* <SubscribeForm /> */}
-          <div className="flex w-full flex-col items-center justify-center rounded-lg border border-white/10 bg-black/40 px-6 py-12 text-center backdrop-blur-sm">
-            <h4 className="font-bayon text-2xl tracking-wider text-white md:text-3xl">
-              COMING SOON
-            </h4>
-            <p className="mt-2 whitespace-pre-line text-lg text-gray-300">
-              {content.updatesBody}
-            </p>
-          </div>
+          <SubscribeForm />
         </div>
       </div>
     </div>
