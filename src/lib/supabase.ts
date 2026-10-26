@@ -1,13 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
+import { readSupabaseConfiguration } from "./publicConfig";
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-const supabasePublishableKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY
+const { url, publishableKey } = readSupabaseConfiguration(import.meta.env);
 
-if (!supabaseUrl || !supabasePublishableKey) {
-  throw new Error(
-    "Missing Supabase environment variables. " +
-      "Make sure VITE_SUPABASE_URL and VITE_SUPABASE_PUBLISHABLE_KEY are set in your .env file."
-  );
-}
-
-export const supabase = createClient(supabaseUrl, supabasePublishableKey);
+export const supabase = createClient(url, publishableKey);

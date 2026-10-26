@@ -1,42 +1,10 @@
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-  type ReactNode,
-} from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { supabase } from "../lib/supabase";
 import type { User, Session } from "@supabase/supabase-js";
 import { ACCESS_DENIED_EVENT, esportsApi } from "../lib/esportsApi";
-import { ApiError, fetchAccount, type Account } from "../lib/esportsApiClient";
+import { ApiError, fetchAccount } from "../lib/esportsApiClient";
 import { createAccountAuthorization } from "../lib/accountAuthorization";
-
-type Profile = NonNullable<Account["profile"]>;
-
-type UserRole = "member" | "admin";
-
-interface AuthContextType {
-  user: User | null;
-  session: Session | null;
-  profile: Profile | null;
-  loading: boolean;
-  role: UserRole | null;
-  isAdmin: boolean;
-  authorizationError: string | null;
-  signUp: (
-    email: string,
-    password: string,
-    fullName: string
-  ) => Promise<{ error: string | null }>;
-  signIn: (
-    email: string,
-    password: string
-  ) => Promise<{ error: string | null }>;
-  signInWithDiscord: () => Promise<{ error: string | null }>;
-  signOut: () => Promise<void>;
-}
-
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
+import { AuthContext, type Profile, type UserRole } from "./AuthContext";
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
@@ -151,10 +119,3 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   );
 }
 
-export function useAuth(): AuthContextType {
-  const context = useContext(AuthContext);
-  if (context === undefined) {
-    throw new Error("useAuth must be used within an AuthProvider");
-  }
-  return context;
-}

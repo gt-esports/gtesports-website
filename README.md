@@ -59,9 +59,15 @@ VITE_ESPORTS_API_URL=http://127.0.0.1:8000
 The API URL must use HTTPS, except that HTTP is allowed for localhost,
 127.0.0.1, or ::1. An optional base path is supported; credentials, query
 parameters, and fragments are rejected. Never put a service-role key or other
-secret in a `VITE_*` variable. Missing or invalid API configuration leaves
-permissions and private contacts unavailable. Vite reads these settings at
-startup/build time; restart or rebuild after changing them.
+secret in a `VITE_*` variable. The Supabase key must be a
+[`sb_publishable_...` or legacy `anon` key](https://supabase.com/docs/guides/getting-started/api-keys).
+Secret, service-role, and user-session keys are rejected. This local check
+validates the key type, not whether the key is active or belongs to the URL.
+Missing or invalid configuration now fails the production build before assets
+are emitted, with variable names in the error and no configuration values.
+During local development, missing API configuration leaves permissions and
+private contacts unavailable. Vite reads these settings at startup/build time;
+restart or rebuild after changing them.
 
 Start APIservice separately with its documented main-site Supabase settings
 and allow the exact frontend origin in its CORS configuration. Run the frontend
@@ -72,8 +78,10 @@ account or database:
 
 ```bash
 npm ci
+npm run lint
 npm run test:contacts
 npm run test:api
+npm run test:config
 node --test tests/*.test.mjs
 npm run build
 ```
@@ -82,13 +90,14 @@ The tests cover identity races, sign-out and unmount, access revocation,
 configuration failures, fresh tokens, pagination beyond 500 contacts,
 optimistic revisions, malformed responses, cancellation, and uncertain writes.
 
-`.github/workflows/checks.yml` runs all Node test suites and the production
-build on pull requests and pushes to `main`, using public placeholders and no
-live database access. The repository-wide `npm run lint` currently has six
-pre-existing errors in `FAQ.tsx`, `Form.tsx`, and `lib/supabase.ts`, plus the
-existing `AuthContext.tsx` fast-refresh export warning. Targeted lint of this
-change has no errors and retains only that warning. These unrelated baseline
-issues are not suppressed or included in the new CI gate.
+`.github/workflows/checks.yml` runs repository-wide lint, all Node test suites,
+and the production build on pull requests and pushes to `main`. The build uses
+public fixtures and makes no live database requests. The configuration tests
+also invoke the actual Vite build configuration in an isolated directory to
+check missing variables, unsafe URLs, and privileged keys without loading a
+developer's environment files. AuthProvider is separated from the shared
+context and hook so React Fast Refresh and the zero-warning lint gate remain
+compatible.
 
 Deployment remains a separate stage. Review the paired APIservice PR, prepare
 its main-site configuration and allowed origins, deploy and verify the API in
@@ -98,6 +107,15 @@ preview before production rollout. Keep this PR unmerged until the API is
 available and the required review is complete. No deployment or merge is
 performed by this implementation. The existing deployment workflow runs on
 pushes to `main`.
+
+Preview and production hosting environments must each define all three
+variables in `.env.example`; they do not inherit local `.env.local` settings.
+Set the preview's API URL to the deployed staging API, allow the exact preview
+origin in API CORS, and include its `/auth/callback` URL in Supabase's redirect
+allowlist. Rebuild the preview after updating these values. A hosting build
+that reports a required variable is intentionally blocked by the configuration
+gate; a green fixture-based CI build does not establish deployed API access.
+Do not substitute the CI fixtures for real hosting configuration.
 
 Please use the [Project Board](https://github.com/orgs/gt-esports/projects/1/views/1) to see what needs to be done and in general follow the Figma below. Anyone can assign/create any issues just make sure @longxiangchen reviews any pull request before merging.
 
