@@ -236,3 +236,19 @@ Existing advisor remediation: [function search path](https://supabase.com/docs/g
 [anonymous function execution](https://supabase.com/docs/guides/database/database-linter?lint=0028_anon_security_definer_function_executable),
 [authenticated function execution](https://supabase.com/docs/guides/database/database-linter?lint=0029_authenticated_security_definer_function_executable),
 and [leaked-password protection](https://supabase.com/docs/guides/auth/password-security#password-strength-and-leaked-password-protection).
+
+## Central API staging prerequisite
+
+Apply `migrations/20261026000100_grant_profile_reads.sql` after the existing
+profile migration when preparing the central API integration. It explicitly
+grants profile reads to the `authenticated` database role. It preserves the
+existing row-level policy that permits only the user's own profile, and gives
+no new permission to anonymous users. Older projects often already have this
+grant; the migration is safe to reapply. New projects must not depend on legacy
+Supabase default table grants.
+
+The APIservice PR's disposable database integration suite runs the profile,
+admin-role, contact and group migrations plus this grant against local GoTrue,
+PostgreSQL and PostgREST. It also runs the existing admin-authorization and
+marketing-contact SQL checks. These tests do not apply migrations or create
+accounts in the hosted Supabase project.

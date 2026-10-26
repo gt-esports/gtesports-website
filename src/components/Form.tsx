@@ -46,7 +46,7 @@ const SubscribeForm: React.FC = () => {
     <FormOuter>
       <SubscribeInner
         formRef={formRef}
-        subscribe={subscribe}
+        subscribe={(event) => { void subscribe(event); }}
         submitting={submitting}
         agreed={agreed}
         setAgreed={setAgreed}

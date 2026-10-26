@@ -8,6 +8,8 @@
     "build": "tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "test:contacts": "node --test tests/marketingContacts.test.mjs",
+    "test:api": "node --test tests/esportsApi.test.mjs tests/marketingContactsApi.test.mjs",
+    "test:config": "node --test tests/publicConfig.test.mjs",
     "test:headshots": "node --test tests/headshots.test.mjs",
     "preview": "vite preview"
   },
