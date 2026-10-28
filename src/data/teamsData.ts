@@ -1,158 +1,241 @@
 import type { ProfileCardProps } from "../types";
+const djFrattHeadshot = "/headshots/dj-fratt.webp";
+const kevinHu = "/headshots/kevinHu.webp";
+const benEdmonds = "/headshots/benEdmonds.webp";
+const matasG = "/headshots/matasG.webp";
+const kevinZ = "/headshots/kevinZ.webp";
+const zachG = "/headshots/zachG.webp";
 
 export const executives: ProfileCardProps[] = [
   {
-    image: "",
+    image: djFrattHeadshot,
     name: "DJ Fratt",
     position: "President",
     linkedinUrl: "https://www.linkedin.com/in/dj-fratt/",
   },
   {
     image: "",
-    name: "William S.",
+    name: "Alec Dempsey",
     position: "Vice President",
-    linkedinUrl: "",
+    linkedinUrl: "https://www.linkedin.com/in/alecdempsey/",
   },
   {
-    image: "",
-    name: "Jimmy N.",
-    position: "Finance Director",
-    linkedinUrl: "",
-  },
-  {
-    image: "",
-    name: "Kevin H.",
+    image: kevinHu,
+    name: "Kevin Hu",
     position: "Director of Innovation & Development",
     linkedinUrl: "https://www.linkedin.com/in/sijunkevinhu/",
   },
   {
+    image: kevinZ,
+    name: "Kevin Xiang Zhang",
+    position: "Finance Director",
+    linkedinUrl: "https://www.linkedin.com/in/kevin-x-zhang",
+  },
+  {
     image: "",
-    name: "Justin W.",
+    name: "Anthea Chu",
     position: "Marketing Director",
-    linkedinUrl: "https://www.linkedin.com/in/justin-b-williams/",
+    linkedinUrl: "https://www.linkedin.com/in/anthea-chu-639390333/",
   },
   {
-    image: "",
-    name: "Anna N.",
-    position: "Director of Events",
-    linkedinUrl: "",
-  },
-  {
-    image: "",
-    name: "Ben E.",
-    position: "Competitive Director",
+    image: benEdmonds,
+    name: "Ben Edmonds",
+    position: "Competition Director",
     linkedinUrl: "https://www.linkedin.com/in/benjamin-edmonds-2912ba20a/",
   },
   {
-    image: "",
-    name: "Matas G.",
-    position: "Assistant Director of Events and Productions",
-    linkedinUrl: "",
+    image: matasG,
+    name: "Matas Gatautis",
+    position: "Director of Events",
+    linkedinUrl: "https://www.linkedin.com/in/matas-gatautis-2a4bb12b9/",
   },
   {
     image: "",
-    name: "Elijah R.",
+    name: "Nathan Sales",
+    position: "Associate Vice President",
+    linkedinUrl: "https://www.linkedin.com/in/nathan-s-1130822b6/",
+  },
+  {
+    image: zachG,
+    name: "Zach Gonzalez",
+    position: "Associate Competition Director",
+    linkedinUrl: "www.linkedin.com/in/zach-gonzalez-598a0343b",
+  },
+  {
+    image: "",
+    name: "TBD",
     position: "Production Director",
-    linkedinUrl: "https://www.linkedin.com/in/elijahrabinovich720/",
+    linkedinUrl: "",
   },
 ];
 
 export const development: ProfileCardProps[] = [
   {
     image: "",
-    name: "May L.",
-    position: "Software Developer",
-    linkedinUrl: "https://www.linkedin.com/in/mei-li-ba800b290/",
+    name: "Siddharth Palanivel",
+    position: "Development Lead",
+    linkedinUrl: "https://www.linkedin.com/in/siddhu-palanivel/",
   },
   {
     image: "",
-    name: "Wilson G.",
+    name: "Nashant Das",
     position: "Software Developer",
-    linkedinUrl: "https://www.linkedin.com/in/gaowilson81/",
+    linkedinUrl: "https://www.linkedin.com/in/nishantdas05/",
   },
   {
     image: "",
-    name: "Ethan L.",
-    position: "Software Developer",
-    linkedinUrl: "https://www.linkedin.com/in/ethan-loo-73a1b0236/",
-  },
-  {
-    image: "",
-    name: "Sneh P.",
+    name: "Sneh Patel",
     position: "Software Developer",
     linkedinUrl: "https://www.linkedin.com/in/sneh-patel-b73162244/"
   },
   {
     image: "",
-    name: "Sid P.",
-    position: "Software Developer",
-    linkedinUrl: "https://www.linkedin.com/in/siddhu-palanivel/",
-  },
-  {
-    image: "",
-    name: "Evan T.",
+    name: "Evan Thomas",
     position: "Software Developer",
     linkedinUrl: "https://www.linkedin.com/in/evan-thomas-68b93a247/",
   },
   {
-    name: "Nishant D.",
+    image: "",
+    name: "Cardin Ho",
     position: "Software Developer",
-    linkedinUrl: "https://www.linkedin.com/in/nishantdas05",
-  },
-  {
-    name: "Kj K.",
-    position: "Software Developer",
-    linkedinUrl: "https://www.linkedin.com/in/kjkast/",
+    linkedinUrl: "",
   },
   {
     image: "",
-    name: "Yuang Z.",
+    name: "Aileen Fang",
     position: "Software Developer",
-    linkedinUrl: "https://www.linkedin.com/in/yuang-zhang-7a5322359/",
+    linkedinUrl: "",
   },
+  {
+    image: "",
+    name: "Lijie Liu",
+    position: "Software Developer",
+    linkedinUrl: "",
+  },
+  {
+    image: "",
+    name: "Joey Valesquez",
+    position: "Software Developer",
+    linkedinUrl: "",
+  }
 ];
 
 export const creative: ProfileCardProps[] = [
   {
     image: "",
-    name: "Anthea C.",
-    position: "Creative Team",
-    linkedinUrl: "https://www.linkedin.com/in/anthea-chu-639390333/",
-  },
-  {
-    image: "",
-    name: "Justin W.",
-    position: "Creative Team",
-    linkedinUrl: "https://www.linkedin.com/in/justin-b-williams",
-  },
-  {
-    image: "",
-    name: "Oluteniola O.",
-    position: "Creative Team",
+    name: "Oluteniola Oshin",
+    position: "Creative Staff",
     linkedinUrl: "https://www.linkedin.com/in/oluteniola-oshin/",
   },
   {
     image: "",
-    name: "Jalana S.",
-    position: "Creative Team",
+    name: "Jalana Smith",
+    position: "Creative Staff",
     linkedinUrl: "https://www.linkedin.com/in/jalanasmith/",
   },
   {
     image: "",
-    name: "Stefani M.",
-    position: "Creative Team",
-    linkedinUrl: "https://www.linkedin.com/in/stefani-mejia-08bb64297/",
+    name: "Spencer Schenke",
+    position: "Creative Staff",
+    linkedinUrl: "",
   },
   {
     image: "",
-    name: "Pranay A.",
-    position: "Creative Team",
+    name: "Pranay Ajjarapu",
+    position: "Creative Staff",
     linkedinUrl: "https://www.linkedin.com/in/pranay-ajjarapu/",
   },
   {
     image: "",
-    name: "Ara L.",
-    position: "Creative Team",
-    linkedinUrl: "https://www.linkedin.com/in/ara-lee-459707210/",
+    name: "Joy Zheng",
+    position: "Creative Staff",
+    linkedinUrl: "",
+  },
+  {
+    image: "",
+    name: "Lyons Edge",
+    position: "Creative Staff",
+    linkedinUrl: "",
+  },
+  {
+    image: "",
+    name: "Anna Yoon",
+    position: "Creative Staff",
+    linkedinUrl: "",
+  },
+  {
+    image: "",
+    name: "Aileen Fang",
+    position: "Creative Staff",
+    linkedinUrl: "",
+  },
+  {
+    image: "",
+    name: "Shiv Luthra",
+    position: "Creative Staff",
+    linkedinUrl: "",
+  },
+  {
+    image: "",
+    name: "Mckennan Pannell",
+    position: "Creative Staff",
+    linkedinUrl: "",
+  },
+  {
+    image: "",
+    name: "Christine Kim",
+    position: "Creative Staff",
+    linkedinUrl: "",
   }
-]
+];
+
+export const events: ProfileCardProps[] = [
+  {
+    image: "",
+    name: "Wynter Williams",
+    position: "Events Staff",
+    linkedinUrl: "",
+  },
+  {
+    image: "",
+    name: "Jingyu Chang",
+    position: "Events Staff",
+    linkedinUrl: "",
+  },
+  {
+    image: "",
+    name: "Benedictus Bastian",
+    position: "Events Staff",
+    linkedinUrl: "",
+  }
+];
+
+export const finance: ProfileCardProps[] = [
+  {
+    image: "",
+    name: "Chelsea Cox",
+    position: "Finance Staff",
+    linkedinUrl: "",
+  },
+  {
+    image: "",
+    name: "Max Snyder",
+    position: "Finance Staff",
+    linkedinUrl: "",
+  }
+];
+
+export const production: ProfileCardProps[] = [
+  {
+    image: "",
+    name: "Johnathon Bertrand",
+    position: "Production Staff",
+    linkedinUrl: "",
+  },
+  {
+    image: "",
+    name: "Wynter Williams",
+    position: "Production Staff",
+    linkedinUrl: "",
+  }
+];

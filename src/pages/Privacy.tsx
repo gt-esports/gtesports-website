@@ -1,14 +1,14 @@
 function Privacy() {
   return (
-    <div className="flex flex-col min-h-screen w-full px-4 pt-[--navbar-height] sm:px-6 md:px-12 lg:px-16 xl:px-20 justify-center">
-      <h1 className="font-bayon text-tech-gold text-3xl">Privacy Policy
+    <div className="flex flex-col min-h-screen w-full px-4 py-12 sm:px-6 md:px-12 lg:px-16 xl:px-20">
+      <h1 className="font-outfit text-tech-gold text-3xl">Privacy Policy
         <br />
         <span className='text-white text-lg'>Last Updated On 17-Nov-2025</span>
         <br />
         <span className='text-white text-lg'>Effective Date 17-Nov-2025</span>
       </h1>
 
-      <p className="font-quicksand text-white">
+      <p className="font-inter text-white">
           This Privacy Policy describes the policies of
 
           Georgia Tech Esports,
@@ -29,7 +29,7 @@ function Privacy() {
           please do not access or use the Service.
       </p>
 
-      <p className="font-quicksand text-white">
+      <p className="font-inter text-white">
           We may modify this Privacy Policy at any time without
           any prior notice to you and will post the revised
           Privacy Policy on the Service. The revised Policy will
@@ -41,9 +41,9 @@ function Privacy() {
           review this page.
       </p>
 
-      <ol className="font-quicksand text-white space-y-4 py-4">
+      <ol className="font-inter text-white space-y-4 py-4">
           <li>
-              <h2 className="font-bayon text-tech-gold text-xl">
+              <h2 className="font-outfit text-tech-gold text-xl">
                   Your Rights:
               </h2>
               <p>
@@ -63,7 +63,7 @@ function Privacy() {
                   request in accordance with applicable law.
               </p>
 
-              
+
               <p>
                   Do note that if you do not allow us to collect
                   or process the required personal information or
@@ -73,9 +73,9 @@ function Privacy() {
                   was sought.
               </p>
           </li>
-          
+
           <li>
-              <h2 className="font-bayon text-tech-gold text-xl">
+              <h2 className="font-outfit text-tech-gold text-xl">
                   Security:
               </h2>
               <p>
@@ -92,7 +92,7 @@ function Privacy() {
           </li>
 
           <li>
-              <h2 className="font-bayon text-tech-gold text-xl">
+              <h2 className="font-outfit text-tech-gold text-xl">
                   Third Party Links & Use Of Your Information:
               </h2>
               <p>
@@ -109,9 +109,9 @@ function Privacy() {
                   any third party sites or services.
               </p>
           </li>
-          
+
           <li>
-              <h2 className="font-bayon text-tech-gold text-xl">
+              <h2 className="font-outfit text-tech-gold text-xl">
                   Grievance / Data Protection Officer:
               </h2>
               <p>
