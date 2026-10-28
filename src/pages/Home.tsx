@@ -1,6 +1,6 @@
 import Carousel from "../components/Carousel";
 import HomeAbout from "../components/HomeAbout";
-// import SubscribeForm from "../components/Form";
+import SubscribeForm from "../components/Form";
 
 function Home() {
   return (
@@ -85,18 +85,8 @@ function Home() {
       {/* Community/Newsletter Section */}
       <section className="relative w-full bg-gradient-to-b from-deep-space to-black py-24">
         <div className="container mx-auto px-4">
-          <div className="mx-auto max-w-4xl overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-8 text-center backdrop-blur-md sm:p-16">
-            <h3 className="mb-4 font-outfit text-3xl font-bold text-white sm:text-4xl">
-              STAY CONNECTED
-            </h3>
-            <p className="mb-8 font-inter text-gray-400">
-              Join our mailing list to get the latest updates on matches, events, and recruitment.
-            </p>
-
-            <div className="flex w-full flex-col items-center justify-center rounded-xl border border-tech-gold/20 bg-tech-gold/5 px-6 py-8">
-              <span className="font-outfit text-xl font-bold text-tech-gold">COMING SOON</span>
-              <p className="mt-2 text-sm text-gray-500">Newsletter integration is currently under maintenance.</p>
-            </div>
+          <div className="mx-auto max-w-5xl">
+            <SubscribeForm />
           </div>
         </div>
       </section>

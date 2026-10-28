@@ -1,11 +1,10 @@
-"use client";
-
 import type React from "react";
-import { useRef, useState } from "react";
+import { useId, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { supabase } from "../lib/supabase";
 
-const SubscribeForm: React.FC = () => {
+function SubscribeForm() {
+  const id = useId();
   const formRef = useRef<HTMLFormElement>(null);
   const [submitting, setSubmitting] = useState(false);
   const [agreed, setAgreed] = useState(false);
@@ -25,131 +24,61 @@ const SubscribeForm: React.FC = () => {
     setMessage(null);
     setFailed(false);
 
-    const { error } = await supabase.rpc("subscribe_newsletter", {
-      subscriber_email: email,
-      subscriber_name: `${first} ${last}`,
-    });
+    try {
+      const { error } = await supabase.rpc("subscribe_newsletter", {
+        subscriber_email: email,
+        subscriber_name: `${first} ${last}`,
+      });
+      if (error) throw error;
 
-    setSubmitting(false);
-    if (error) {
+      formRef.current?.reset();
+      setAgreed(false);
+      setMessage("You're subscribed. Thanks for signing up.");
+    } catch {
       setFailed(true);
       setMessage("Unable to subscribe right now. Please try again.");
-      return;
+    } finally {
+      setSubmitting(false);
     }
-
-    formRef.current.reset();
-    setAgreed(false);
-    setMessage("You're subscribed. Thanks for signing up.");
   };
 
-  return (
-    <FormOuter>
-      <SubscribeInner
-        formRef={formRef}
-        subscribe={subscribe}
-        submitting={submitting}
-        agreed={agreed}
-        setAgreed={setAgreed}
-        message={message}
-        failed={failed}
-      />
-    </FormOuter>
-  );
-};
+  const inputClass = "mt-2 w-full min-w-0 rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-900 placeholder:text-slate-500 disabled:cursor-not-allowed disabled:opacity-70 focus:outline-none focus:ring-2 focus:ring-tech-gold";
 
-const inputClass =
-  "w-full rounded-md border border-white/20 bg-deep-space p-3 text-white placeholder-gray-400 caret-white focus:outline-none focus:ring-2 focus:ring-yellow-400";
-
-const SubscribeInner = ({
-  formRef,
-  subscribe,
-  submitting,
-  agreed,
-  setAgreed,
-  message,
-  failed,
-}: {
-  formRef: React.RefObject<HTMLFormElement>;
-  subscribe: (e: React.FormEvent) => void;
-  submitting: boolean;
-  agreed: boolean;
-  setAgreed: (value: boolean) => void;
-  message: string | null;
-  failed: boolean;
-}) => {
   return (
-    <div className="relative w-full">
-      {/* Main content container with improved mobile layout */}
-      <div className="flex w-full flex-col md:flex-row md:gap-8">
-        {/* Form Section - Full width on mobile */}
-        <div className="w-full font-quicksand">
-          <h2 className="mb-6 text-2xl font-bold text-white">Subscribe to our Email Newsletter</h2>
-          <form
-            ref={formRef}
-            onSubmit={subscribe}
-            className="space-y-4 text-white"
-          >
-            <div className="flex w-full gap-4">
-              <input
-              type="text"
-              name="first-name"
-              placeholder="Enter your first name"
-              className={inputClass}
-              required
-              />
-              <input
-                type="text"
-                name="last-name"
-                placeholder="Enter your last name"
-                className={inputClass}
-                required
-              />
-            </div>
-            <input
-              type="email"
-              name="email"
-              placeholder="Enter your email address"
-              className={inputClass}
-              required
-            />
-            <label className="flex items-start gap-3 text-sm text-gray-200">
-              <input
-                type="checkbox"
-                name="agree"
-                checked={agreed}
-                onChange={(event) => setAgreed(event.target.checked)}
-                required
-                className="mt-1 h-4 w-4 shrink-0 accent-tech-gold"
-              />
-              <span>
-                I agree to receive the newsletter and to the terms & conditions in our <Link to="/privacy">Privacy Form</Link>
-              </span>
-            </label>
-            <button
-              type="submit"
-              disabled={!agreed || submitting}
-              className="w-full rounded-md bg-tech-gold py-3 font-bold text-white shadow-md transition-colors hover:bg-tech-gold/[0.7] focus:outline-none disabled:cursor-not-allowed disabled:bg-tech-gold/30 disabled:text-white/50 disabled:hover:bg-tech-gold/30"
-            >
-              {submitting ? "Subscribing..." : "Subscribe"}
-            </button>
-            {message && (
-              <p className={failed ? "text-sm text-red-200" : "text-sm text-white"}>
-                {message}
-              </p>
-            )}
-          </form>
+    <section aria-labelledby={`${id}-title`} className="w-full overflow-hidden rounded-2xl border border-tech-gold bg-slate-100 shadow-[0_16px_60px_rgba(0,0,0,0.3)]">
+      <div className="h-2 bg-tech-gold" />
+      <div className="grid gap-8 p-6 sm:p-10 md:grid-cols-2 md:gap-12">
+        <div>
+          <p className="mb-3 font-outfit text-xs font-bold uppercase tracking-[0.2em] text-slate-600">GT Esports • Stay connected</p>
+          <h2 id={`${id}-title`} className="font-outfit text-3xl font-bold leading-tight text-deep-space sm:text-4xl">Subscribe to our Email Newsletter</h2>
+          <p className="mt-4 font-inter leading-relaxed text-slate-600">Get the latest on matches, community events, and recruitment.</p>
         </div>
+        <form ref={formRef} onSubmit={(event) => { void subscribe(event); }}>
+          <fieldset disabled={submitting} className="min-w-0 space-y-4">
+            <legend className="sr-only">Newsletter signup</legend>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <label className="block text-sm font-semibold text-slate-800" htmlFor={`${id}-first`}>First name
+                <input id={`${id}-first`} type="text" name="first-name" autoComplete="given-name" placeholder="First name" className={inputClass} required />
+              </label>
+              <label className="block text-sm font-semibold text-slate-800" htmlFor={`${id}-last`}>Last name
+                <input id={`${id}-last`} type="text" name="last-name" autoComplete="family-name" placeholder="Last name" className={inputClass} required />
+              </label>
+            </div>
+            <label className="block text-sm font-semibold text-slate-800" htmlFor={`${id}-email`}>Email address
+              <input id={`${id}-email`} type="email" name="email" autoComplete="email" placeholder="you@example.com" className={inputClass} required />
+            </label>
+            <label className="flex items-start gap-3 text-sm text-slate-700">
+              <input type="checkbox" name="agree" checked={agreed} onChange={(event) => setAgreed(event.target.checked)} required className="mt-1 h-4 w-4 shrink-0 accent-tech-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900" />
+              <span>I agree to receive the GT Esports newsletter.</span>
+            </label>
+            <button type="submit" disabled={!agreed || submitting} className="w-full rounded-lg bg-tech-gold px-5 py-3 font-outfit font-bold text-deep-space transition-colors hover:bg-gold-glow focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-slate-900 disabled:cursor-not-allowed disabled:opacity-60">{submitting ? "Subscribing..." : "Subscribe"}</button>
+          </fieldset>
+          {message && <p role={failed ? "alert" : "status"} className={`mt-4 text-sm ${failed ? "text-red-800" : "text-slate-800"}`}>{message}</p>}
+          <p className="mt-4 text-sm text-slate-600">Read how we handle your information in our <Link to="/privacy" className="rounded-sm font-medium text-slate-900 underline underline-offset-4 hover:text-slate-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-slate-900">Privacy Policy</Link>.</p>
+        </form>
       </div>
-    </div>
+    </section>
   );
-};
-
-const FormOuter: React.FC<React.PropsWithChildren> = ({ children }) => {
-  return (
-    <div className="flex w-full items-center justify-center px-4 sm:px-0">
-      {children}
-    </div>
-  );
-};
+}
 
 export default SubscribeForm;
