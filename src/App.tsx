@@ -9,6 +9,7 @@ import News from "./pages/News";
 import About from "./pages/About";
 import Teams from "./pages/Teams";
 import OurTeam from "./pages/OurTeam";
+import Privacy from "./pages/Privacy";
 import Auth from "./pages/Auth";
 import AuthCallback from "./pages/AuthCallback";
 import Admin from "./pages/Admin";
@@ -31,6 +32,7 @@ function App() {
           <Route path="/join-us" element={<Recruitment />} />
           <Route path="/recruitment" element={<Navigate to="/join-us" replace />} />
           <Route path="/news" element={<News />} />
+          <Route path="/privacy" element={<Privacy />} />
           <Route path="/about" element={<About />} />
           <Route path="/teams" element={<Teams />} />
           <Route path="/leadership" element={<OurTeam />} />

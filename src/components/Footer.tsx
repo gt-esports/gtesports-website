@@ -114,8 +114,11 @@ function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 border-t border-white/10 pt-8 text-center text-sm text-gray-500">
+        <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-center text-sm text-gray-400 sm:flex-row sm:text-left">
           <p>&copy; {new Date().getFullYear()} Georgia Tech Esports Organization. All rights reserved.</p>
+          <Link to="/privacy" className="shrink-0 underline transition-colors hover:text-tech-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-tech-gold">
+            Privacy Policy
+          </Link>
         </div>
       </div>
     </footer>
