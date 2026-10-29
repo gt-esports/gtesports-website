@@ -13,6 +13,28 @@ export interface LeadershipApplicationInput {
   resume_path: string;
 }
 
+export interface LeadershipApplication extends LeadershipApplicationInput {
+  id: string;
+  created_at: string;
+}
+
+function requestError(error: { code?: string }, fallback: string): Error {
+  if (error.code === '42501') return new Error('Your admin access could not be verified. Reload the page and try again.');
+  if (error.code === '42P01' || error.code === 'PGRST205') return new Error('Application storage is not available yet. Please try again later.');
+  return new Error(fallback);
+}
+
+export async function fetchApplications(): Promise<LeadershipApplication[]> {
+  const applications: LeadershipApplication[] = [];
+  for (let offset = 0; ; offset += 500) {
+    const { data, error } = await supabase.from('leadership_applications').select('*')
+      .order('created_at', { ascending: false }).range(offset, offset + 499).returns<LeadershipApplication[]>();
+    if (error) throw requestError(error, 'Unable to load applications. Please try again.');
+    applications.push(...data);
+    if (data.length < 500) return applications;
+  }
+}
+
 export async function submitLeadershipApplication(input: LeadershipApplicationInput): Promise<void> {
   const { error } = await supabase.rpc('submit_leadership_application', {
     first_name: input.first_name.trim(),

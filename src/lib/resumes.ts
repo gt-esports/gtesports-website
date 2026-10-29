@@ -21,3 +21,17 @@ export async function uploadResume(file: File) {
   if (error) throw new Error('Unable to upload the resume. Use a PDF up to 5 MB.');
   return path;
 }
+
+export async function downloadResume(path: string, fileName: string) {
+  const { data, error } = await supabase.storage.from(RESUME_BUCKET).createSignedUrl(path, 60, {
+    download: fileName,
+  });
+  if (error || !data?.signedUrl) throw new Error('Unable to download this resume. Please try again.');
+  const link = document.createElement('a');
+  link.href = data.signedUrl;
+  link.download = fileName;
+  link.rel = 'noreferrer';
+  document.body.append(link);
+  link.click();
+  link.remove();
+}
