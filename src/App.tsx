@@ -16,6 +16,7 @@ import AuthCallback from "./pages/AuthCallback";
 import Admin from "./pages/Admin";
 import AdminAccessPage from "./pages/AdminAccess";
 import MarketingContactsPage from "./pages/MarketingContacts";
+import AdminApplicationsPage from "./pages/AdminApplications";
 import RequireAdmin from "./components/RequireAdmin";
 
 // Analytics
@@ -45,6 +46,7 @@ function App() {
             <Route path="/admin" element={<Admin />}>
               <Route path="access" element={<AdminAccessPage />} />
               <Route path="contacts" element={<MarketingContactsPage />} />
+              <Route path="applications" element={<AdminApplicationsPage />} />
             </Route>
           </Route>
         </Route>
