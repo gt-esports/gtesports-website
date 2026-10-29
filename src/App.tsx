@@ -5,6 +5,7 @@ import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import Games from "./pages/Games";
 import Recruitment from "./pages/Recruitment";
+import Application from "./pages/Application";
 import News from "./pages/News";
 import About from "./pages/About";
 import Teams from "./pages/Teams";
@@ -28,6 +29,7 @@ function App() {
         <Route element={<Layout />}>
           <Route path="/" element={<Navigate to="/home" />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/home/application" element={<Application />} />
           <Route path="/games" element={<Games />} />
           <Route path="/join-us" element={<Recruitment />} />
           <Route path="/recruitment" element={<Navigate to="/join-us" replace />} />
