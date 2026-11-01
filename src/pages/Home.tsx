@@ -83,7 +83,7 @@ function Home() {
       </section>
 
       {/* Community/Newsletter Section */}
-      <section className="relative w-full bg-gradient-to-b from-deep-space to-black py-24">
+      <section id="newsletter" className="relative w-full scroll-mt-20 bg-gradient-to-b from-deep-space to-black py-24">
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-5xl">
             <SubscribeForm />

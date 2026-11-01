@@ -51,9 +51,9 @@ function AboutInformation() {
         </div>
       </div>
 
-      {/* Contact Section */}
-      <div className="w-full px-6 pb-10 lg:px-8">
-        <div className="mx-auto max-w-5xl">
+      {/* Newsletter Section */}
+      <div id="newsletter" className="w-full scroll-mt-28 px-6 pb-10 lg:px-8">
+        <div className="mx-auto max-w-4xl">
           <SubscribeForm />
         </div>
       </div>
