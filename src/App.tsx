@@ -5,6 +5,7 @@ import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import Games from "./pages/Games";
 import Recruitment from "./pages/Recruitment";
+import Application from "./pages/Application";
 import News from "./pages/News";
 import About from "./pages/About";
 import Teams from "./pages/Teams";
@@ -15,6 +16,7 @@ import AuthCallback from "./pages/AuthCallback";
 import Admin from "./pages/Admin";
 import AdminAccessPage from "./pages/AdminAccess";
 import MarketingContactsPage from "./pages/MarketingContacts";
+import AdminApplicationsPage from "./pages/AdminApplications";
 import RequireAdmin from "./components/RequireAdmin";
 
 // Analytics
@@ -28,6 +30,7 @@ function App() {
         <Route element={<Layout />}>
           <Route path="/" element={<Navigate to="/home" />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/home/application" element={<Application />} />
           <Route path="/games" element={<Games />} />
           <Route path="/join-us" element={<Recruitment />} />
           <Route path="/recruitment" element={<Navigate to="/join-us" replace />} />
@@ -43,6 +46,7 @@ function App() {
             <Route path="/admin" element={<Admin />}>
               <Route path="access" element={<AdminAccessPage />} />
               <Route path="contacts" element={<MarketingContactsPage />} />
+              <Route path="applications" element={<AdminApplicationsPage />} />
             </Route>
           </Route>
         </Route>

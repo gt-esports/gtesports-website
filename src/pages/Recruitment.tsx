@@ -2,7 +2,6 @@ import { FaDiscord, FaGamepad, FaTrophy } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import RecruitmentBanner from "../components/RecruitmentBanner";
 import DepartmentGrid from "../components/DepartmentGrid";
-import RecruitmentForm from "../components/RecruitmentForm";
 
 const focusClass = "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tech-gold focus-visible:ring-offset-4 focus-visible:ring-offset-deep-space";
 
@@ -50,7 +49,6 @@ function Recruitment() {
           <RecruitmentBanner />
         </div>
         <DepartmentGrid />
-        <RecruitmentForm />
       </section>
     </div>
   );
