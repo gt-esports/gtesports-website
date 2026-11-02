@@ -12,6 +12,7 @@ export async function fetchAllNewsArticles(): Promise<NewsArticle[]> {
     const { data, error } = await supabase
         .from('news_posts')
         .select('*')
+        .eq('status', 'published')
         .order('published_at', { ascending: false })
         .overrideTypes<NewsArticle[], { merge: false }>();
 
@@ -26,6 +27,7 @@ export async function fetchLimitedNews(limit: number): Promise<NewsArticle[]> {
     const { data, error } = await supabase
         .from('news_posts')
         .select('*')
+        .eq('status', 'published')
         .order('published_at', { ascending: false })
         .limit(limit)
         .overrideTypes<NewsArticle[], { merge: false }>();
@@ -44,6 +46,7 @@ export async function fetchNewsByPage(page: number, pageSize: number): Promise<N
     const { data, error } = await supabase
         .from('news_posts')
         .select('*')
+        .eq('status', 'published')
         .order('published_at', { ascending: false })
         .range(from, to)
         .overrideTypes<NewsArticle[], { merge: false }>();
@@ -59,6 +62,7 @@ export async function fetchNewsByCategory(category: string, limit?: number): Pro
     let query = supabase
         .from('news_posts')
         .select('*')
+        .eq('status', 'published')
         .eq('category', category)
         .order('published_at', { ascending: false });
 
@@ -77,6 +81,7 @@ export async function fetchNewsByAuthor(author: string, limit?: number): Promise
     let query = supabase
         .from('news_posts')
         .select('*')
+        .eq('status', 'published')
         .eq('author', author)
         .order('published_at', { ascending: false });
 
@@ -95,6 +100,7 @@ export async function searchNewsByTitle(term: string, limit?: number): Promise<N
     let query = supabase
         .from('news_posts')
         .select('*')
+        .eq('status', 'published')
         .ilike('title', `%${term}%`)
         .order('published_at', { ascending: false });
 
@@ -113,6 +119,7 @@ export async function fetchArticleById(id: string): Promise<NewsArticle | null> 
     const response = await supabase
         .from('news_posts')
         .select('*')
+        .eq('status', 'published')
         .eq('id', id)
         .maybeSingle();
 
@@ -127,6 +134,7 @@ export async function fetchArticleBySlug(slug: string): Promise<NewsArticle | nu
     const response = await supabase
         .from('news_posts')
         .select('*')
+        .eq('status', 'published')
         .eq('slug', slug)
         .maybeSingle();
 
