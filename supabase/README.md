@@ -33,6 +33,7 @@ supabase db push
 | `20261014020429_add_admin_management.sql` | Adds checked admin listing, grants, and removals for the admin dashboard |
 | `20261014025403_add_marketing_contacts.sql` | Adds private marketing contacts, unique normalized emails, and server-owned revisions |
 | `20261014025827_add_marketing_contact_groups.sql` | Adds Newsletter/Alumni/Both groups and active/unsubscribed/do-not-contact statuses |
+| `20261029213000_add_newsletter_referral_source.sql` | Adds the optional `referral_source` column and recreates `subscribe_newsletter` to accept it |
 
 ## Environment Variables
 
