@@ -1,35 +1,54 @@
-# gtesports-website
+# Georgia Tech Esports Website
 
-This is the repository for the Georgia Tech Esports Organization Website.
+The main website for Georgia Tech Esports, built with React, TypeScript, Tailwind CSS, and Vite. Supabase provides authentication and data storage.
 
-This app is developed using React, Tailwind, and Vite.
+## Run locally
 
-Added functionality with backend server-side logic with Node.js, Express hosted on Render.
-## Quick Setup for Developers
+Install Node.js 22 LTS and npm, then clone the repository and install dependencies:
 
-Clone the repository and run the following command:
-
-```
-npm i
-```
-
-or 
-
-```
-npm install
+```bash
+git clone https://github.com/gt-esports/gtesports-website.git
+cd gtesports-website
+npm ci
 ```
 
+Create a `.env.local` file in the project root with these values:
 
-To run the application, use:
-
+```dotenv
+VITE_SUPABASE_URL=https://your-project-id.supabase.co
+VITE_SUPABASE_PUBLISHABLE_KEY=your-publishable-key-here
 ```
+
+Ask Kevin Hu for the development project URL and publishable key. Both values are required for the app to start. Use only the publishable key in the frontend; never use a service-role or secret key. Keep local environment files out of Git.
+
+Start the development server:
+
+```bash
 npm run dev
 ```
 
-Happy coding! 
+Open the local URL printed in the terminal (usually `http://localhost:5173`). Restart the server after changing environment variables. No separate backend server is needed to start the frontend.
 
-Please use the [Project Board](https://github.com/orgs/gt-esports/projects/1/views/1) to see what needs to be done and in general follow the Figma below. Anyone can assign/create any issues just make sure @longxiangchen reviews any pull request before merging.
+For database migrations, authentication redirects, and admin access setup, see [Supabase setup](supabase/README.md).
 
-Figma: https://www.figma.com/file/lqyGW7bjN0K86VaIV4JyE4/GA-TECH-ESPORTS?type=design&node-id=0%3A1&mode=design&t=91dz9g2kvXODFPip-1
+## Development commands
 
-If you have any suggestions for the Figma feel free to discuss them in the GT Esports Organization administration discord under the development department tab.
+| Command | Purpose |
+| --- | --- |
+| `npm run dev` | Start the local development server |
+| `npm run build` | Type-check and build the site into `dist/` |
+| `npm run preview` | Preview the production build locally after building |
+| `npm run lint` | Run ESLint |
+| `npm test` | Run the automated tests |
+
+## Contributing
+
+Use the [GT Esports Development Trello board](https://trello.com/b/PkcWcga9/gt-esports-development) to find tasks and track progress. Ask Kevin for access if needed. Assign yourself to a card and keep it updated as you work.
+
+Create a branch for your changes, run the relevant checks above, and open a pull request. Request review from [Kevin Hu (@thekevinhu)](https://github.com/thekevinhu) before merging.
+
+Discuss design suggestions and development questions in the development department channel of the GT Esports administration Discord.
+
+## Contact
+
+Contact **Kevin Hu**, Director of Innovation, through the GT Esports administration Discord or [GitHub (@thekevinhu)](https://github.com/thekevinhu) for onboarding, project access, and pull request reviews.
