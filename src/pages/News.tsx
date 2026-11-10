@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { FaArrowRight, FaDiscord, FaRegNewspaper } from "react-icons/fa";
-import { Link } from "react-router-dom";
-import NewsCard from "../components/NewsCard";
+// import { FaArrowRight, FaDiscord, FaRegNewspaper } from "react-icons/fa";
+// import { Link } from "react-router-dom";
+// import NewsCard from "../components/NewsCard";
 import type { Category } from "../data/newsSchema";
-import { NEWS_PAGE_SIZE, useNewsList } from "../hooks/useNews";
+// import { NEWS_PAGE_SIZE, useNewsList } from "../hooks/useNews";
 import { newsCategories } from "../lib/newsDisplay";
 
 type Filter = Category | "All";
@@ -17,11 +17,14 @@ const focusRing =
 
 function News() {
   const [category, setCategory] = useState<Filter>("All");
+  // News fetching is paused until the admin functionality is ready.
+  /*
   const { articles, loading, loadingMore, error, hasMore, loadMore, retry } = useNewsList(category);
 
   // Lead story: the newest featured article on the first page, otherwise the newest article.
   const lead = articles.slice(0, NEWS_PAGE_SIZE).find((article) => article.featured) ?? articles[0];
   const rest = articles.filter((article) => article !== lead);
+  */
 
   return (
     <div className="min-h-screen bg-deep-space pb-12 pt-12 sm:pt-20">
@@ -36,7 +39,8 @@ function News() {
           </p>
         </header>
 
-        <section aria-label="News posts" aria-busy={loading}>
+        {/* <section aria-label="News posts" aria-busy={loading}> */}
+        <section aria-label="News posts">
           <div className="mb-8 flex flex-col gap-3 border-b border-white/10 pb-6 md:flex-row md:items-center md:justify-between md:gap-6">
             <div className="flex flex-wrap gap-2" role="group" aria-label="Filter news by category">
               {filters.map(({ value, label }) => (
@@ -55,11 +59,14 @@ function News() {
                 </button>
               ))}
             </div>
+            {/*
             <p className="shrink-0 text-sm text-gray-400" role="status" aria-live="polite" aria-atomic="true">
               {loading ? "Loading news…" : articles.length > 0 ? `Showing ${articles.length} ${articles.length === 1 ? "post" : "posts"}` : ""}
             </p>
+            */}
           </div>
 
+          {/* News display is paused until the admin functionality is ready.
           {loading ? (
             <div className="space-y-8" aria-hidden="true">
               <div className="h-[360px] animate-pulse rounded-2xl bg-white/[0.04] motion-reduce:animate-none" />
@@ -147,6 +154,13 @@ function News() {
               </div>
             </div>
           )}
+          */}
+
+          <div className="px-6 py-16 text-center sm:py-20">
+            <h2 className="font-outfit text-4xl font-bold text-white sm:text-5xl">
+              Coming soon
+            </h2>
+          </div>
         </section>
       </div>
     </div>
