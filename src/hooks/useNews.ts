@@ -39,6 +39,7 @@ export function useNewsList(category: Category | "All") {
   const loadMore = useCallback(async () => {
     if (category !== "All" || loadingMore || !hasMore) return;
     setLoadingMore(true);
+    setError(null);
     try {
       const next = page + 1;
       const rows = await fetchNewsByPage(next, NEWS_PAGE_SIZE);
