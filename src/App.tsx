@@ -17,6 +17,7 @@ import Admin from "./pages/Admin";
 import AdminAccessPage from "./pages/AdminAccess";
 import MarketingContactsPage from "./pages/MarketingContacts";
 import AdminApplicationsPage from "./pages/AdminApplications";
+import AdminNewsPage from "./pages/AdminNews";
 import RequireAdmin from "./components/RequireAdmin";
 import NewsArticlePage from "./pages/NewsArticle";
 
@@ -49,6 +50,7 @@ function App() {
               <Route path="access" element={<AdminAccessPage />} />
               <Route path="contacts" element={<MarketingContactsPage />} />
               <Route path="applications" element={<AdminApplicationsPage />} />
+              <Route path="news" element={<AdminNewsPage />} />
             </Route>
           </Route>
         </Route>
