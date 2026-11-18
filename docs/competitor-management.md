@@ -13,7 +13,7 @@ Competitor information can be reopened at `/competitors/onboarding`. Players can
 
 ## Install and validate
 
-Apply `supabase/migrations/20261118000100_competitor_management.sql` after the existing migrations, using the normal Supabase migration workflow. Do not paste frontend service-role credentials into this feature. The page reports a clear unavailable message until the migration is applied.
+Apply `supabase/migrations/20261118020529_competitor_management.sql` after the existing migrations, using the normal Supabase migration workflow. Do not paste frontend service-role credentials into this feature. The page reports a clear unavailable message until the migration is applied.
 
 - `npm run build`
 - `node --test tests/competitors.test.mjs`
@@ -38,6 +38,6 @@ The MVP does not send emails, handle tryout applications, verify league eligibil
 
 ## Validation in this checkout
 
-The production build, focused ESLint check, and offline unit tests pass. Full Supabase integration and browser validation still need a running local/test stack: Docker was unavailable; the installed Supabase CLI rejected existing config keys; the sandbox denied local server sockets and PostgreSQL shared memory. No production migration has been applied.
+The production build, focused ESLint check, and 25 offline unit tests pass. Migration `20261118020529_competitor_management.sql` was applied to the GT Esports `main-site` Supabase project (`aghuuwuncfnbidiwjtby`). The full transactional database permission/onboarding test suite passed against that project and rolled back its fixtures. Public competitor tables have RLS enabled. Browser validation still needs a runnable local/preview server. The security advisor flags the permission-checked competitor RPCs as signed-in SECURITY DEFINER functions; their access checks and direct-write restrictions are covered by the SQL suite.
 
 Work was created on `feat/competitor-management` from the existing local checkout. Git fetch was blocked by DNS resolution, so rebase onto the latest `origin/main` before opening or merging a PR. The admin navigation may need adapting if the upstream dashboard layout has changed.
