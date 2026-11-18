@@ -1,3 +1,4 @@
+import { competitorReturnPath } from "../features/competitors/model";
 import { useState, type FormEvent, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
@@ -30,7 +31,7 @@ function Auth() {
   // Redirect if already logged in
   useEffect(() => {
     if (!loading && user) {
-      navigate("/home", { replace: true });
+      navigate(competitorReturnPath(sessionStorage), { replace: true });
     }
   }, [user, loading, navigate]);
 
@@ -142,7 +143,7 @@ function LoginForm({ signIn, onSwitchToSignUp }: LoginFormProps) {
     if (result.error) {
       setError(result.error);
     } else {
-      navigate("/home", { replace: true });
+      navigate(competitorReturnPath(sessionStorage), { replace: true });
     }
   };
 

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { FiArrowRight, FiEdit3, FiFileText, FiLayout, FiShield, FiUsers } from 'react-icons/fi';
+import { FiArrowRight, FiEdit3, FiFileText, FiFlag, FiLayout, FiShield, FiUsers } from 'react-icons/fi';
 
 const groups = [
   {
@@ -14,6 +14,7 @@ const groups = [
     id: 'community',
     title: 'Community',
     tools: [
+      { title: 'Competitors & rosters', description: 'Manage team rosters, invite competitors, and track onboarding.', to: '/admin/competitors', icon: FiFlag },
       { title: 'Marketing contacts', description: 'Manage subscribers and alumni, or import a spreadsheet.', to: '/admin/contacts', icon: FiUsers },
     ],
   },

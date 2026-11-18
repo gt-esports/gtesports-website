@@ -1,3 +1,4 @@
+import { competitorReturnPath } from "../features/competitors/model";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../lib/supabase";
@@ -27,7 +28,7 @@ function AuthCallback() {
         if (sessionError) {
           setError(sessionError.message);
         } else if (session) {
-          navigate("/home", { replace: true });
+          navigate(competitorReturnPath(sessionStorage), { replace: true });
         } else {
           setError("No session was created. Please return to login and try again.");
         }
