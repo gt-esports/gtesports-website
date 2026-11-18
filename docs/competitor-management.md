@@ -13,7 +13,7 @@ Competitor information can be reopened at `/competitors/onboarding`. Players can
 
 ## Install and validate
 
-Apply `supabase/migrations/20261118020529_competitor_management.sql` after the existing migrations, using the normal Supabase migration workflow. Do not paste frontend service-role credentials into this feature. The page reports a clear unavailable message until the migration is applied.
+Apply `supabase/migrations/20261118020529_competitor_management.sql` after the existing migrations, using the normal Supabase migration workflow. Do not paste frontend service-role credentials into this feature. If competitor management cannot be reached, the page asks users to refresh and try again.
 
 - `npm run build`
 - `node --test tests/competitors.test.mjs`

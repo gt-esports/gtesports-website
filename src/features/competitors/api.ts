@@ -9,7 +9,7 @@ import type {
 function fail(error: { code?: string; message: string }): never {
   if (["42P01", "PGRST205", "PGRST202"].includes(error.code ?? ""))
     throw new Error(
-      "Competitor management is not available yet. Ask a developer to apply the competitor migration."
+      "Unable to connect to competitor management. Refresh the page and try again."
     );
   if (error.code === "23505")
     throw new Error(
