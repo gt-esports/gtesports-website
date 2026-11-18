@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import type { PublishedArticle } from "../data/newsSchema";
 import { formatNewsDate } from "../lib/newsDisplay";
+import { getNewsCoverUrl } from "../lib/newsCovers";
 import fallbackCover from "../assets/branding/gt-esports-image.webp";
 
 interface NewsCardProps {
@@ -10,7 +11,9 @@ interface NewsCardProps {
 
 function NewsCard({ article, featured = false }: NewsCardProps) {
   const titleId = `news-${article.id}-title`;
-  const hasCover = Boolean(article.cover_url);
+  const cover = article.cover_path
+    ? getNewsCoverUrl(article.cover_path)
+    : article.cover_url;
 
   return (
     <article
@@ -25,8 +28,8 @@ function NewsCard({ article, featured = false }: NewsCardProps) {
         }`}
       >
         <img
-          src={hasCover ? article.cover_url : fallbackCover}
-          alt={hasCover ? article.cover_alt ?? "" : ""}
+          src={cover || fallbackCover}
+          alt={cover ? article.cover_alt ?? "" : ""}
           loading={featured ? "eager" : "lazy"}
           decoding="async"
           className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
@@ -58,7 +61,7 @@ function NewsCard({ article, featured = false }: NewsCardProps) {
           {/* The link's ::after covers the whole card, so the card is clickable but screen readers hear one link. */}
           <Link
             to={`/news/${article.slug}`}
-            className="rounded-sm after:absolute after:inset-0 after:content-[''] group-hover:text-tech-gold focus-visible:outline-none focus-visible:after:rounded-2xl focus-visible:after:ring-2 focus-visible:after:ring-tech-gold"
+            className="rounded-sm after:absolute after:inset-0 after:content-[''] focus-visible:outline-none focus-visible:after:rounded-2xl focus-visible:after:ring-2 focus-visible:after:ring-tech-gold group-hover:text-tech-gold"
           >
             {article.title}
           </Link>
@@ -66,7 +69,9 @@ function NewsCard({ article, featured = false }: NewsCardProps) {
         <p className="mt-4 max-w-prose leading-relaxed text-gray-300">
           {article.excerpt}
         </p>
-        <p className="mt-auto pt-6 text-sm text-gray-400">By {article.author}</p>
+        <p className="mt-auto pt-6 text-sm text-gray-400">
+          By {article.author}
+        </p>
       </div>
     </article>
   );

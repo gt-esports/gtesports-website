@@ -16,9 +16,11 @@ import AuthCallback from "./pages/AuthCallback";
 import Admin from "./pages/Admin";
 import AdminCompetitors from "./features/competitors/AdminCompetitors";
 import CompetitorOnboarding from "./features/competitors/CompetitorOnboarding";
+import AdminDashboard from "./pages/AdminDashboard";
 import AdminAccessPage from "./pages/AdminAccess";
 import MarketingContactsPage from "./pages/MarketingContacts";
 import AdminApplicationsPage from "./pages/AdminApplications";
+import AdminNewsPage from "./pages/AdminNews";
 import RequireAdmin from "./components/RequireAdmin";
 import NewsArticlePage from "./pages/NewsArticle";
 
@@ -50,9 +52,12 @@ function App() {
           <Route element={<RequireAdmin />}>
             <Route path="/admin" element={<Admin />}>
               <Route path="competitors" element={<AdminCompetitors />} />
+              <Route index element={<AdminDashboard />} />
+              <Route path="content" element={null} />
               <Route path="access" element={<AdminAccessPage />} />
               <Route path="contacts" element={<MarketingContactsPage />} />
               <Route path="applications" element={<AdminApplicationsPage />} />
+              <Route path="news" element={<AdminNewsPage />} />
             </Route>
           </Route>
         </Route>

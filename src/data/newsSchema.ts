@@ -6,6 +6,7 @@ interface Article {
     slug: string;
     category: Category;
     cover_url: string;
+    cover_path?: string;
     cover_alt?: string;
     featured: boolean;
     revision?: number;
