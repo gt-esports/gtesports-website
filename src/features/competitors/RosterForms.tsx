@@ -1,3 +1,4 @@
+import ReadOnlyField from "./ReadOnlyField";
 import { useState, type FormEvent } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -142,20 +143,19 @@ export function RosterEditor({
   entry,
   busy,
   invitation,
+  notify,
   save,
   invite,
-  revoke,
 }: {
   entry: Competitor;
   busy: boolean;
   invitation: string | null;
+  notify: (message: string) => void;
   save: (position: RosterPosition, status: RosterStatus) => Promise<void>;
   invite: () => Promise<void>;
-  revoke: () => Promise<void>;
 }) {
   const [position, setPosition] = useState(entry.position);
   const [status, setStatus] = useState(entry.status);
-  const [copyStatus, setCopyStatus] = useState("");
   const stage = onboardingStatus(entry);
   const shareableLink = stage === "expired" ? null : invitation;
   return (
@@ -217,28 +217,16 @@ export function RosterEditor({
             replacement invalidates the previous link. Invitations are shared
             manually.
           </p>
-          <div className="mt-4 flex flex-wrap gap-3">
-            {!shareableLink && (
-              <button
-                disabled={busy}
-                className={primary}
-                onClick={() => void invite()}
-              >
-                {entry.onboarding === "invited"
-                  ? "Replace invitation link"
-                  : "Create invitation link"}
-              </button>
-            )}
-            {entry.onboarding === "invited" && (
-              <button
-                disabled={busy}
-                className={secondary}
-                onClick={() => void revoke()}
-              >
-                Revoke invitation
-              </button>
-            )}
-          </div>
+          <button
+            type="button"
+            disabled={busy}
+            className={`${shareableLink ? secondary : primary} mt-4`}
+            onClick={() => void invite()}
+          >
+            {shareableLink || entry.onboarding === "invited"
+              ? "Replace invitation link"
+              : "Create invitation link"}
+          </button>
           {entry.invite_expires_at && (
             <p className="mt-3 text-xs text-gray-400">
               Expires {new Date(entry.invite_expires_at).toLocaleString()}
@@ -248,31 +236,26 @@ export function RosterEditor({
             <div className="mt-4">
               <label className="text-sm text-gray-300">
                 Personal invitation link
-                <input
-                  readOnly
-                  className={input}
+                <ReadOnlyField
                   value={shareableLink}
                   onFocus={(event) => event.target.select()}
                 />
               </label>
               <button
+                type="button"
+                disabled={busy}
                 className={`${primary} mt-3`}
                 onClick={() => {
                   void Promise.resolve()
                     .then(() => navigator.clipboard.writeText(shareableLink))
-                    .then(() => setCopyStatus("Link copied."))
+                    .then(() => notify("Link copied."))
                     .catch(() =>
-                      setCopyStatus(
-                        "Select the link above and copy it manually."
-                      )
+                      notify("Select the link above and copy it manually.")
                     );
                 }}
               >
                 Copy link
               </button>
-              <p role="status" className="mt-2 text-sm text-gray-300">
-                {copyStatus}
-              </p>
             </div>
           )}
         </div>
@@ -329,19 +312,22 @@ export function RecordEditor({
         {fields.map(([name, label, value, required, readOnly]) => (
           <label key={name} className="text-sm text-gray-300">
             {label}
-            <input
-              className={input}
-              name={name}
-              defaultValue={value}
-              required={required}
-              readOnly={readOnly}
-              type={name === "player_email" ? "email" : "text"}
-              maxLength={name === "player_email" ? 254 : 100}
-            />
-            {readOnly && (
-              <span className="mt-1 block text-xs text-gray-400">
-                Email is tied to the linked account.
-              </span>
+            {readOnly ? (
+              <>
+                <ReadOnlyField name={name} value={value} />
+                <span className="mt-1 block text-xs text-gray-400">
+                  Provided by the linked account.
+                </span>
+              </>
+            ) : (
+              <input
+                className={input}
+                name={name}
+                defaultValue={value}
+                required={required}
+                type={name === "player_email" ? "email" : "text"}
+                maxLength={name === "player_email" ? 254 : 100}
+              />
             )}
           </label>
         ))}

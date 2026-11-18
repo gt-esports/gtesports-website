@@ -6,7 +6,7 @@ Staff use **Administration → Competitors & rosters** (`/admin/competitors`).
 2. Select **Add competitor** on the roster and enter their preferred name, email, and position. They do not need an account yet. Use the email they will verify with the site's authentication provider.
 3. The membership editor opens when you add a competitor. For existing entries, select **Manage**. Create a personal invitation link and copy it into your usual Discord message or email. Creating a link does not send a message. The link is displayed only when created; creating another link replaces it.
 4. The competitor opens the link, signs in or creates an account, verifies their email, and accepts the invitation. Email/password and Discord sign-in both return to onboarding in the same browser tab. If email verification opens a different tab/device, reopen the invitation there.
-5. The player completes their preferred name, Discord contact, and game account. Staff can filter onboarding progress on a team roster or across teams in **All competitors**.
+5. The player enters their preferred name and game account. Their Discord username is read from the linked account and is read-only. Staff can filter onboarding progress on a team roster or across teams in **All competitors**.
 6. Change a membership to inactive or former to keep history. This also revokes any unclaimed invitation. Reactivating an unclaimed membership requires a new invitation.
 
 Use **Edit roster** to change the team name, game, or season, or permanently delete the roster. Deleting a roster removes its memberships and invitations. **Manage** lets staff edit competitor details or permanently delete a single membership and its invitation. Website accounts and memberships on other teams are retained.
@@ -36,4 +36,4 @@ Database RLS restricts roster reads to admins and each linked player. All mutati
 
 Roster updates use a version timestamp to avoid overwriting a concurrent change. Onboarding state is independent of active/inactive/former membership status. Expired invitations have their own onboarding filter.
 
-The MVP does not send emails, handle tryout applications, verify league eligibility, publish public rosters, bulk-import spreadsheets, or automatically synchronize Discord roles. Players provide contact details per membership. Staff can correct the email of an unclaimed entry. Changing it invalidates the previous invitation.
+The MVP does not send emails, handle tryout applications, verify league eligibility, publish public rosters, bulk-import spreadsheets, or automatically synchronize Discord roles. Players provide in-game account details per membership. Staff can correct the email of an unclaimed entry. Changing it invalidates the previous invitation.

@@ -1,13 +1,12 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { FiArrowLeft, FiPlus, FiRefreshCw } from "react-icons/fi";
+import { FiArrowLeft, FiPlus, FiRefreshCw, FiX } from "react-icons/fi";
 import {
   addCompetitor,
   createInvite,
   createTeam,
   loadCompetitors,
   manageRecord,
-  revokeInvite,
   updateCompetitor,
 } from "./api";
 import { primary, secondary, teamLabel } from "./adminStyles";
@@ -30,10 +29,11 @@ const message = (error: unknown) =>
     ? error.message
     : "Unable to complete this action. Please try again.";
 
+type Directory = Awaited<ReturnType<typeof loadCompetitors>>;
+type CachedInvite = { url: string; expiresAt: string };
+
 export default function AdminCompetitors() {
-  const [data, setData] = useState<Awaited<
-    ReturnType<typeof loadCompetitors>
-  > | null>(null);
+  const [data, setData] = useState<Directory | null>(null);
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState(false);
   const [loadError, setLoadError] = useState("");
@@ -41,7 +41,9 @@ export default function AdminCompetitors() {
   const [notice, setNotice] = useState("");
   const [selection, setSelection] = useState("");
   const [editor, setEditor] = useState<Editor | null>(null);
-  const [invitation, setInvitation] = useState<string | null>(null);
+  const [invitations, setInvitations] = useState(
+    new Map<string, CachedInvite>()
+  );
   // Re-evaluate invite expiration as long as the page stays open.
   const [, setMinute] = useState(0);
   useEffect(() => {
@@ -56,7 +58,23 @@ export default function AdminCompetitors() {
     setLoading(true);
     setLoadError("");
     try {
-      setData(await loadCompetitors());
+      const directory = await loadCompetitors();
+      setData(directory);
+      setInvitations((previous) => {
+        const valid = new Map<string, CachedInvite>();
+        for (const entry of directory.entries) {
+          const cached = previous.get(entry.id);
+          if (
+            cached &&
+            entry.onboarding === "invited" &&
+            entry.status === "active" &&
+            entry.invite_expires_at === cached.expiresAt
+          )
+            valid.set(entry.id, cached);
+        }
+        return valid;
+      });
+      return directory;
     } catch (error) {
       setLoadError(message(error));
     } finally {
@@ -70,18 +88,24 @@ export default function AdminCompetitors() {
   function open(next: Editor | null) {
     setActionError("");
     setNotice("");
-    setInvitation(null);
     setEditor(next);
   }
 
-  async function run(action: () => Promise<() => void>) {
+  function forgetInvitation(id: string) {
+    setInvitations((previous) => {
+      const next = new Map(previous);
+      next.delete(id);
+      return next;
+    });
+  }
+
+  async function run(action: () => Promise<(directory?: Directory) => void>) {
     setBusy(true);
     setActionError("");
     setNotice("");
     try {
       const finish = await action();
-      await reload();
-      finish();
+      finish(await reload());
     } catch (error) {
       setActionError(message(error));
     } finally {
@@ -105,16 +129,32 @@ export default function AdminCompetitors() {
       : undefined;
   const currentTeam = teams.find((team) => team.id === current?.team_id);
   const controlsBusy = loading || busy;
-  const feedback = (
-    <>
-      {(actionError || loadError) && (
-        <div
-          role="alert"
-          className="mb-5 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-red-400/30 bg-red-500/10 p-4 text-sm text-red-200"
+  const feedbackError = actionError || loadError;
+  const feedbackMessage = feedbackError || notice;
+
+  useEffect(() => {
+    if (!notice || feedbackError) return;
+    const timeout = window.setTimeout(() => setNotice(""), 5000);
+    return () => window.clearTimeout(timeout);
+  }, [notice, feedbackError]);
+
+  const feedback = feedbackMessage && (
+    <div
+      className={`pointer-events-auto z-50 flex w-full max-w-md items-start gap-3 rounded-xl border border-white/15 bg-deep-space px-4 py-3 text-sm shadow-2xl ${
+        editor ? "" : "fixed bottom-4 right-4 w-[calc(100%-2rem)] sm:right-6"
+      }`}
+    >
+      <div className="min-w-0 flex-1">
+        <p
+          role={feedbackError ? "alert" : "status"}
+          className={feedbackError ? "text-red-200" : "text-white"}
         >
-          <p>{actionError || loadError}</p>
+          {feedbackMessage}
+        </p>
+        {feedbackError && (
           <button
-            className={secondary}
+            type="button"
+            className="mt-2 font-medium text-tech-gold hover:underline disabled:opacity-50"
             disabled={controlsBusy}
             onClick={() => {
               setActionError("");
@@ -123,17 +163,21 @@ export default function AdminCompetitors() {
           >
             Refresh data
           </button>
-        </div>
-      )}
-      {notice && (
-        <p
-          role="status"
-          className="mb-5 rounded-xl border border-tech-gold/30 bg-tech-gold/10 p-4 text-sm text-tech-gold"
-        >
-          {notice}
-        </p>
-      )}
-    </>
+        )}
+      </div>
+      <button
+        type="button"
+        aria-label="Dismiss notification"
+        className="shrink-0 rounded p-1 text-gray-300 hover:bg-white/10 hover:text-white"
+        onClick={() => {
+          setActionError("");
+          setLoadError("");
+          setNotice("");
+        }}
+      >
+        <FiX size={18} aria-hidden="true" />
+      </button>
+    </div>
   );
 
   return (
@@ -211,8 +255,8 @@ export default function AdminCompetitors() {
           }
           busy={controlsBusy}
           close={() => open(null)}
+          notification={feedback}
         >
-          {feedback}
           {editor.type === "team" && (
             <TeamForm
               busy={controlsBusy}
@@ -312,7 +356,13 @@ export default function AdminCompetitors() {
                       true,
                       Boolean(current.user_id),
                     ],
-                    ["discord_contact", "Discord", current.discord, false],
+                    [
+                      "discord_contact",
+                      "Discord username",
+                      current.discord,
+                      false,
+                      true,
+                    ],
                     [
                       "in_game_account",
                       "In-game account",
@@ -332,7 +382,7 @@ export default function AdminCompetitors() {
                           fields.player_email.trim().toLowerCase() !==
                           current.email
                         )
-                          setInvitation(null);
+                          forgetInvitation(current.id);
                         setNotice("Competitor details updated.");
                       };
                     })
@@ -361,12 +411,16 @@ export default function AdminCompetitors() {
                   key={`${current.id}-${current.updated_at}`}
                   entry={current}
                   busy={controlsBusy}
-                  invitation={invitation}
+                  invitation={invitations.get(current.id)?.url ?? null}
+                  notify={(text) => {
+                    setActionError("");
+                    setNotice(text);
+                  }}
                   save={(position, status) =>
                     run(async () => {
                       await updateCompetitor(current, position, status);
                       return () => {
-                        if (status !== "active") setInvitation(null);
+                        if (status !== "active") forgetInvitation(current.id);
                         setNotice("Roster membership updated.");
                       };
                     })
@@ -374,20 +428,22 @@ export default function AdminCompetitors() {
                   invite={() =>
                     run(async () => {
                       const url = await createInvite(current.id);
-                      return () => {
-                        setInvitation(url);
+                      return (directory) => {
+                        const entry = directory?.entries.find(
+                          ({ id }) => id === current.id
+                        );
+                        const expiresAt = entry?.invite_expires_at;
+                        if (expiresAt && entry.onboarding === "invited") {
+                          setInvitations((previous) =>
+                            new Map(previous).set(current.id, {
+                              url,
+                              expiresAt,
+                            })
+                          );
+                        }
                         setNotice(
                           "Invitation created. Copy and share the link with the competitor."
                         );
-                      };
-                    })
-                  }
-                  revoke={() =>
-                    run(async () => {
-                      await revokeInvite(current.id);
-                      return () => {
-                        setInvitation(null);
-                        setNotice("Invitation revoked.");
                       };
                     })
                   }

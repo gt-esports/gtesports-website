@@ -1,5 +1,7 @@
+import ReadOnlyField from "./ReadOnlyField";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { FiX } from "react-icons/fi";
 import { useAuth } from "../../context/AuthContext";
 import {
   acceptInvite,
@@ -35,6 +37,11 @@ export default function CompetitorOnboarding() {
     allowed: boolean;
   }>();
   const userId = user?.id;
+  const discordName: unknown = user?.identities?.find(
+    ({ provider }) => provider === "discord"
+  )?.identity_data?.full_name;
+  const discordUsername =
+    typeof discordName === "string" ? discordName.trim() : "";
   useEffect(() => {
     if (!userId || !token || authLoading) return;
     let active = true;
@@ -54,6 +61,11 @@ export default function CompetitorOnboarding() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
+  useEffect(() => {
+    if (!notice || error) return;
+    const timeout = window.setTimeout(() => setNotice(""), 5000);
+    return () => window.clearTimeout(timeout);
+  }, [error, notice]);
   const reload = useCallback(async () => {
     if (!user) {
       setEntries([]);
@@ -146,21 +158,28 @@ export default function CompetitorOnboarding() {
         Claim your roster invitation and complete the information your team
         needs.
       </p>
-      {error && (
-        <p
-          role="alert"
-          className="mt-6 rounded-xl border border-red-400/30 bg-red-500/10 p-4 text-red-200"
-        >
-          {error}
-        </p>
-      )}
-      {notice && (
-        <p
-          role="status"
-          className="mt-6 rounded-xl border border-tech-gold/30 p-4 text-tech-gold"
-        >
-          {notice}
-        </p>
+      {(error || notice) && (
+        <div className="fixed inset-x-4 bottom-4 z-50 mx-auto flex max-w-md items-start gap-3 rounded-xl border border-white/15 bg-deep-space px-4 py-3 text-sm shadow-2xl">
+          <p
+            role={error ? "alert" : "status"}
+            className={`min-w-0 flex-1 ${
+              error ? "text-red-200" : "text-white"
+            }`}
+          >
+            {error || notice}
+          </p>
+          <button
+            type="button"
+            aria-label="Dismiss notification"
+            className="shrink-0 rounded p-1 text-gray-300 hover:bg-white/10 hover:text-white"
+            onClick={() => {
+              setError("");
+              setNotice("");
+            }}
+          >
+            <FiX size={18} aria-hidden="true" />
+          </button>
+        </div>
       )}
       {authLoading || loading ? (
         <p role="status" className="py-8">
@@ -241,9 +260,15 @@ export default function CompetitorOnboarding() {
               entry={entry}
               team={teams.find((team) => team.id === entry.team_id)}
               busy={busy}
-              save={(name, discord, account) =>
+              discordUsername={discordUsername}
+              save={(name, account) =>
                 run(async () => {
-                  await completeOnboarding(entry.id, name, discord, account);
+                  await completeOnboarding(
+                    entry.id,
+                    name,
+                    account,
+                    discordUsername
+                  );
                   setNotice(
                     "Your competitor information is saved. Onboarding is complete."
                   );
@@ -260,12 +285,14 @@ function PlayerDetails({
   entry,
   team,
   busy,
+  discordUsername,
   save,
 }: {
   entry: Competitor;
   team?: CompetitorTeam;
   busy: boolean;
-  save: (name: string, discord: string, account: string) => Promise<void>;
+  discordUsername: string;
+  save: (name: string, account: string) => Promise<void>;
 }) {
   return (
     <form
@@ -273,11 +300,7 @@ function PlayerDetails({
       onSubmit={(event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        void save(
-          String(data.get("name")),
-          String(data.get("discord")),
-          String(data.get("account"))
-        );
+        void save(String(data.get("name")), String(data.get("account")));
       }}
     >
       <div className="flex flex-wrap justify-between gap-3">
@@ -306,13 +329,10 @@ function PlayerDetails({
           />
         </label>
         <label className="block text-sm text-gray-300">
-          Discord contact
-          <input
-            className={input}
-            required
-            maxLength={100}
-            name="discord"
-            defaultValue={entry.discord}
+          Discord username
+          <ReadOnlyField
+            value={discordUsername}
+            placeholder="Sign in with Discord"
           />
         </label>
         <label className="block text-sm text-gray-300">
@@ -328,7 +348,7 @@ function PlayerDetails({
       </div>
       <button
         className={`${button} mt-6`}
-        disabled={busy || entry.status !== "active"}
+        disabled={busy || !discordUsername || entry.status !== "active"}
       >
         {entry.onboarding === "complete"
           ? "Save profile changes"

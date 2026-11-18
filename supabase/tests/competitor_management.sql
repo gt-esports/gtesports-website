@@ -7,6 +7,9 @@ insert into auth.users(id,email,email_confirmed_at,raw_user_meta_data) values
  (current_setting('test.admin')::uuid, 'staff-' || current_setting('test.admin') || '@example.com', now(), '{}'),
  (current_setting('test.player')::uuid, 'player-' || current_setting('test.player') || '@example.com', now(), '{}'),
  (current_setting('test.other')::uuid, 'other-' || current_setting('test.other') || '@example.com', now(), '{"role":"admin"}');
+insert into auth.identities (id, user_id, provider_id, provider, identity_data) values
+  (gen_random_uuid(), current_setting('test.player')::uuid, current_setting('test.player'), 'discord', '{"full_name":"verified-discord"}'),
+  (gen_random_uuid(), current_setting('test.other')::uuid, current_setting('test.other'), 'discord', '{"full_name":"other-discord"}');
 insert into public.user_roles values (current_setting('test.admin')::uuid, 'admin');
 select set_config('request.jwt.claim.sub', current_setting('test.admin'), true);
 set local role authenticated;
@@ -73,11 +76,11 @@ do $$ begin
   if not exists(select 1 from public.competitor_roster where id = current_setting('test.roster')::uuid and user_id = auth.uid() and onboarding = 'in_progress' and position = 'captain') then raise exception 'Claim lost assignment'; end if;
   if not exists(select 1 from public.competitor_teams where id = current_setting('test.team')::uuid) then raise exception 'Assigned team hidden'; end if;
   begin perform public.accept_competitor_invite(current_setting('test.token')); raise exception 'Replay accepted'; exception when invalid_parameter_value then null; end;
-  begin perform public.complete_competitor_onboarding(current_setting('test.roster')::uuid,'Player',' ','IGN'); raise exception 'Blank Discord accepted'; exception when invalid_parameter_value then null; end;
+  begin perform public.complete_competitor_onboarding(current_setting('test.roster')::uuid,'Player','ignored',' '); raise exception 'Blank game account accepted'; exception when invalid_parameter_value then null; end;
 end $$;
 select public.complete_competitor_onboarding(current_setting('test.roster')::uuid,'Preferred','discord-name','IGN#123');
 do $$ begin
-  if not exists(select 1 from public.competitor_roster where id = current_setting('test.roster')::uuid and onboarding = 'complete' and game_account = 'IGN#123') then raise exception 'Onboarding not completed'; end if;
+  if not exists(select 1 from public.competitor_roster where id = current_setting('test.roster')::uuid and onboarding = 'complete' and game_account = 'IGN#123' and discord = 'verified-discord') then raise exception 'Onboarding not completed'; end if;
   if public.is_admin() then raise exception 'Competitor became admin'; end if;
 end $$;
 reset role;
@@ -100,6 +103,9 @@ select public.edit_competitor_team(current_setting('test.team')::uuid, 'Blue', '
 select public.edit_competitor_details(
   r.id, 'Edited Player', r.email, 'updated-discord', 'updated-account', r.updated_at
 ) from public.competitor_roster r where r.id = current_setting('test.roster')::uuid;
+do $$ begin
+  if not exists(select 1 from public.competitor_roster where id = current_setting('test.roster')::uuid and discord = 'verified-discord') then raise exception 'Admin changed Discord identity'; end if;
+end $$;
 select public.delete_competitor_membership(r.id, r.updated_at)
   from public.competitor_roster r where r.id = current_setting('test.roster')::uuid;
 select set_config('test.deleted_member', public.add_competitor(current_setting('test.team')::uuid, 'New Player', 'new@example.com', 'player')::text, true);

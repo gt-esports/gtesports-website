@@ -103,12 +103,6 @@ export async function createInvite(id: string): Promise<string> {
     window.location.origin
   }/competitors/onboarding#invite=${encodeURIComponent(data)}`;
 }
-export async function revokeInvite(id: string) {
-  const { error } = await supabase.rpc("revoke_competitor_invite", {
-    roster_id: id,
-  });
-  if (error) fail(error);
-}
 export async function acceptInvite(token: string) {
   const { error } = await supabase.rpc("accept_competitor_invite", {
     invite_token: token,
@@ -118,13 +112,14 @@ export async function acceptInvite(token: string) {
 export async function completeOnboarding(
   id: string,
   name: string,
-  discord: string,
-  account: string
+  account: string,
+  discordUsername: string
 ) {
   const { error } = await supabase.rpc("complete_competitor_onboarding", {
     roster_id: id,
     player_name: name.trim(),
-    discord_contact: discord.trim(),
+    // The original RPC requires this argument. The updated RPC reads the linked identity directly.
+    discord_contact: discordUsername,
     in_game_account: account.trim(),
   });
   if (error) fail(error);
