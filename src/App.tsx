@@ -14,6 +14,8 @@ import Privacy from "./pages/Privacy";
 import Auth from "./pages/Auth";
 import AuthCallback from "./pages/AuthCallback";
 import Admin from "./pages/Admin";
+import AdminCompetitors from "./features/competitors/AdminCompetitors";
+import CompetitorOnboarding from "./features/competitors/CompetitorOnboarding";
 import AdminAccessPage from "./pages/AdminAccess";
 import MarketingContactsPage from "./pages/MarketingContacts";
 import AdminApplicationsPage from "./pages/AdminApplications";
@@ -42,10 +44,12 @@ function App() {
           <Route path="/teams" element={<Teams />} />
           <Route path="/leadership" element={<OurTeam />} />
           <Route path="/ourteam" element={<Navigate to="/leadership" replace />} />
+          <Route path="/competitors/onboarding" element={<CompetitorOnboarding />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/auth/callback" element={<AuthCallback />} />
           <Route element={<RequireAdmin />}>
             <Route path="/admin" element={<Admin />}>
+              <Route path="competitors" element={<AdminCompetitors />} />
               <Route path="access" element={<AdminAccessPage />} />
               <Route path="contacts" element={<MarketingContactsPage />} />
               <Route path="applications" element={<AdminApplicationsPage />} />
