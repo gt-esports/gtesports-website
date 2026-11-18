@@ -1,4 +1,4 @@
--- Run as postgres after competitor-management migration. Fixtures always roll back.
+-- Run as postgres after competitor-management migrations. Fixtures always roll back.
 begin;
 select set_config('test.admin', gen_random_uuid()::text, true);
 select set_config('test.player', gen_random_uuid()::text, true);
@@ -19,6 +19,7 @@ reset role;
 select set_config('request.jwt.claim.sub', current_setting('test.other'), true);
 set local role authenticated;
 do $$ begin
+  if public.can_view_competitor_invite(current_setting('test.token')) then raise exception 'Wrong recipient can view invite'; end if;
   if exists(select 1 from public.competitor_roster) or exists(select 1 from public.competitor_teams) then raise exception 'Unassigned player can read directory'; end if;
   begin perform public.create_competitor_team('Bad','Bad','Bad'); raise exception 'Nonadmin created team'; exception when insufficient_privilege then null; end;
   begin perform public.add_competitor(current_setting('test.team')::uuid,'Bad','bad@example.com','player'); raise exception 'Nonadmin added roster'; exception when insufficient_privilege then null; end;
@@ -64,6 +65,9 @@ select set_config('test.token', public.create_competitor_invite(current_setting(
 reset role;
 select set_config('request.jwt.claim.sub', current_setting('test.player'), true);
 set local role authenticated;
+do $$ begin
+  if not public.can_view_competitor_invite(current_setting('test.token')) then raise exception 'Verified invite recipient denied'; end if;
+end $$;
 select public.accept_competitor_invite(current_setting('test.token'));
 do $$ begin
   if not exists(select 1 from public.competitor_roster where id = current_setting('test.roster')::uuid and user_id = auth.uid() and onboarding = 'in_progress' and position = 'captain') then raise exception 'Claim lost assignment'; end if;
@@ -92,7 +96,23 @@ do $$ begin
   begin perform public.update_competitor(current_setting('test.roster')::uuid,'captain','active',current_setting('test.version')::timestamptz); raise exception 'Stale write accepted'; exception when serialization_failure then null; end;
   begin perform public.create_competitor_invite(current_setting('test.roster')::uuid); raise exception 'Claimed former player reinvited'; exception when invalid_parameter_value then null; end;
 end $$;
+select public.edit_competitor_team(current_setting('test.team')::uuid, 'Blue', 'Valorant', 'Spring');
+select public.edit_competitor_details(
+  r.id, 'Edited Player', r.email, 'updated-discord', 'updated-account', r.updated_at
+) from public.competitor_roster r where r.id = current_setting('test.roster')::uuid;
+select public.delete_competitor_membership(r.id, r.updated_at)
+  from public.competitor_roster r where r.id = current_setting('test.roster')::uuid;
+select set_config('test.deleted_member', public.add_competitor(current_setting('test.team')::uuid, 'New Player', 'new@example.com', 'player')::text, true);
+select set_config('test.deleted_invite', public.create_competitor_invite(current_setting('test.deleted_member')::uuid), true) is not null;
+select public.delete_competitor_team(current_setting('test.team')::uuid);
 reset role;
+do $$ begin
+  if exists (select 1 from public.competitor_teams where id = current_setting('test.team')::uuid)
+    or exists (select 1 from public.competitor_roster where team_id = current_setting('test.team')::uuid)
+    or exists (select 1 from private.competitor_invites where roster_id = current_setting('test.deleted_member')::uuid)
+  then raise exception 'Roster deletion left data behind'; end if;
+  if not exists (select 1 from auth.users where id = current_setting('test.player')::uuid) then raise exception 'Roster deletion removed the website account'; end if;
+end $$;
 set local role anon;
 do $$ begin
   begin perform * from public.competitor_roster; raise exception 'Anonymous roster access'; exception when insufficient_privilege then null; end;

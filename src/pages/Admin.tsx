@@ -18,7 +18,7 @@ export default function Admin() {
           <h2 id="competitor-management-heading" className="font-outfit text-xl font-semibold">Competitors &amp; rosters</h2>
           <p className="mt-1 text-sm text-gray-400">Manage teams, invite existing competitors, and track onboarding.</p>
         </div>
-        <Link to="/admin/competitors" className="shrink-0 rounded-lg border border-tech-gold/50 px-5 py-3 text-center font-medium text-tech-gold transition hover:bg-tech-gold/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-tech-gold">Manage competitors <span aria-hidden="true">→</span></Link>
+        <Link to="/admin/competitors" className="shrink-0 rounded-lg border border-tech-gold/50 px-5 py-3 text-center font-medium text-tech-gold transition hover:bg-tech-gold/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-tech-gold">Manage rosters <span aria-hidden="true">→</span></Link>
       </section>
       <section aria-labelledby="marketing-contacts-heading" className="mt-8 flex flex-col gap-4 rounded-xl border border-white/10 bg-white/5 p-5 sm:flex-row sm:items-center sm:justify-between">
         <div>

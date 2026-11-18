@@ -9,7 +9,7 @@ import type {
 function fail(error: { code?: string; message: string }): never {
   if (["42P01", "PGRST205", "PGRST202"].includes(error.code ?? ""))
     throw new Error(
-      "Unable to connect to competitor management. Refresh the page and try again."
+      "Competitor management is temporarily unavailable. Try refreshing in a moment."
     );
   if (error.code === "23505")
     throw new Error(
@@ -49,12 +49,15 @@ export async function loadCompetitors() {
   return { teams, entries };
 }
 export async function createTeam(name: string, game: string, season: string) {
-  const { error } = await supabase.rpc("create_competitor_team", {
+  const result = await supabase.rpc("create_competitor_team", {
     team_name: name.trim(),
     game_name: game.trim(),
     season_name: season.trim(),
   });
-  if (error) fail(error);
+  if (result.error) fail(result.error);
+  const id: unknown = result.data;
+  if (typeof id !== "string") throw new Error("Unable to create the roster.");
+  return id;
 }
 export async function addCompetitor(
   team: string,
@@ -62,13 +65,16 @@ export async function addCompetitor(
   email: string,
   position: RosterPosition
 ) {
-  const { error } = await supabase.rpc("add_competitor", {
+  const result = await supabase.rpc("add_competitor", {
     roster_team: team,
     player_name: name.trim(),
     player_email: email.trim().toLowerCase(),
     roster_position: position,
   });
-  if (error) fail(error);
+  if (result.error) fail(result.error);
+  const id: unknown = result.data;
+  if (typeof id !== "string") throw new Error("Unable to add the competitor.");
+  return id;
 }
 export async function updateCompetitor(
   entry: Competitor,
@@ -122,4 +128,20 @@ export async function completeOnboarding(
     in_game_account: account.trim(),
   });
   if (error) fail(error);
+}
+
+export async function manageRecord(
+  action: string,
+  args: Record<string, string>
+) {
+  const { error } = await supabase.rpc(action, args);
+  if (error) fail(error);
+}
+
+export async function canViewInvite(token: string) {
+  const result = await supabase.rpc("can_view_competitor_invite", {
+    invite_token: token,
+  });
+  if (result.error) fail(result.error);
+  return result.data === true;
 }

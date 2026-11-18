@@ -2,18 +2,20 @@
 
 Staff use **Administration → Competitors & rosters** (`/admin/competitors`).
 
-1. Create a team with its game, team name, and season. Seasons have separate rosters, so previous assignments remain available.
-2. Add an existing competitor with their preferred name, email, and position. They do not need an account yet. Use the email they will verify with the site's authentication provider.
-3. Open **Manage**, create a personal invitation link, and copy it into your usual Discord message or email. Creating a link does not send a message. The link is displayed only when created; creating another link replaces it.
+1. Open an existing roster from **Team rosters**, or select **Create roster** and enter the game, team name, and season. The roster list includes teams with zero competitors. Each season has a separate roster.
+2. Select **Add competitor** on the roster and enter their preferred name, email, and position. They do not need an account yet. Use the email they will verify with the site's authentication provider.
+3. The membership editor opens when you add a competitor. For existing entries, select **Manage**. Create a personal invitation link and copy it into your usual Discord message or email. Creating a link does not send a message. The link is displayed only when created; creating another link replaces it.
 4. The competitor opens the link, signs in or creates an account, verifies their email, and accepts the invitation. Email/password and Discord sign-in both return to onboarding in the same browser tab. If email verification opens a different tab/device, reopen the invitation there.
-5. The player completes their preferred name, Discord contact, and game account. Staff can filter onboarding progress in the directory.
+5. The player completes their preferred name, Discord contact, and game account. Staff can filter onboarding progress on a team roster or across teams in **All competitors**.
 6. Change a membership to inactive or former to keep history. This also revokes any unclaimed invitation. Reactivating an unclaimed membership requires a new invitation.
+
+Use **Edit roster** to change the team name, game, or season, or permanently delete the roster. Deleting a roster removes its memberships and invitations. **Manage** lets staff edit competitor details or permanently delete a single membership and its invitation. Website accounts and memberships on other teams are retained.
 
 Competitor information can be reopened at `/competitors/onboarding`. Players can edit their own active membership information after completing onboarding. Staff control competitive status and roster position.
 
 ## Install and validate
 
-Apply `supabase/migrations/20261118020529_competitor_management.sql` after the existing migrations, using the normal Supabase migration workflow. Do not paste frontend service-role credentials into this feature. If competitor management cannot be reached, the page asks users to refresh and try again.
+Apply the competitor-management migrations in timestamp order, using the normal Supabase migration workflow. Do not paste frontend service-role credentials into this feature. The page shows a retryable error if it cannot load the roster directory.
 
 - `npm run build`
 - `node --test tests/competitors.test.mjs`
@@ -32,12 +34,6 @@ Invitation tokens expire after seven days, are stored only as SHA-256 hashes in 
 
 Database RLS restricts roster reads to admins and each linked player. All mutations go through permission-checked database functions. Account email verification comes from `auth.users`, never editable user metadata. Competitor data is private and is not published on public team pages.
 
-Roster updates use a version timestamp to avoid overwriting a concurrent change. Onboarding state is independent of active/inactive/former membership status. Awaiting acceptance includes expired invitations, which also have their own filter.
+Roster updates use a version timestamp to avoid overwriting a concurrent change. Onboarding state is independent of active/inactive/former membership status. Expired invitations have their own onboarding filter.
 
-The MVP does not send emails, handle tryout applications, verify league eligibility, publish public rosters, bulk-import spreadsheets, or automatically synchronize Discord roles. Players provide contact details per membership. If staff entered an incorrect email, mark that unclaimed entry former and create a corrected entry with a new invitation.
-
-## Validation in this checkout
-
-The production build, focused ESLint check, and 25 offline unit tests pass. Migration `20261118020529_competitor_management.sql` was applied to the GT Esports `main-site` Supabase project (`aghuuwuncfnbidiwjtby`). The full transactional database permission/onboarding test suite passed against that project and rolled back its fixtures. Public competitor tables have RLS enabled. Browser validation still needs a runnable local/preview server. The security advisor flags the permission-checked competitor RPCs as signed-in SECURITY DEFINER functions; their access checks and direct-write restrictions are covered by the SQL suite.
-
-Work was created on `feat/competitor-management` from the existing local checkout. Git fetch was blocked by DNS resolution, so rebase onto the latest `origin/main` before opening or merging a PR. The admin navigation may need adapting if the upstream dashboard layout has changed.
+The MVP does not send emails, handle tryout applications, verify league eligibility, publish public rosters, bulk-import spreadsheets, or automatically synchronize Discord roles. Players provide contact details per membership. Staff can correct the email of an unclaimed entry. Changing it invalidates the previous invitation.

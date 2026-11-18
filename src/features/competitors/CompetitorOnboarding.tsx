@@ -1,7 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
-import { acceptInvite, completeOnboarding, loadCompetitors } from "./api";
+import {
+  acceptInvite,
+  canViewInvite,
+  completeOnboarding,
+  loadCompetitors,
+} from "./api";
 import type { Competitor, CompetitorTeam } from "./model";
 
 const input =
@@ -24,6 +29,25 @@ export default function CompetitorOnboarding() {
   const currentUser = useRef(user?.id);
   currentUser.current = user?.id;
   const [token, setToken] = useState(pendingToken);
+  const [inviteAccess, setInviteAccess] = useState<{
+    userId: string;
+    token: string;
+    allowed: boolean;
+  }>();
+  const userId = user?.id;
+  useEffect(() => {
+    if (!userId || !token || authLoading) return;
+    let active = true;
+    const resolve = (allowed: boolean) => {
+      if (active) setInviteAccess({ userId, token, allowed });
+    };
+    void canViewInvite(token).then(resolve, () => resolve(false));
+    return () => {
+      active = false;
+    };
+  }, [userId, token, authLoading]);
+  const checkedInvite =
+    inviteAccess?.userId === userId && inviteAccess?.token === token;
   const [teams, setTeams] = useState<CompetitorTeam[]>([]);
   const [entries, setEntries] = useState<Competitor[]>([]);
   const [loading, setLoading] = useState(false);
@@ -79,6 +103,36 @@ export default function CompetitorOnboarding() {
     } finally {
       setBusy(false);
     }
+  }
+  if (
+    token &&
+    !authLoading &&
+    user &&
+    (!checkedInvite || !inviteAccess?.allowed)
+  ) {
+    return (
+      <section className="mx-auto max-w-3xl px-6 py-16">
+        {checkedInvite ? (
+          <>
+            <h1 className="font-outfit text-3xl font-bold">Not authorized</h1>
+            <p role="alert" className="mt-4 text-gray-300">
+              This invitation is unavailable for your account.
+            </p>
+            <button
+              className={`${button} mt-5`}
+              onClick={() => {
+                sessionStorage.removeItem("competitor-invite");
+                setToken("");
+              }}
+            >
+              Go to my teams
+            </button>
+          </>
+        ) : (
+          <p role="status">Checking invitation access…</p>
+        )}
+      </section>
+    );
   }
   return (
     <section className="mx-auto max-w-3xl px-6 py-16">
